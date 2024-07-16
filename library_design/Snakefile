@@ -15,6 +15,7 @@ rule all:
         config["saturated_sites_w_oligos"],
         config["opools"],
         config["opool_stats"],
+        config["opools_with_insertion"],
 
 rule alignment_counts:
     params:
@@ -146,3 +147,14 @@ rule design_primers:
         notebook="results/notebooks/design_primers.ipynb",
     notebook:
         "notebooks/design_primers.py.ipynb"
+
+rule add_insertion_primers:
+    input:
+        config["insertion_primers"],
+        config["opools"]
+    output:
+        config["opools_with_insertion"],
+    log:
+        notebook="results/notebooks/add_insertion_primers.ipynb",
+    notebook:
+        "notebooks/add_insertion_primers.py.ipynb"

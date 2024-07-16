@@ -4,6 +4,7 @@
 extended_gene: data/extended_spike_KP.3.1.1.fa
 reference_gene: data/reference_spike.fa
 human_codon_freqs: data/human_codon_freq.csv
+insertion_primers: data/insertion_primers.csv #primers for 31S insertion
 
 # URL of GISAID mutation count data on CoVsurver:
 alignment_count_url: https://mendel.bii.a-star.edu.sg/METHODS/corona/current/MUTATIONS/hCoV-19_Human_2019_WuhanWIV04/hcov19_Spike_mutations_table.html
@@ -44,8 +45,6 @@ sites_to_allow_deletions:
 
 # include these mutations regardless of counts, in reference numbering
 mutations_to_include:
-  # Ryan Hisner says second generation BA.2 variants with deletions at some of these sites,
-  # and others have a decent number of deletions in GISAID data
   - 21-
   - 211-
   - 342-
@@ -84,9 +83,13 @@ sites_to_saturate:
   - 67
   - 146
   - 183
+  - 190
   - 212
   - 249
   - 572
+  - 783
+  - 852
+  - 942
   - 1086
   - 1087
   - 1266
@@ -123,4 +126,5 @@ saturated_sites: results/saturated_sites.csv
 targeted_mutations_w_oligos: results/targeted_mutations_w_oligos.csv
 saturated_sites_w_oligos: results/saturated_sites_w_oligos.csv
 opools: results/oPools.csv
+opools_with_insertion: results/oPools_with_insertion.csv
 opool_stats: results/oPool_stats.csv

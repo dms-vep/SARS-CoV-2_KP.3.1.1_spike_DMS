@@ -1,5 +1,5 @@
 Pool name,pool type,n_oligos,unique_sequences
-spike_SARS2_KP.3.1.1_targeted_mutations_forward_oPool,targeted_mutations,9033,9033
-spike_SARS2_KP.3.1.1_targeted_mutations_reverse_oPool,targeted_mutations,9033,9033
-spike_SARS2_KP.3.1.1_saturated_sites_forward_oPool,saturated_sites,1008,16128
-spike_SARS2_KP.3.1.1_saturated_sites_reverse_oPool,saturated_sites,1008,16128
+spike_SARS2_KP.3.1.1_targeted_mutations_forward_oPool,targeted_mutations,9003,9003
+spike_SARS2_KP.3.1.1_targeted_mutations_reverse_oPool,targeted_mutations,9003,9003
+spike_SARS2_KP.3.1.1_saturated_sites_forward_oPool,saturated_sites,1084,17344
+spike_SARS2_KP.3.1.1_saturated_sites_reverse_oPool,saturated_sites,1084,17344

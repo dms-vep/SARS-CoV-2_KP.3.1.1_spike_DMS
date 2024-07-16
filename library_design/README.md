@@ -63,6 +63,8 @@ Some mutations are added manually
 
 The number of targeted mutations and saturated sites as a function of the parameters is shown in the interactive plot at [results/mutations_to_make.html](results/mutations_to_make.html).
 
+We also add a primer set to the oPool that should insert back the 31S amino acid that was deleted in KP.3.1.1 lineage. These primers are at [data/insertion_primers.csv](data/insertion_primers.csv).
+
 #### Design the primers for oPools
 The pipeline then designs actual primers that can be ordered in oPools to do the mutagenesis.
 
@@ -81,7 +83,9 @@ Primers are designed to have at least a melting temperature of `primer_min_tm`, 
 The designed primer pools have a prefix in their name the string specified under `opool_prefix` in [config.yaml](config.yaml).
 
 The designed pools themselves are in the file [results/oPools.csv](results/oPools.csv).
+The designed pools with the added 31S insertion primer are in the file [results/oPools_with_insertion.csv](results/oPools_with_insertion.csv).
 
 The number of unique sequences in each pool are in [results/oPool_stats.csv](results/oPool_stats.csv).
+
 A recommended way to pool the primers is just to use concentrations of each pool proportional to the number of unique primers, so that each is at equal molarity.
 This will give somewhat higher mutation rates at saturated sites since they are mutated by primers in both the targeted and saturated pools.
