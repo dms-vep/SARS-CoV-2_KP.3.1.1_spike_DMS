@@ -59,7 +59,7 @@ The sites to saturate are identified as follows:
 The pipeline writes the sites to saturate to [results/saturated_sites.csv](results/saturated_sites.csv).
 
 Some mutations are added manually
-  1. Saturate 16_MPLF and 31 insertion sites. These are listed added to the [saturated_sites.csv](results/saturated_sites.csv) and are listed in [data/insertion_sites.csv](data/insertion_sites.csv)
+  1. Saturate 16_MPLF insertion site. These are listed added to the [saturated_sites.csv](results/saturated_sites.csv) and are listed in [data/insertion_sites.csv](data/insertion_sites.csv)
 
 The number of targeted mutations and saturated sites as a function of the parameters is shown in the interactive plot at [results/mutations_to_make.html](results/mutations_to_make.html).
 
