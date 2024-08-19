@@ -1,6 +1,6 @@
 # KP.3.1.1 spike mutant library design
 
-This repository selects sites to include in KP.3.1.1 SARS-CoV-2 spike mutant libraries for deep mutational scanning and designes primer pools to make those mutations
+This repository selects sites to include in KP.3.1.1 SARS-CoV-2 spike mutant libraries for deep mutational scanning
 
 ## Design workflow
 
@@ -59,33 +59,15 @@ The sites to saturate are identified as follows:
 The pipeline writes the sites to saturate to [results/saturated_sites.csv](results/saturated_sites.csv).
 
 Some mutations are added manually
-  1. Saturate 16_MPLF insertion site. These are listed added to the [saturated_sites.csv](results/saturated_sites.csv) and are listed in [data/insertion_sites.csv](data/insertion_sites.csv)
+  1. Saturate 16_MPLF and 31 insertion sites. These are listed added to the [saturated_sites.csv](results/saturated_sites.csv) and are listed in [data/insertion_sites.csv](data/insertion_sites.csv)
 
 The number of targeted mutations and saturated sites as a function of the parameters is shown in the interactive plot at [results/mutations_to_make.html](results/mutations_to_make.html).
 
-We also add a primer set to the oPool that should insert back the 31S amino acid that was deleted in KP.3.1.1 lineage. These primers are at [data/insertion_primers.csv](data/insertion_primers.csv).
+#### Gibsom assembly
 
-#### Design the primers for oPools
-The pipeline then designs actual primers that can be ordered in oPools to do the mutagenesis.
+17 fragments that cover KP.3.1.1 spike for golden gate assembly are listed in [data/KP311_GAA_assembly_fragments.csv](data/KP311_GAA_assembly_fragments.csv). The columns in this file are as folows:
 
-A total of four primer pools are designed:
- 1. Forward primer pool for targeted mutations.
- 2. Reverse primer pool for targeted mutations.
- 3. Forward primer pool for saturated sites.
- 4. Reverse primer pool for saturated sites.
- 
-For both the targeted and saturated sites, primers can be designed with one or more "offsets".
-If the offset is zero, the mutation is placed at the center of the primer.
-If the offset is negative, the mutation is shifted that many units towards the front of the primer; if it is positive the mutation is shifted towards the end of the primer. 
-
-Primers are designed to have at least a melting temperature of `primer_min_tm`, a length of at least `primer_min_length`, and a length no more than `primer_max_length` as specified in [config.yaml](config.yaml).
-
-The designed primer pools have a prefix in their name the string specified under `opool_prefix` in [config.yaml](config.yaml).
-
-The designed pools themselves are in the file [results/oPools.csv](results/oPools.csv).
-The designed pools with the added 31S insertion primer are in the file [results/oPools_with_insertion.csv](results/oPools_with_insertion.csv).
-
-The number of unique sequences in each pool are in [results/oPool_stats.csv](results/oPool_stats.csv).
-
-A recommended way to pool the primers is just to use concentrations of each pool proportional to the number of unique primers, so that each is at equal molarity.
-This will give somewhat higher mutation rates at saturated sites since they are mutated by primers in both the targeted and saturated pools.
+  1. `fragment`: fragment number
+  2. `fragment_sequence`: full tile sequence to be ordered in the oligo pool. This covers unmutated parts where primers will be algning
+  3. `inframe_mutated_region`: sequence that will be mutated. These sequences are all in frame, i.e. first codon in the first frame is the forst one to be mutated
+  4. `start_site` and `end_site`: start and end site in spike for mutated region in each tile. This uses sequential spike numbering.

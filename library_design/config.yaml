@@ -4,7 +4,6 @@
 extended_gene: data/extended_spike_KP.3.1.1.fa
 reference_gene: data/reference_spike.fa
 human_codon_freqs: data/human_codon_freq.csv
-insertion_primers: data/insertion_primers.csv #primers for 31S insertion
 
 # URL of GISAID mutation count data on CoVsurver:
 alignment_count_url: https://mendel.bii.a-star.edu.sg/METHODS/corona/current/MUTATIONS/hCoV-19_Human_2019_WuhanWIV04/hcov19_Spike_mutations_table.html
@@ -45,6 +44,7 @@ sites_to_allow_deletions:
 
 # include these mutations regardless of counts, in reference numbering
 mutations_to_include:
+  - 19-
   - 21-
   - 211-
   - 342-
@@ -77,15 +77,23 @@ sites_to_saturate:
   # sature the whole RBD
   - [331, 531]
   # sites present in various JN.1* descendants based on Bette Korber SAVES updates
+  - 18
+  - 19
+  - 20
   - 21
   - 50
   - 59
   - 67
+  - 142
   - 146
+  - 147
   - 183
   - 190
   - 212
+  - 245
+  - 246
   - 249
+  - 246
   - 572
   - 783
   - 852
@@ -98,19 +106,6 @@ sites_to_saturate:
 # insertion sites in KP.3.1.1
 insertion_sites: data/insertion_sites.csv
 
-# primer design specifications
-primer_min_tm: 60
-primer_min_length: 25
-primer_max_length: 51
-
-# number of nucleotides in offsets used for primers for targeted mutations
-# and saturated sites
-targeted_mutations_offsets: [0]
-saturated_sites_offsets: [-8, 4]
-
-# Prefix for oPool names
-opool_prefix: spike_SARS2_KP.3.1.1_
-
 # output files
 sequential_to_reference: data/sequential_to_reference.csv
 alignment_counts: results/alignment_counts.csv
@@ -121,10 +116,3 @@ mutations_to_make_chart: results/mutations_to_make.html
 mutation_design_classification: results/mutation_design_classification.csv
 targeted_mutations: results/targeted_mutations.csv
 saturated_sites: results/saturated_sites.csv
-
-
-targeted_mutations_w_oligos: results/targeted_mutations_w_oligos.csv
-saturated_sites_w_oligos: results/saturated_sites_w_oligos.csv
-opools: results/oPools.csv
-opools_with_insertion: results/oPools_with_insertion.csv
-opool_stats: results/oPool_stats.csv
