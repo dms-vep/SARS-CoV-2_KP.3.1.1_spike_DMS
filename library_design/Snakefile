@@ -6,11 +6,41 @@ configfile: "config.yaml"
 
 rule all:
     input:
-        config["mutation_stats"],
-        config["mutations_to_make_chart"],
-        config["targeted_mutations"],
-        config["saturated_sites"],
-        config["mutation_design_classification"],
+        "results/numbering/sequential_to_reference.csv",
+        "results/numbering/mutations_from_reference.csv",
+#        config["mutation_stats"],
+#        config["mutations_to_make_chart"],
+#        config["targeted_mutations"],
+#        config["saturated_sites"],
+#        config["mutation_design_classification"],
+
+
+rule get_ref_spike:
+    """Get the reference spike."""
+    params:
+        accession=config["ref_spike_accession"],
+    output:
+        fasta="results/numbering/ref_spike.fa",
+    conda:
+        "environment.yml"
+    shell:
+        "efetch -db protein -format fasta -id {params.accession} > {output.fasta}"
+
+
+rule sequential_to_reference:
+    """Convert sequential to reference numbering."""
+    input:
+        ref=rules.get_ref_spike.output.fasta,
+        variant=config["variant_spike"],
+    output:
+        numbering="results/numbering/sequential_to_reference.csv",
+        mutations="results/numbering/mutations_from_reference.csv",
+    conda:
+        "environment.yml"
+    log:
+        notebook="results/numbering/sequential_to_reference.ipynb",
+    notebook:
+        "notebooks/sequential_to_reference.py.ipynb"
 
 
 rule alignment_counts:

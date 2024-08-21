@@ -1,6 +1,12 @@
 # Configuration for pipeline
 
-# input files
+# Spike coding sequence of the variant being used as the DMS parent
+variant_spike: data/variant_spike.fa
+
+# Accession of the reference (Wuhan-Hu-1) spike protein, which
+# defines the reference numbering scheme.
+ref_spike_accession: QHD43416
+
 extended_gene: data/extended_spike_KP.3.1.1.fa
 reference_gene: data/reference_spike.fa
 human_codon_freqs: data/human_codon_freq.csv

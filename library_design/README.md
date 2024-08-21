@@ -14,7 +14,7 @@ The library-design also requires the user-generated configuration settings in [c
 To run the workflow, build the `conda` environment in [environment.yml](environment.yml), then activate the file and run the `snakemake` pipeline in [Snakefile](Snakefile):
 
     conda activate spike_library_design
-    snakemake -j 1
+    snakemake -j 1 --software-deployment-method conda
     
 
 [./data](data) includes KP.3.1.1 spike sequence and lentiviral DMS vector into which this spike will be cloned. [./data/sequential_to_reference.csv](data/sequential_to_reference.csv) contains KP.3.1.1 spike sequential and reference numbering scemes. 
