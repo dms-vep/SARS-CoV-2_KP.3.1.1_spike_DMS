@@ -114,6 +114,7 @@ rule mutations_to_make:
         config["sites_to_allow_deletions"],
         config["mutations_to_include"],
         config["sites_to_saturate"],
+        config['insertion_sites'],
         config["saturate_diffs_from_reference"],
     log:
         notebook="results/notebooks/mutations_to_make.ipynb",

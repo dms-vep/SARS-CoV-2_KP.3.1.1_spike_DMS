@@ -18,13 +18,6 @@ The configuration for the workflow is in [config.yaml](config.yaml), input data 
 
 The idea behind the design is as follows:
 
-#### Specify the gene to mutagenize
-We need the sequence of the gene to mutagenize.
-Because we are designing primers that may extend outside the gene, this needs to be an "extended" sequence that also includes some upstream and downstream flanking.
-A FASTA file containing the gene to mutagenize is specified via the `extended_gene` key in [config.yaml](config.yaml).
-In that file, the gene sequence to be mutagenized should be in uppercase letters and flanking sequence not to be mutagenized should be in lower-case letters.
-
-For instance, the gene that would be used for a XBB.1.5 full-spike library is in [data/extended_spike_XBB.1.5.fa](data/extended_spike_XBB.1.5.fa).
 
 #### Get a mapping of sequential to reference site numbers
 We want to refer to residues in reference (Wuhan-Hu-1) numbering.
@@ -39,7 +32,7 @@ The pipeline gets the total counts of each non-reference amino-acid at each site
 The pipeline also counts the number of unique occurrences on the tree (number of substitutions, not alignment counts) of each amino-acid mutation from the pre-built UShER tree.
 These UShER mutation counts are done both for all SARS-CoV-2 clades, and for just the "recent" clades specified under `usher_recent_clades` in [config.yaml](config.yaml).
 
-Information about the GISAId alignment counts, the overall UShER mutation counts, and the recent-clade UShER mutation counts is aggregated by the pipeline in the file [results/mutation_stats.csv](results/mutation_stats.csv).
+Information about the GISAID alignment counts, the overall UShER mutation counts, and the recent-clade UShER mutation counts is aggregated by the pipeline in the file [results/mutation_stats.csv](results/mutation_stats.csv).
 
 #### Identify mutations to target and sites to saturate
 The pipeline then identifies the mutations to target, as follows:
@@ -59,7 +52,7 @@ The sites to saturate are identified as follows:
 The pipeline writes the sites to saturate to [results/saturated_sites.csv](results/saturated_sites.csv).
 
 Some mutations are added manually
-  1. Saturate 16_MPLF insertion site. These are listed added to the [saturated_sites.csv](results/saturated_sites.csv) and are listed in [data/insertion_sites.csv](data/insertion_sites.csv)
+  1. Saturate 16MPLF insertion site is present in all BA.2.86 descendant clades and we choose to saturate all positions in this insertion. Insertion sites are listed in [data/insertion_sites.csv](data/insertion_sites.csv) and re included in the final list of mutations in [mutation_design_classification.csv](results/mutation_design_classification.csv) 
 
 The number of targeted mutations and saturated sites as a function of the parameters is shown in the interactive plot at [results/mutations_to_make.html](results/mutations_to_make.html).
 
