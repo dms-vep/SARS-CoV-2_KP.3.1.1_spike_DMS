@@ -1,4 +1,4 @@
-LOCUS       pH2rU3_ForInd_KP       12375 bp DNA     circular SYN 27-JUN-2024
+LOCUS       pH2rU3_ForInd_KP       12375 bp DNA     circular SYN 12-AUG-2024
 DEFINITION  Forward inducible lentivirus backbone coding for Delta variant 
             SARS-CoV-2 Spike from BA.2.86 (sinobiological optimization) with and
             21aa CTD deletion, and zsGreen that is linked to puromycin 
@@ -11,7 +11,7 @@ SOURCE      synthetic DNA construct
 REFERENCE   1  (bases 1 to 12375)
   AUTHORS   Bernadeta Dadonaite
   TITLE     Direct Submission
-  JOURNAL   Exported Jul 1, 2024 from SnapGene 7.2.0
+  JOURNAL   Exported Aug 12, 2024 from SnapGene 7.2.1
             https://www.snapgene.com
 FEATURES             Location/Qualifiers
      source          1..12375
@@ -84,19 +84,21 @@ FEATURES             Location/Qualifiers
                      /label=tet operator
                      /bound_moiety="tetracycline repressor TetR"
                      /note="bacterial operator O2 for the tetR and tetA genes"
-     misc_feature    587..1893
-                     /label=twist1
+     misc_feature    587..856
+                     /label=f1
+     misc_feature    587..811
+                     /label=f2_v5
      misc_feature    587..606
                      /locus_tag="GAPDH_PrimingSite"
                      /label=GAPDH_PrimingSite
-     primer_bind     587..605
-                     /label=Primer 1
+     primer_bind     587..606
+                     /label=Barcoding5'
      misc_feature    613..618
                      /locus_tag="KozakSeq"
                      /label=KozakSeq
      CDS             619..4362
                      /codon_start=1
-                     /label=BA.2.86
+                     /label=KP.3.1.1
                      /translation="MFVFLVLLPLVSSQCVMPLFNLITTTQSYTNFTRGVYYPDKVFRS
                      SVLHLTQDLFLPFFSNVTWFHAISGTNGTKRFDNPVLPFNDGVYFASTEKSNIIRGWIF
                      GTTLDSKTQSLLIVNNATNVFIKVCEFQFCNDPFLDVYHKNNKSWMESESGVYSSANNC
@@ -125,30 +127,34 @@ FEATURES             Location/Qualifiers
                      /label=delLPP24-26
      misc_feature    711^712
                      /label=del31
+     primer_bind     complement(787..811)
+                     /label=Primer 3
+     misc_feature    808..1080
+                     /label=f2
+     primer_bind     808..828
+                     /label=f2-fw
      misc_feature    822^823
                      /label=del69-70
+     primer_bind     complement(835..856)
+                     /label=f1_rv
+     primer_bind     complement(835..856)
+                     /label=Primer 1
      misc_feature    1041^1042
                      /label=delY144
+     primer_bind     complement(1057..1080)
+                     /label=f2_rv
+     primer_bind     1071..1096
+                     /label=Primer 2
+     misc_feature    1077..4415
+                     /label=f2-v3
+     misc_feature    1080..1083
+                     /label=oh
      misc_feature    1239^1240
                      /label=delN211
-     misc_feature    1866..3139
-                     /label=twist2
-     primer_bind     complement(1944..1971)
-                     /label=L455S_rv
-     primer_bind     1961..1999
-                     /label=L455S_fw
-     misc_feature    1961..1978
-                     /label=Feature 103
-     misc_feature    1969..1971
-                     /label=L455S
-     misc_feature    1972..1974
-                     /label=F456L
      misc_feature    2052^2053
                      /label=delV483
      misc_feature    2080..2082
                      /label=Q493E
-     misc_feature    3118..4390
-                     /label=twist3
      misc_feature    3913..3915
                      /label=V1104L
      misc_feature    4365..4372
@@ -159,8 +165,8 @@ FEATURES             Location/Qualifiers
      misc_feature    4383..4415
                      /locus_tag="IlluminaPrimerSite"
                      /label=IlluminaPrimerSite
-     primer_bind     complement(4388..4411)
-                     /label=Primer 2
+     primer_bind     complement(4386..4415)
+                     /label=barcoding_3
      misc_feature    4416..4422
                      /locus_tag="XbaI"
                      /label=XbaI
