@@ -2,6 +2,13 @@
 
 This repository selects sites to include in KP.3.1.1 SARS-CoV-2 spike mutant libraries for deep mutational scanning
 
+## Input data and configuration
+The library design requires the following user-generated input files in [./data/](data):
+
+  - [data/variant_spike.fa](data/variant_spike.fa): the nucleotide sequence of the variant spike for which the library is being designed (in this case, KP.3.1.1), which was manually extracted from the plasmid map in [data/4838_pH2rU3_ForInd_KP.3.1.1_sinobiological_CMV_ZsGT2APurR.gb](data/4838_pH2rU3_ForInd_KP.3.1.1_sinobiological_CMV_ZsGT2APurR.gb)
+
+The library-design also requires the user-generated configuration settings in [config.yaml](config.yaml).
+
 ## Design workflow
 
 To run the workflow, build the `conda` environment in [environment.yml](environment.yml), then activate the file and run the `snakemake` pipeline in [Snakefile](Snakefile):
