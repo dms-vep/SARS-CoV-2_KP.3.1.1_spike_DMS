@@ -19,8 +19,10 @@ usher_fasta: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/wuhCor1.f
 # "matUtils summary -i results/usher/mat.pb.gz -c clades.tsv"
 # and then look at the clade names in "clades.tsv"
 usher_recent_clades:
-  - 23I (BA.2.86)  # BA.2.86
-  - JN.1           # JN.1
+  - 23I (BA.2.86)
+  - 24A (JN.1)
+  - 24B (JN.1.11.1)
+  - 24C (KP.3)
 
 # Keep mutations with >= this many counts for each threshold.
 mutation_retain_thresholds:
@@ -75,8 +77,7 @@ include_STOP: false
 # saturating mutagenesis of substitutions at these sites, in reference numbering
 sites_to_saturate:
   # sature the whole RBD
-  - [331, 531]
-  # sites present in various JN.1* descendants based on Bette Korber SAVES updates
+  - [331, 531] #RBD
   - 18
   - 19
   - 20
@@ -100,7 +101,7 @@ sites_to_saturate:
   - 942
   - 1086
   - 1087
-  - 1266
+  - 1266 
   - 1229
 
 # insertion sites in KP.3.1.1
