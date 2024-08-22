@@ -18,6 +18,27 @@ ref_cterm_truncation_start: 1253
 # JSON file with Pango lineages as defined by Cornelius Roemer
 pango_lineages_json: https://raw.githubusercontent.com/corneliusroemer/pango-sequences/main/data/pango-consensus-sequences_summary.json
 
+# URL of GISAID mutation count data on CoVsurver:
+gisaid_alignment_count_url: https://mendel.bii.a-star.edu.sg/METHODS/corona/current/MUTATIONS/hCoV-19_Human_2019_WuhanWIV04/hcov19_Spike_mutations_table.html
+
+# URLs of UShER tree, GTF, and reference sequence
+usher_mat: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb.gz
+usher_gtf: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz
+usher_fasta: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/wuhCor1.fa.gz
+
+# "recent" Nextstrain clades for analysis on UShER tree
+# Clade names here have to exactly match how they are defined in the UShER tree;
+# if you are not sure how they are named use then look at the
+# "results/usher/clade_count.tsv" file created by the pipeline.
+usher_recent_clades:
+  - 23I (BA.2.86)
+  - 24A (JN.1)
+  - 24B (JN.1.11.1)
+  - 24C (KP.3)
+
+# Keep mutations with >= this many counts for each threshold.
+mutation_retain_thresholds:
+
 # ----- old -----------------------------
 
 extended_gene: data/extended_spike_KP.3.1.1.fa
@@ -26,11 +47,6 @@ human_codon_freqs: data/human_codon_freq.csv
 
 # URL of GISAID mutation count data on CoVsurver:
 alignment_count_url: https://mendel.bii.a-star.edu.sg/METHODS/corona/current/MUTATIONS/hCoV-19_Human_2019_WuhanWIV04/hcov19_Spike_mutations_table.html
-
-# URLs of UShER tree, GTF, and reference sequence
-usher_mat: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb.gz
-usher_gtf: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz
-usher_fasta: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/wuhCor1.fa.gz
 
 # "recent" Nextstrain clades for analysis on UShER tree
 # Note clade names here have to exactly match how they are defined in the UShER tree;
@@ -128,7 +144,6 @@ insertion_sites: data/insertion_sites.csv
 
 # output files
 sequential_to_reference: data/sequential_to_reference.csv
-alignment_counts: results/alignment_counts.csv
 usher_mut_counts: results/usher/mut_counts.csv
 usher_recent_mut_counts: results/usher/recent_mut_counts.csv
 mutation_stats: results/mutation_stats.csv
