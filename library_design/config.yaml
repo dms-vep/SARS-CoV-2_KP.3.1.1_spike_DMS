@@ -3,9 +3,22 @@
 # Spike coding sequence of the variant being used as the DMS parent
 variant_spike: data/variant_spike.fa
 
+# Pango lineage of the variant being used as the DMS parent; sequence
+# is checked against the Pango JSON
+variant_lineage: KP.3.1.1
+
 # Accession of the reference (Wuhan-Hu-1) spike protein, which
 # defines the reference numbering scheme.
 ref_spike_accession: QHD43416
+
+# The variant in the experiments is truncated starting at this position
+# in reference spike numbering (due to the C-terminal tail deletion)
+ref_cterm_truncation_start: 1253
+
+# JSON file with Pango lineages as defined by Cornelius Roemer
+pango_lineages_json: https://raw.githubusercontent.com/corneliusroemer/pango-sequences/main/data/pango-consensus-sequences_summary.json
+
+# ----- old -----------------------------
 
 extended_gene: data/extended_spike_KP.3.1.1.fa
 reference_gene: data/reference_spike.fa

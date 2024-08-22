@@ -8,6 +8,7 @@ rule all:
     input:
         "results/numbering/sequential_to_reference.csv",
         "results/numbering/mutations_from_reference.csv",
+        "results/pango_lineages/mutations_all.csv",
 #        config["mutation_stats"],
 #        config["mutations_to_make_chart"],
 #        config["targeted_mutations"],
@@ -32,6 +33,8 @@ rule sequential_to_reference:
     input:
         ref=rules.get_ref_spike.output.fasta,
         variant=config["variant_spike"],
+    params:
+        ref_cterm_truncation_start=config["ref_cterm_truncation_start"],
     output:
         numbering="results/numbering/sequential_to_reference.csv",
         mutations="results/numbering/mutations_from_reference.csv",
@@ -42,6 +45,23 @@ rule sequential_to_reference:
     notebook:
         "notebooks/sequential_to_reference.py.ipynb"
 
+
+rule pango_lineages:
+    """Get all mutations in all designated Pango lineages, and check variant correct."""
+    input:
+        variant_mutations=rules.sequential_to_reference.output.mutations,
+    params:
+        pango_lineages_json=config["pango_lineages_json"],
+        variant_lineage=config["variant_lineage"],
+    output:
+        mutations_by_lineage="results/pango_lineages/mutations_by_lineage.csv",
+        mutations_all="results/pango_lineages/mutations_all.csv",
+    conda:
+        "environment.yml"
+    log:
+        notebook="results/pango_lineages/pango_lineages.ipynb",
+    notebook:
+        "notebooks/pango_lineages.py.ipynb"
 
 rule alignment_counts:
     params:
