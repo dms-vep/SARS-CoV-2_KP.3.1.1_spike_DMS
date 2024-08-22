@@ -10,6 +10,8 @@ rule all:
         "results/numbering/mutations_from_reference.csv",
         "results/pango_lineages/mutations_all.csv",
         "results/usher/clade_counts.tsv",
+        "results/usher/muts_counts.csv",
+        "results/usher/recent_muts_counts.csv",
 #        "results/alignment_counts.csv",
 #        config["mutation_stats"],
 #        config["mutations_to_make_chart"],
@@ -116,10 +118,13 @@ rule usher_counts:
 
 
 rule usher_mutcounts:
+    """Get counts of UShER mutations for a mutation set."""
     input:
-        translated_muts_tsv="results/usher/translated_{mutset}s.tsv",
+        translated_muts_tsv="results/usher/translated_{mutset}.tsv",
     output:
         mut_counts_csv="results/usher/{mutset}_counts.csv",
+    conda:
+        "environment.yml"
     script:
         "scripts/usher_mutcounts.py"
 
