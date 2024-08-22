@@ -12,6 +12,7 @@ rule all:
         "results/usher/clade_counts.tsv",
         "results/usher/muts_counts.csv",
         "results/usher/recent_muts_counts.csv",
+        "results/mutation_stats.csv",
 #        "results/alignment_counts.csv",
 #        config["mutation_stats"],
 #        config["mutations_to_make_chart"],
@@ -130,15 +131,18 @@ rule usher_mutcounts:
 
 
 rule aggregate_mut_stats:
+    """Aggregate the statistics on counts for mutations."""
     input:
-       config["sequential_to_reference"],
-       rules.alignment_counts.output.alignment_counts,
-       config["usher_mut_counts"],
-       config["usher_recent_mut_counts"],
+        sequential_to_reference=rules.sequential_to_reference.output.numbering,
+        usher_mut_counts="results/usher/muts_counts.csv",
+        usher_recent_mut_counts="results/usher/recent_muts_counts.csv",
+        pango_lineage_counts=rules.pango_lineages.output.mutations_all,
     output:
-        config["mutation_stats"],
+        mutation_stats="results/mutation_stats.csv",
+    conda:
+        "environment.yml"
     log:
-        "results/notebooks/aggregate_mut_stats.ipynb",
+        notebook="results/notebooks/aggregate_mut_stats.ipynb",
     notebook:
         "notebooks/aggregate_mut_stats.py.ipynb"
 
