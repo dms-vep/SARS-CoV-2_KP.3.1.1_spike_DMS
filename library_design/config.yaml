@@ -19,7 +19,7 @@ ref_cterm_truncation_start: 1253
 pango_lineages_json: https://raw.githubusercontent.com/corneliusroemer/pango-sequences/main/data/pango-consensus-sequences_summary.json
 
 # URL of GISAID mutation count data on CoVsurver:
-gisaid_alignment_count_url: https://mendel.bii.a-star.edu.sg/METHODS/corona/current/MUTATIONS/hCoV-19_Human_2019_WuhanWIV04/hcov19_Spike_mutations_table.html
+alignment_count_url: https://mendel.bii.a-star.edu.sg/METHODS/corona/current/MUTATIONS/hCoV-19_Human_2019_WuhanWIV04/hcov19_Spike_mutations_table.html
 
 # URLs of UShER tree, GTF, and reference sequence
 usher_mat: http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb.gz
@@ -36,54 +36,35 @@ usher_recent_clades:
   - 24B (JN.1.11.1)
   - 24C (KP.3)
 
-# Keep mutations with >= this many counts for each threshold.
+# Keep mutations with >= this many counts for each category
 mutation_retain_thresholds:
-
-# ----- old -----------------------------
-
-extended_gene: data/extended_spike_KP.3.1.1.fa
-reference_gene: data/reference_spike.fa
-human_codon_freqs: data/human_codon_freq.csv
-
-# URL of GISAID mutation count data on CoVsurver:
-alignment_count_url: https://mendel.bii.a-star.edu.sg/METHODS/corona/current/MUTATIONS/hCoV-19_Human_2019_WuhanWIV04/hcov19_Spike_mutations_table.html
-
-# "recent" Nextstrain clades for analysis on UShER tree
-# Note clade names here have to exactly match how they are defined in the UShER tree;
-# if you are not sure how they are named use
-# "matUtils summary -i results/usher/mat.pb.gz -c clades.tsv"
-# and then look at the clade names in "clades.tsv"
-usher_recent_clades:
-  - 23I (BA.2.86)
-  - 24A (JN.1)
-  - 24B (JN.1.11.1)
-  - 24C (KP.3)
-
-# Keep mutations with >= this many counts for each threshold.
-mutation_retain_thresholds:
-  GISAID_count: 50
   UShER_count: 10
   UShER_recent_count: 1
+  in_pango_lineage: 1
+  alignment_count: 50
 
-# Saturating substitution mutagenesis at sites with >= this many total
-# substitution counts:
-site_saturation_threshold:
+# Saturate mutations (including deletions) at sites with >= this many counts across
+# all mutations.
+site_saturation_thresholds:
   UShER_count: 2500
   UShER_recent_count: 50
+  in_pango_lineage: 2
+  mutated_from_reference: 1
 
-# Regardless of counts, only include deletion mutations in these sites
-# specifically listed under `mutations_to_include`. Specify a list of inclusive
-# site ranges in reference numbering
+# do we include STOP codons when they meet other criteria
+include_stop: false
+
+# Only include deletion mutations in these sites (reference numbering) regardless of counts
+# Specify a list of inclusive site ranges in reference numbering
 sites_to_allow_deletions:
   - [13, 304]  # NTD as defined at https://www.ncbi.nlm.nih.gov/protein/1796318598
   - [331, 354]
   - [434, 508]
 
-# include these mutations regardless of counts, in reference numbering
+# include these mutations regardless of counts, in reference numbering, as <site><mutant_aa>
 mutations_to_include:
   - 19-
   - 21-
-  - 211-
   - 342-
   - 343-
   - 344-
@@ -98,21 +79,18 @@ mutations_to_include:
   - 447-
   - 448-
   - 449-
-  - 483-
   - 484-
   - 485-
   - 486-
 
-# do we saturate mutagenesis of substitutions at sites that differ from reference?
-saturate_diffs_from_reference: true
-
-# do we include STOP codons
-include_STOP: false
-
-# saturating mutagenesis of substitutions at these sites, in reference numbering
+# Saturating mutagenesis of substitutions at these sites, in reference numbering
+# List either individual sites or ranges of sites.
 sites_to_saturate:
-  # sature the whole RBD
-  - [331, 531] #RBD
+  - [331, 531]  # RBD
+  - 16a
+  - 16b
+  - 16c
+  - 16d
   - 18
   - 19
   - 20
@@ -136,18 +114,4 @@ sites_to_saturate:
   - 942
   - 1086
   - 1087
-  - 1266 
   - 1229
-
-# insertion sites in KP.3.1.1
-insertion_sites: data/insertion_sites.csv
-
-# output files
-sequential_to_reference: data/sequential_to_reference.csv
-usher_mut_counts: results/usher/mut_counts.csv
-usher_recent_mut_counts: results/usher/recent_mut_counts.csv
-mutation_stats: results/mutation_stats.csv
-mutations_to_make_chart: results/mutations_to_make.html
-mutation_design_classification: results/mutation_design_classification.csv
-targeted_mutations: results/targeted_mutations.csv
-saturated_sites: results/saturated_sites.csv

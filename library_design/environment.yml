@@ -17,3 +17,5 @@ dependencies:
   - pyyaml=6.0
   - requests=2.32
   - snakemake=8.18
+  - pip:
+    - lxml

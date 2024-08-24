@@ -13,12 +13,8 @@ rule all:
         "results/usher/muts_counts.csv",
         "results/usher/recent_muts_counts.csv",
         "results/mutation_stats.csv",
-#        "results/alignment_counts.csv",
-#        config["mutation_stats"],
-#        config["mutations_to_make_chart"],
-#        config["targeted_mutations"],
-#        config["saturated_sites"],
-#        config["mutation_design_classification"],
+        "results/mutations_to_make.csv",
+        "results/mutations_to_make.html",
 
 
 rule get_ref_spike:
@@ -51,6 +47,18 @@ rule sequential_to_reference:
         "notebooks/sequential_to_reference.py.ipynb"
 
 
+rule alignment_counts:
+    """Get GISAID alignment counts."""
+    params:
+        table_url=config["alignment_count_url"],
+    output:
+        csv="results/alignment_counts/alignment_counts.csv",
+    conda:
+        "environment.yml"
+    script:
+        "scripts/alignment_counts.py"
+
+
 rule pango_lineages:
     """Get all mutations in all designated Pango lineages, and check variant correct."""
     input:
@@ -67,18 +75,6 @@ rule pango_lineages:
         notebook="results/pango_lineages/pango_lineages.ipynb",
     notebook:
         "notebooks/pango_lineages.py.ipynb"
-
-
-rule alignment_counts:
-    """Get counts of mutations in GISAID table."""
-    params:
-        table_url=config["gisaid_alignment_count_url"],
-    output:
-        alignment_counts="results/alignment_counts.csv",
-    conda:
-        "environment.yml"
-    script:
-        "scripts/alignment_counts.py"
 
 
 rule usher_counts:
@@ -137,6 +133,7 @@ rule aggregate_mut_stats:
         usher_mut_counts="results/usher/muts_counts.csv",
         usher_recent_mut_counts="results/usher/recent_muts_counts.csv",
         pango_lineage_counts=rules.pango_lineages.output.mutations_all,
+        alignment_counts=rules.alignment_counts.output.csv,
     output:
         mutation_stats="results/mutation_stats.csv",
     conda:
@@ -148,21 +145,19 @@ rule aggregate_mut_stats:
 
 
 rule mutations_to_make:
+    """Define the mutations to make for the library."""
     input:
-        config["mutation_stats"],
+        mutation_stats=rules.aggregate_mut_stats.output.mutation_stats,
     output:
-        config["mutations_to_make_chart"],
-        config["targeted_mutations"],
-        config["saturated_sites"],
-        config["mutation_design_classification"],
+        csv="results/mutations_to_make.csv",
+        html="results/mutations_to_make.html",
     params:
-        config["mutation_retain_thresholds"],
-        config["site_saturation_threshold"],
-        config["sites_to_allow_deletions"],
-        config["mutations_to_include"],
-        config["sites_to_saturate"],
-        config['insertion_sites'],
-        config["saturate_diffs_from_reference"],
+        mutation_retain_thresholds=config["mutation_retain_thresholds"],
+        site_saturation_thresholds=config["site_saturation_thresholds"],
+        include_stop=config["include_stop"],
+        sites_to_allow_deletions=config["sites_to_allow_deletions"],
+        mutations_to_include=config["mutations_to_include"],
+        sites_to_saturate=config["sites_to_saturate"],
     log:
         notebook="results/notebooks/mutations_to_make.ipynb",
     notebook:
