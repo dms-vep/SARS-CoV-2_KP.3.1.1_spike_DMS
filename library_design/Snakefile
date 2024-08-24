@@ -15,6 +15,7 @@ rule all:
         "results/mutation_stats.csv",
         "results/mutations_to_make.csv",
         "results/mutations_to_make.html",
+        "results/mutagenesis_oligos.fa",
 
 
 rule get_ref_spike:
@@ -162,3 +163,24 @@ rule mutations_to_make:
         notebook="results/notebooks/mutations_to_make.ipynb",
     notebook:
         "notebooks/mutations_to_make.py.ipynb"
+
+
+rule design_oligos:
+    """Design the oligos."""
+    input:
+        mutations_to_make_csv=rules.mutations_to_make.output.csv,
+        tiles_csv=config["tiles_csv"],
+    output:
+        fasta="results/mutagenesis_oligos.fa",
+    params:
+        params_str=" ".join(
+            f"--{key} {val}"
+            for (key, val) in config["gga_codon_muts_oligo_design_params"].items()
+        ),
+    shell:
+        """
+        python scripts/gga_codon_muts_oligo_design.py {params.params_str} \
+            --mutations_to_make_csv {input.mutations_to_make_csv} \
+            --tiles_csv {input.tiles_csv} \
+            --output_oligos_fasta {output.fasta}
+        """

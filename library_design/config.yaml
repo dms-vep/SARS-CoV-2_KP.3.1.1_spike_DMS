@@ -3,6 +3,18 @@
 # Spike coding sequence of the variant being used as the DMS parent
 variant_spike: data/variant_spike.fa
 
+# Tiles for designing Golden Gate assembly oligos using the script at:
+# https://github.com/jbloomlab/gga_codon_muts_oligo_design
+tiles_csv: data/KP311_GAA_assembly_fragments.csv
+
+# Additional parameteres passed to the script at
+# https://github.com/jbloomlab/gga_codon_muts_oligo_design
+# for the oligo design
+gga_codon_muts_oligo_design_params:
+  max_representation: 2  # maximum oligos for any given mutation
+  wildtype_frac: 0.005  # fraction of wildtype oligos for each tile
+  avoid_motifs: "CGTCTC"  # motifs to avoid (restriction sites), separate multiple by spaces
+
 # Pango lineage of the variant being used as the DMS parent; sequence
 # is checked against the Pango JSON
 variant_lineage: KP.3.1.1
@@ -95,12 +107,14 @@ sites_to_saturate:
   - 19
   - 20
   - 21
+  - 22
   - 50
   - 59
   - 67
   - 142
   - 146
   - 147
+  - 155
   - 183
   - 190
   - 212

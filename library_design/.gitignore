@@ -6,6 +6,7 @@ results/*
 
 !results/mutations_to_make.csv
 !results/mutations_to_make.html
+!results/mutagenesis_oligos.fa
 
 !results/numbering
 results/numbering/*

@@ -1,11 +1,13 @@
 # KP.3.1.1 spike mutant library design
 
-This repository selects sites to include in KP.3.1.1 SARS-CoV-2 spike mutant libraries for deep mutational scanning
+This repository selects sites to include in KP.3.1.1 SARS-CoV-2 spike mutant libraries for deep mutational scanning, and then designs oligos to make those mutations using Golden Gate Assembly mutagenesis using the script at [https://github.com/jbloomlab/gga_codon_muts_oligo_design](https://github.com/jbloomlab/gga_codon_muts_oligo_design).
 
 ## Input data and configuration
 The library design requires the following user-generated input files in [./data/](data):
 
   - [data/variant_spike.fa](data/variant_spike.fa): the nucleotide sequence of the variant spike for which the library is being designed (in this case, KP.3.1.1), which was manually extracted from the plasmid map in [data/4838_pH2rU3_ForInd_KP.3.1.1_sinobiological_CMV_ZsGT2APurR.gb](data/4838_pH2rU3_ForInd_KP.3.1.1_sinobiological_CMV_ZsGT2APurR.gb)
+
+  - [data/KP311_GAA_assembly_fragments.csv](data/KP311_GAA_assembly_fragments.csv): CSV specifying the tile fragments to add the mutations to for the Golden Gate Assembly mutagenesis. See [https://github.com/jbloomlab/gga_codon_muts_oligo_design](https://github.com/jbloomlab/gga_codon_muts_oligo_design) for an explanation of the format for this file (it is the one passed as `--tiles_csv`).
 
 The library-design also requires the user-generated configuration settings in [config.yaml](config.yaml), which contains all the configuration
 
@@ -46,11 +48,9 @@ We also determine a *representation* for each mutation, which corresponds to how
 These results are recorded in [results/mutations_to_make.csv](results/mutations_to_make.csv).
 The interactive HTML chart [results/mutations_to_make.html](results/mutations_to_make.html) (which must be downloaded and opened in a browser to view) provides some statistics on how many mutations are made.
 
-#### Gibsom assembly
+#### Make oligos for Golden-Gate assembly mutagenesis
+A script downloaded from [https://github.com/jbloomlab/gga_codon_muts_oligo_design](https://github.com/jbloomlab/gga_codon_muts_oligo_design)
+is used to make the actual oligos.
+Additional command line arguments to the script are specified in [config.yaml](config.yaml).
 
-17 fragments that cover KP.3.1.1 spike for golden gate assembly are listed in [data/KP311_GAA_assembly_fragments.csv](data/KP311_GAA_assembly_fragments.csv). The columns in this file are as folows:
-
-  1. `fragment`: fragment number
-  2. `fragment_sequence`: full tile sequence to be ordered in the oligo pool. This covers unmutated parts where primers will be algning
-  3. `inframe_mutated_region`: sequence that will be mutated. These sequences are all in frame, i.e. first codon in the first frame is the forst one to be mutated
-  4. `start_site` and `end_site`: start and end site in spike for mutated region in each tile. This uses sequential spike numbering.
+The final designed oligos are in [results/mutagenesis_oligos.fa](results/mutagenesis_oligos.fa).
