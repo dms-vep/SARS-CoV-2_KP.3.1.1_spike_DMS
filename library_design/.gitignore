@@ -3,3 +3,12 @@ _*
 !.gitignore
 
 results/*
+
+!results/mutations_to_make.csv
+!results/mutations_to_make.html
+
+!results/numbering
+results/numbering/*
+!results/numbering/mutations_from_reference.csv
+!results/numbering/sequential_to_reference.csv
+
