@@ -3,12 +3,13 @@ _*
 !.gitignore
 
 results/*
-!results/mutation_stats.csv
+
+!results/mutations_to_make.csv
 !results/mutations_to_make.html
-!results/targeted_mutations.csv
-!results/saturated_sites.csv
-!results/mutation_design_classification.csv
-!results/targeted_mutations_w_oligos.csv
-!results/saturated_sites_w_oligos.csv
-!results/oPools.csv
-!results/oPool_stats.csv
+!results/mutagenesis_oligos.fa
+
+!results/numbering
+results/numbering/*
+!results/numbering/mutations_from_reference.csv
+!results/numbering/sequential_to_reference.csv
+

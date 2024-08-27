@@ -6,117 +6,181 @@ configfile: "config.yaml"
 
 rule all:
     input:
-        config["mutation_stats"],
-        config["mutations_to_make_chart"],
-        config["targeted_mutations"],
-        config["saturated_sites"],
-        config["mutation_design_classification"],
+        "results/numbering/sequential_to_reference.csv",
+        "results/numbering/mutations_from_reference.csv",
+        "results/pango_lineages/mutations_all.csv",
+        "results/usher/clade_counts.tsv",
+        "results/usher/muts_counts.csv",
+        "results/usher/recent_muts_counts.csv",
+        "results/mutation_stats.csv",
+        "results/mutations_to_make.csv",
+        "results/mutations_to_make.html",
+        "results/mutagenesis_oligos.fa",
+
+
+rule get_ref_spike:
+    """Get the reference spike."""
+    params:
+        accession=config["ref_spike_accession"],
+    output:
+        fasta="results/numbering/ref_spike.fa",
+    conda:
+        "environment.yml"
+    shell:
+        "efetch -db protein -format fasta -id {params.accession} > {output.fasta}"
+
+
+rule sequential_to_reference:
+    """Convert sequential to reference numbering."""
+    input:
+        ref=rules.get_ref_spike.output.fasta,
+        variant=config["variant_spike"],
+    params:
+        ref_cterm_truncation_start=config["ref_cterm_truncation_start"],
+    output:
+        numbering="results/numbering/sequential_to_reference.csv",
+        mutations="results/numbering/mutations_from_reference.csv",
+    conda:
+        "environment.yml"
+    log:
+        notebook="results/numbering/sequential_to_reference.ipynb",
+    notebook:
+        "notebooks/sequential_to_reference.py.ipynb"
 
 
 rule alignment_counts:
+    """Get GISAID alignment counts."""
     params:
         table_url=config["alignment_count_url"],
     output:
-        alignment_counts=config["alignment_counts"],
+        csv="results/alignment_counts/alignment_counts.csv",
+    conda:
+        "environment.yml"
     script:
         "scripts/alignment_counts.py"
 
 
-rule get_usher_mat:
+rule pango_lineages:
+    """Get all mutations in all designated Pango lineages, and check variant correct."""
+    input:
+        variant_mutations=rules.sequential_to_reference.output.mutations,
+    params:
+        pango_lineages_json=config["pango_lineages_json"],
+        variant_lineage=config["variant_lineage"],
+    output:
+        mutations_by_lineage="results/pango_lineages/mutations_by_lineage.csv",
+        mutations_all="results/pango_lineages/mutations_all.csv",
+    conda:
+        "environment.yml"
+    log:
+        notebook="results/pango_lineages/pango_lineages.ipynb",
+    notebook:
+        "notebooks/pango_lineages.py.ipynb"
+
+
+rule usher_counts:
+    """Get counts of mutations in UShER tree."""
     params:
         mat=config["usher_mat"],
         fasta=config["usher_fasta"],
         gtf=config["usher_gtf"],
+        recent_clades=",".join(config["usher_recent_clades"]),
     output:
         mat="results/usher/mat.pb.gz",
         fasta="results/usher/ref.fa",
         gtf="results/usher/ref.gtf",
+        clade_counts="results/usher/clade_counts.tsv",
+        translated_muts="results/usher/translated_muts.tsv",
+        recent_mat="results/usher/recent_mat.pb.gz",
+        translated_recent_muts="results/usher/translated_recent_muts.tsv",
+    conda:
+        "envs/usher.yml",
     shell:
         """
         wget -O - {params.fasta} | gunzip -c > {output.fasta}
         wget -O - {params.gtf} | gunzip -c > {output.gtf}
         wget -O {output.mat} {params.mat}
-        """
-
-
-rule translate_mat:
-    input:
-        mat=rules.get_usher_mat.output.mat,
-        fasta=rules.get_usher_mat.output.fasta,
-        gtf=rules.get_usher_mat.output.gtf,
-    output:
-        tsv="results/usher/translated_muts.tsv",
-    shell:
-        """
         matUtils summary \
-            -i {input.mat} \
-            -g {input.gtf} \
-            -f {input.fasta} \
-            -t {output.tsv}
-        """
-
-
-rule translate_recent_mat:
-    input:
-        mat=rules.get_usher_mat.output.mat,
-        fasta=rules.get_usher_mat.output.fasta,
-        gtf=rules.get_usher_mat.output.gtf,
-    output:
-        recent_mat="results/usher/recent_mat.pb.gz",
-        tsv="results/usher/translated_recent_muts.tsv",
-    params:
-        clades=",".join(config["usher_recent_clades"])
-    shell:
-        """
-        matUtils extract -i {input.mat} -o {output.recent_mat} -c "{params.clades}"
+            -i {output.mat} \
+            -g {output.gtf} \
+            -f {output.fasta} \
+            -c {output.clade_counts} \
+            -t {output.translated_muts}
+        matUtils extract -i {output.mat} -o {output.recent_mat} -c "{params.recent_clades}"
         matUtils summary \
             -i {output.recent_mat} \
-            -g {input.gtf} \
-            -f {input.fasta} \
-            -t {output.tsv}
+            -g {output.gtf} \
+            -f {output.fasta} \
+            -t {output.translated_recent_muts}
         """
 
 
 rule usher_mutcounts:
+    """Get counts of UShER mutations for a mutation set."""
     input:
-        translated_muts_tsv="results/usher/translated_{mutset}s.tsv",
+        translated_muts_tsv="results/usher/translated_{mutset}.tsv",
     output:
         mut_counts_csv="results/usher/{mutset}_counts.csv",
+    conda:
+        "environment.yml"
     script:
         "scripts/usher_mutcounts.py"
 
 
 rule aggregate_mut_stats:
+    """Aggregate the statistics on counts for mutations."""
     input:
-       config["sequential_to_reference"],
-       config["alignment_counts"],
-       config["usher_mut_counts"],
-       config["usher_recent_mut_counts"],
+        sequential_to_reference=rules.sequential_to_reference.output.numbering,
+        usher_mut_counts="results/usher/muts_counts.csv",
+        usher_recent_mut_counts="results/usher/recent_muts_counts.csv",
+        pango_lineage_counts=rules.pango_lineages.output.mutations_all,
+        alignment_counts=rules.alignment_counts.output.csv,
     output:
-        config["mutation_stats"],
+        mutation_stats="results/mutation_stats.csv",
+    conda:
+        "environment.yml"
     log:
-        "results/notebooks/aggregate_mut_stats.ipynb",
+        notebook="results/notebooks/aggregate_mut_stats.ipynb",
     notebook:
         "notebooks/aggregate_mut_stats.py.ipynb"
 
 
 rule mutations_to_make:
+    """Define the mutations to make for the library."""
     input:
-        config["mutation_stats"],
+        mutation_stats=rules.aggregate_mut_stats.output.mutation_stats,
     output:
-        config["mutations_to_make_chart"],
-        config["targeted_mutations"],
-        config["saturated_sites"],
-        config["mutation_design_classification"],
+        csv="results/mutations_to_make.csv",
+        html="results/mutations_to_make.html",
     params:
-        config["mutation_retain_thresholds"],
-        config["site_saturation_threshold"],
-        config["sites_to_allow_deletions"],
-        config["mutations_to_include"],
-        config["sites_to_saturate"],
-        config['insertion_sites'],
-        config["saturate_diffs_from_reference"],
+        mutation_retain_thresholds=config["mutation_retain_thresholds"],
+        site_saturation_thresholds=config["site_saturation_thresholds"],
+        include_stop=config["include_stop"],
+        sites_to_allow_deletions=config["sites_to_allow_deletions"],
+        mutations_to_include=config["mutations_to_include"],
+        sites_to_saturate=config["sites_to_saturate"],
     log:
         notebook="results/notebooks/mutations_to_make.ipynb",
     notebook:
         "notebooks/mutations_to_make.py.ipynb"
+
+
+rule design_oligos:
+    """Design the oligos."""
+    input:
+        mutations_to_make_csv=rules.mutations_to_make.output.csv,
+        tiles_csv=config["tiles_csv"],
+    output:
+        fasta="results/mutagenesis_oligos.fa",
+    params:
+        params_str=" ".join(
+            f"--{key} {val}"
+            for (key, val) in config["gga_codon_muts_oligo_design_params"].items()
+        ),
+    shell:
+        """
+        python scripts/gga_codon_muts_oligo_design.py {params.params_str} \
+            --mutations_to_make_csv {input.mutations_to_make_csv} \
+            --tiles_csv {input.tiles_csv} \
+            --output_oligos_fasta {output.fasta}
+        """

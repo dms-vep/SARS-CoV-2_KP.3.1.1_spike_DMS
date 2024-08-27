@@ -5,7 +5,7 @@ import pandas as pd
 import requests
 
 table_url = snakemake.params.table_url
-alignment_counts = snakemake.output.alignment_counts
+alignment_counts = snakemake.output.csv
 
 print(f"mutation count dataframe from {table_url}")
 html_text = requests.get(table_url, verify=False).content.decode("utf-8")
