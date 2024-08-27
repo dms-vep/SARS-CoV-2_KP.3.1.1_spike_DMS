@@ -60,7 +60,7 @@ mutation_retain_thresholds:
 site_saturation_thresholds:
   UShER_count: 2500
   UShER_recent_count: 50
-  in_pango_lineage: 2
+  in_pango_lineage: 3
   mutated_from_reference: 1
 
 # do we include STOP codons when they meet other criteria
