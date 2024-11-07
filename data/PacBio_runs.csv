@@ -1,0 +1,3 @@
+﻿library,run,fastq
+Lib1,Lib1-241105,/fh/fast/bloom_j/SR/ngs/pacbio/241031_Bernadeta/r64272e_20241031_194908/1_A01/bc2127--bc2127/m64272e_241031_200640.hifi_reads.bc2127--bc2127.fastq.gz
+Lib2,Lib2-241105,/fh/fast/bloom_j/SR/ngs/pacbio/241031_Bernadeta/r64272e_20241031_194908/1_A01/bc2128--bc2128/m64272e_241031_200640.hifi_reads.bc2128--bc2128.fastq.gz
