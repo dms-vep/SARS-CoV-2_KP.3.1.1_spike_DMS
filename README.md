@@ -1,8 +1,6 @@
-# Deep mutational scanning of SARS-CoV-2 XBB.1.5 spike 
-See [Dadonaite et al, bioRxiv, DOI 10.1101/2023.11.13.566961 (2023)](https://doi.org/10.1101/2023.11.13.566961
-) for the paper describing this study.
+# Deep mutational scanning of SARS-CoV-2 KP.3.1.1 spike 
 
-For documentation of the analysis, see [https://dms-vep.github.io/SARS-CoV-2_XBB.1.5_spike_DMS/](https://dms-vep.github.io/SARS-CoV-2_XBB.1.5_spike_DMS/)
+For documentation of the analysis, see [https://dms-vep.github.io/SARS-CoV-2_KP.3.1.1_spike_DMS/](https://dms-vep.github.io/SARS-CoV-2_KP.3.1.1_spike_DMS/)
 
 ## Organization of this repo
 
@@ -23,9 +21,6 @@ You can also make changes to the [dms-vep-pipeline-3](https://github.com/dms-vep
 
 ### Additional steps specific to this pipeline
 In addition to the main [dms-vep-pipeline-3](https://github.com/dms-vep/dms-vep-pipeline-3), there are some custom `snakemake` rules in [custom_rules.smk](custom_rules.smk) and the associated notebooks in [./notebooks/](notebooks) that run some rules and analyses specific to this repo.
-
-### Multinomial logistic clade growth data
-An analysis by Ben Murrell of SARS-CoV-2 clade growth using multinomial logistic models in the repo at [https://github.com/MurrellGroup/MultinomialLogisticGrowth](https://github.com/MurrellGroup/MultinomialLogisticGrowth) is added as a submodule in this repo, and is used in some of the analyses.
 
 ### Configuration and running the pipeline
 The configuration for the pipeline is in [config.yaml](config.yaml) and the files in [./data/](data) referenced therein.
