@@ -1,1 +1,5 @@
 sample,library,date,fastq_R1,notes
+Lib1-250213-VSVG_control_293T,Lib1,2025-02-13,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250211_LH00740_0046_A22YFW5LT3/Unaligned/KP311_H5_selections_illumina_052025/KP311_Lib1_VSVG_S1_L001_R1_001.fastq.gz,
+Lib2-250213-VSVG_control_293T,Lib2,2025-02-13,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250211_LH00740_0046_A22YFW5LT3/Unaligned/KP311_H5_selections_illumina_052025/KP311_Lib2_VSVG_S2_L001_R1_001.fastq.gz,
+Lib1-250213-no-antibody_control_293TACE2,Lib1,2025-02-13,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250211_LH00740_0046_A22YFW5LT3/Unaligned/KP311_H5_selections_illumina_052025/KP311_Lib1_S3_L001_R1_001.fastq.gz,
+Lib2-250213-no-antibody_control_293TACE2,Lib2,2025-02-13,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250211_LH00740_0046_A22YFW5LT3/Unaligned/KP311_H5_selections_illumina_052025/KP311_Lib2_S4_L001_R1_001.fastq.gz,
