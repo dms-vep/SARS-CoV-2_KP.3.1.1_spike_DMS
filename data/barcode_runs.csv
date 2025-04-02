@@ -37,3 +37,8 @@ Lib2-250302-sera-404C_SR_0.003,Lib2,2025-03-02,/fh/fast/bloom_j/SR/ngs/illumina/
 Lib2-250302-sera-404C_SR_0.01,Lib2,2025-03-02,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250228_LH00740_0052_A22YGFLLT3/Unaligned/AB_BD_pool_210225/Lib2_404C-SR_2_S73_L003_R1_001.fastq.gz,
 Lib2-250302-sera-404C_SR_0.031,Lib2,2025-03-02,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250228_LH00740_0052_A22YGFLLT3/Unaligned/AB_BD_pool_210225/Lib2_404C-SR_3_S74_L003_R1_001.fastq.gz,
 Lib2-250302-no-antibody_control,Lib2,2025-03-02,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250228_LH00740_0052_A22YGFLLT3/Unaligned/AB_BD_pool_210225/Lib2_no_mAb_S78_L003_R1_001.fastq.gz,
+Lib1-250331-no-antibody_control_T3,Lib1,2025-03-31,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250328_LH00740_0062_A232FM7LT3/Unaligned/H5_Crow_cattle_KP3/KP3_T3_S38_L001_R1_001.fastq.gz,
+Lib1-250331-no-antibody_control_T3_dox,Lib1,2025-03-31,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250328_LH00740_0062_A232FM7LT3/Unaligned/H5_Crow_cattle_KP3/KP3_T3Dox_S39_L001_R1_001.fastq.gz,
+Lib1-250331-no-antibody_control_D10,Lib1,2025-03-31,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250328_LH00740_0062_A232FM7LT3/Unaligned/H5_Crow_cattle_KP3/KP3_D10_S37_L001_R1_001.fastq.gz,
+Lib2-250402-VSVG_control_IGM,Lib2,2025-04-02,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250331_LH00740_0064_A232MH3LT3/Unaligned/XBB15_NIH_Penn_mAbs_260325/KP3_lib2_IGM_spike_S43_L002_R1_001.fastq.gz,
+Lib2-250402-no-antibody_control_IGM,Lib2,2025-04-02,/fh/fast/bloom_j/SR/ngs/illumina/bdadonai/20250331_LH00740_0064_A232MH3LT3/Unaligned/XBB15_NIH_Penn_mAbs_260325/KP3_lib2_IGM_VSVG_S42_L002_R1_001.fastq.gz,
