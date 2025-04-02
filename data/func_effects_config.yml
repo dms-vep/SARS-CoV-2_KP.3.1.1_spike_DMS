@@ -30,7 +30,11 @@ global_epistasis_params: &global_epistasis_params
   clip_upper: null
   # Do we collapse barcodes with same variant?
   collapse_identical_variants: false  # {false, mean, median}
-
+  # Regularization (ridge or L2) on the inferred latent effects, see
+  # https://github.com/matsengrp/multidms/issues/168#issuecomment-2643522165
+  # We recommend using a small value, like 1e-7.
+  latent_effects_regularization: 1e-7
+  
 # Define how to compute functional scores. Each key is a selection experiment.
 # A global epistasis model is used to get mutational effects for each selection.
 # Recommended naming of selection experiments is:
@@ -51,7 +55,46 @@ func_scores:
     post_selection_sample: Lib2-250213-no-antibody_control_293TACE2
     func_score_params: *func_scores_params_default
     global_epistasis_params: *global_epistasis_params
-
+  Lib1-250331_T3:
+    pre_selection_sample: Lib1-250213-VSVG_control_293T
+    post_selection_sample: Lib1-250331-no-antibody_control_T3
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib2-250331_T3:
+    pre_selection_sample: Lib1-250213-VSVG_control_293T
+    post_selection_sample: Lib1-250331-no-antibody_control_T3
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib1-250331_T3Dox:
+    pre_selection_sample: Lib1-250213-VSVG_control_293T
+    post_selection_sample: Lib1-250331-no-antibody_control_T3_dox
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib2-250331_T3Dox:
+    pre_selection_sample: Lib1-250213-VSVG_control_293T
+    post_selection_sample: Lib1-250331-no-antibody_control_T3_dox
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib1-250331_D10:
+    pre_selection_sample: Lib1-250213-VSVG_control_293T
+    post_selection_sample: Lib1-250331-no-antibody_control_D10
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib2-250331_D10:
+    pre_selection_sample: Lib1-250213-VSVG_control_293T
+    post_selection_sample: Lib1-250331-no-antibody_control_D10
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib1-250213_IGM:
+    pre_selection_sample: Lib2-250402-VSVG_control_IGM
+    post_selection_sample: Lib2-250402-no-antibody_control_IGM
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib2-250213_IGM:
+    pre_selection_sample: Lib2-250402-VSVG_control_IGM
+    post_selection_sample: Lib2-250402-no-antibody_control_IGM
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
 # --------------------------------------------------------------------------------------
 # Configuration for averaging mutation functional effects across selections and plotting
 # them.
@@ -92,3 +135,23 @@ avg_func_effects:
     selections:
       - Lib1-250213_high_ACE2
       - Lib2-250213_high_ACE2
+  293T_IGM:
+    <<: *avg_func_effects_default
+    selections:
+      - Lib2-250213_IGM
+      - Lib1-250213_IGM
+  293T_D10:
+    <<: *avg_func_effects_default
+    selections:
+      - Lib2-250331_D10
+      - Lib1-250331_D10
+  293T_T3:
+    <<: *avg_func_effects_default
+    selections:
+      - Lib2-250331_T3
+      - Lib1-250331_T3
+  293T_T3Dox:
+    <<: *avg_func_effects_default
+    selections:
+      - Lib2-250331_T3Dox
+      - Lib1-250331_T3Dox
