@@ -184,7 +184,7 @@ antibody_selections:
     antibody_samples:
      Lib2-250302-sera-087C_CS_0.077:
       concentration: 0.077
-      use_in_fit: false
+      use_in_fit: true
      Lib2-250302-sera-087C_CS_0.188:
       concentration: 0.188
       use_in_fit: true
@@ -250,7 +250,7 @@ antibody_selections:
     antibody_samples:
      Lib2-250302-sera-404C_CS_0.104:
       concentration: 0.104
-      use_in_fit: false
+      use_in_fit: true
      Lib2-250302-sera-404C_CS_0.238:
       concentration: 0.238
       use_in_fit: true

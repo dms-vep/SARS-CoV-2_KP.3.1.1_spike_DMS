@@ -95,6 +95,36 @@ func_scores:
     post_selection_sample: Lib2-250402-no-antibody_control_IGM
     func_score_params: *func_scores_params_default
     global_epistasis_params: *global_epistasis_params
+  Lib1-250424-KP3_resuspended_IGM:
+    pre_selection_sample: Lib2-250424-KP3_IGM_VSVG
+    post_selection_sample: Lib2-250424-KP3_IGM
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib2-250424-KP3_resuspended_IGM:
+    pre_selection_sample: Lib2-250424-KP3_IGM_VSVG
+    post_selection_sample: Lib2-250424-KP3_IGM
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib1-250424-KP3_resuspended_RB_no_EDTA:
+    pre_selection_sample: Lib2-250424-KP3_IGM_VSVG
+    post_selection_sample: Lib2-250424-RBnoEDTA
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib2-250424-KP3_resuspended_RB_no_EDTA:
+    pre_selection_sample: Lib2-250424-KP3_IGM_VSVG
+    post_selection_sample: Lib2-250424-RBnoEDTA
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib1-250424-KP3_resuspended_RB:
+    pre_selection_sample: Lib2-250424-KP3_IGM_VSVG
+    post_selection_sample: Lib2-250424-KP3_RB
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
+  Lib2-250424-KP3_resuspended_RB:
+    pre_selection_sample: Lib2-250424-KP3_IGM_VSVG
+    post_selection_sample: Lib2-250424-KP3_RB
+    func_score_params: *func_scores_params_default
+    global_epistasis_params: *global_epistasis_params
 # --------------------------------------------------------------------------------------
 # Configuration for averaging mutation functional effects across selections and plotting
 # them.
@@ -155,3 +185,18 @@ avg_func_effects:
     selections:
       - Lib2-250331_T3Dox
       - Lib1-250331_T3Dox
+  293T_ultra_c_resuspended_IGM:
+    <<: *avg_func_effects_default
+    selections:
+      - Lib1-250424-KP3_resuspended_IGM
+      - Lib2-250424-KP3_resuspended_IGM
+  293T_ultra_c_resuspended_RB:
+    <<: *avg_func_effects_default
+    selections:
+      - Lib1-250424-KP3_resuspended_RB
+      - Lib2-250424-KP3_resuspended_RB
+  293T_ultra_c_resuspended_RB_no_EDTA:
+    <<: *avg_func_effects_default
+    selections:
+      - Lib1-250424-KP3_resuspended_RB_no_EDTA
+      - Lib2-250424-KP3_resuspended_RB_no_EDTA
