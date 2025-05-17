@@ -111,13 +111,13 @@ plot_hide_stats_default: &plot_hide_stats_default
   functional effect:
     csv: results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv
     csv_col: effect
-    init: -1.5
+    init: -2
     min_filters:
       times_seen: 3
   ACE2 binding:
     csv: results/ACE2_binding/averages/monomeric_ACE2_mut_effect.csv
     csv_col: ACE2 binding_mean
-    init: -1.5
+    init: -2
     min_filters:
       times_seen: 3
 
@@ -278,7 +278,7 @@ ACE2_binding_plot_hide_stats_default: &ACE2_binding_plot_hide_stats_default
   functional effect:
     csv: results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv
     csv_col: effect
-    init: -1.5
+    init: -2
     min_filters:
       times_seen: 3
 
@@ -330,6 +330,57 @@ ACE2_binding_selections:
       Lib2-250301-monomeric_ACE2_446.81:
         concentration: 446.81
         use_in_fit: false
+  Lib1-250517-monomeric_ACE2:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *ACE2_binding_polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *ACE2_binding_plot_hide_stats_default
+    no_antibody_sample: Lib1-250517-no-antibody-control
+    antibody_samples:
+      Lib1-250517-monomeric_ACE2_6:
+        concentration: 6
+        use_in_fit: true
+      Lib1-250517-monomeric_ACE2_13:
+        concentration: 13
+        use_in_fit: true
+      Lib1-250517-monomeric_ACE2_27:
+        concentration: 27
+        use_in_fit: true
+      Lib1-250517-monomeric_ACE2_54:
+        concentration: 54
+        use_in_fit: true
+      Lib1-250517-monomeric_ACE2_115:
+        concentration: 115
+        use_in_fit: true
+  Lib2-250517-monomeric_ACE2:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *ACE2_binding_polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *ACE2_binding_plot_hide_stats_default
+    no_antibody_sample: Lib2-250517-no-antibody-control
+    antibody_samples:
+      Lib2-250517-monomeric_ACE2_6:
+        concentration: 6
+        use_in_fit: true
+      Lib2-250517-monomeric_ACE2_13:
+        concentration: 13
+        use_in_fit: true
+      Lib2-250517-monomeric_ACE2_27:
+        concentration: 27
+        use_in_fit: true
+      Lib2-250517-monomeric_ACE2_54:
+        concentration: 54
+        use_in_fit: true
+      Lib2-250517-monomeric_ACE2_115:
+        concentration: 115
+        use_in_fit: true
+
+
+
+
+
 
 # --------------------------------------------------------------------------------------
 # Configuration for averaging/plotting selections for same antibody or soluble receptor
@@ -412,10 +463,17 @@ avg_ACE2_binding_default: &avg_ACE2_binding_default
   icXX: 50  # IC50
 
 avg_ACE2_binding:
+  monomeric_ACE2_ultracentrifugated:
+    <<: *avg_ACE2_binding_default
+    title: binding to monomeric ACE2 with libraries that were ultracentrifugated
+    plot_hide_stats: *ACE2_binding_plot_hide_stats_default
+    selections:
+      - Lib2-250301-monomeric_ACE2
+      - Lib1-250301-monomeric_ACE2
   monomeric_ACE2:
     <<: *avg_ACE2_binding_default
     title: binding to monomeric ACE2
     plot_hide_stats: *ACE2_binding_plot_hide_stats_default
     selections:
-      - Lib2-250301-monomeric_ACE2
-      - Lib1-250301-monomeric_ACE2
+      - Lib1-250517-monomeric_ACE2
+      - Lib2-250517-monomeric_ACE2
