@@ -117,144 +117,335 @@ plot_hide_stats_default: &plot_hide_stats_default
   ACE2 binding:
     csv: results/ACE2_binding/averages/monomeric_ACE2_mut_effect.csv
     csv_col: ACE2 binding_mean
-    init: -2
+    init: -3
     min_filters:
       times_seen: 3
 
 # define the antibody selections
 antibody_selections:
 # --------------------------------------------------------------------------------------
-  Lib1-250302-sera-087C_post:
+  Lib1-250517-sera-087C_post:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib1-250302-no-antibody_control
+    no_antibody_sample: Lib1-250517-no-antibody-control
     antibody_samples:
-     Lib1-250302-sera-087C_SR_0.004:
-      concentration: 0.004
-      use_in_fit: false
-     Lib1-250302-sera-087C_SR_0.012:
-      concentration: 0.012
+     Lib1-250517-sera-087C_SR_0.047:
+      concentration: 0.047
       use_in_fit: true
-     Lib1-250302-sera-087C_SR_0.036:
-      concentration: 0.036
+     Lib1-250517-sera-087C_SR_0.093:
+      concentration: 0.093
       use_in_fit: true
-  Lib2-250302-sera-087C_post:
+     Lib1-250517-sera-087C_SR_0.233:
+      concentration: 0.233
+      use_in_fit: true
+  Lib2-250517-sera-087C_post:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib2-250302-no-antibody_control
+    no_antibody_sample: Lib2-250517-no-antibody-control
     antibody_samples:
-     Lib2-250302-sera-087C_SR_0.004:
-      concentration: 0.004
-      use_in_fit: false
-     Lib2-250302-sera-087C_SR_0.012:
-      concentration: 0.012
+     Lib2-250517-sera-087C_SR_0.047:
+      concentration: 0.047
       use_in_fit: true
-     Lib2-250302-sera-087C_SR_0.036:
-      concentration: 0.036
+     Lib2-250517-sera-087C_SR_0.093:
+      concentration: 0.093
+      use_in_fit: true
+     Lib2-250517-sera-087C_SR_0.233:
+      concentration: 0.233
       use_in_fit: true
 
 # --------------------------------------------------------------------------------------
-  Lib1-250302-sera-087C_pre:
+  Lib1-250517-sera-087C_pre:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib1-250302-no-antibody_control
+    no_antibody_sample: Lib1-250517-no-antibody-control
     antibody_samples:
-     Lib1-250302-sera-087C_CS_0.077:
-      concentration: 0.077
-      use_in_fit: false
-     Lib1-250302-sera-087C_CS_0.188:
-      concentration: 0.188
+     Lib1-250517-sera-087C_CS_0.1:
+      concentration: 0.1
       use_in_fit: true
-  Lib2-250302-sera-087C_pre:
+     Lib1-250517-sera-087C_CS_0.133:
+      concentration: 0.133
+      use_in_fit: true
+     Lib1-250517-sera-087C_CS_0.2:
+      concentration: 0.2
+      use_in_fit: true
+  Lib2-250517-sera-087C_pre:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib2-250302-no-antibody_control
+    no_antibody_sample: Lib2-250517-no-antibody-control
     antibody_samples:
-     Lib2-250302-sera-087C_CS_0.077:
-      concentration: 0.077
+     Lib2-250517-sera-087C_CS_0.1:
+      concentration: 0.1
       use_in_fit: true
-     Lib2-250302-sera-087C_CS_0.188:
-      concentration: 0.188
+     Lib2-250517-sera-087C_CS_0.133:
+      concentration: 0.133
+      use_in_fit: true
+     Lib2-250517-sera-087C_CS_0.2:
+      concentration: 0.2
       use_in_fit: true
 
 # --------------------------------------------------------------------------------------
-  Lib1-250302-sera-404C_post:
+  Lib1-250517-sera-404C_post:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib1-250302-no-antibody_control
+    no_antibody_sample: Lib1-250517-no-antibody-control
     antibody_samples:
-     Lib1-250302-sera-404C_SR_0.003:
+     Lib1-250517-sera-404C_SR_0.017:
+      concentration: 0.017
+      use_in_fit: true
+     Lib1-250517-sera-404C_SR_0.033:
+      concentration: 0.033
+      use_in_fit: true
+     Lib1-250517-sera-404C_SR_0.05:
+      concentration: 0.05
+      use_in_fit: true
+  Lib2-250517-sera-404C_post:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib2-250517-no-antibody-control
+    antibody_samples:
+     Lib2-250517-sera-404C_SR_0.017:
+      concentration: 0.017
+      use_in_fit: true
+     Lib2-250517-sera-404C_SR_0.033:
+      concentration: 0.033
+      use_in_fit: true
+     Lib2-250517-sera-404C_SR_0.05:
+      concentration: 0.05
+      use_in_fit: true
+
+# --------------------------------------------------------------------------------------
+  Lib1-250517-sera-404C_pre:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib1-250517-no-antibody-control
+    antibody_samples:
+     Lib1-250517-sera-404C_CS_0.133:
+      concentration: 0.133
+      use_in_fit: true
+     Lib1-250517-sera-404C_CS_0.2:
+      concentration: 0.2
+      use_in_fit: true
+     Lib1-250517-sera-404C_CS_0.267:
+      concentration: 0.267
+      use_in_fit: true
+  Lib2-250517-sera-404C_pre:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib2-250517-no-antibody-control
+    antibody_samples:
+     Lib2-250517-sera-404C_CS_0.133:
+      concentration: 0.133
+      use_in_fit: true
+     Lib2-250517-sera-404C_CS_0.2:
+      concentration: 0.2
+      use_in_fit: true
+     Lib2-250517-sera-404C_CS_0.267:
+      concentration: 0.267
+      use_in_fit: true
+
+# --------------------------------------------------------------------------------------
+  Lib1-250518-sera-183C_post:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib1-250518-no-antibody-control
+    antibody_samples:
+     Lib1-250518-sera-183C_SR_0.04:
+      concentration: 0.04
+      use_in_fit: true
+     Lib1-250518-sera-183C_SR_0.18:
+      concentration: 0.18
+      use_in_fit: true
+     Lib1-250518-sera-183C_SR_0.35:
+      concentration: 0.35
+      use_in_fit: true
+  Lib2-250518-sera-183C_post:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib2-250518-no-antibody-control
+    antibody_samples:
+     Lib2-250518-sera-183C_SR_0.04:
+      concentration: 0.04
+      use_in_fit: true
+     Lib2-250518-sera-183C_SR_0.18:
+      concentration: 0.18
+      use_in_fit: true
+     Lib2-250518-sera-183C_SR_0.35:
+      concentration: 0.35
+      use_in_fit: true
+
+# --------------------------------------------------------------------------------------
+  Lib1-250518-sera-281C_post:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib1-250518-no-antibody-control
+    antibody_samples:
+     Lib1-250518-sera-281C_SR_0.05:
+      concentration: 0.05
+      use_in_fit: true
+     Lib1-250518-sera-281C_SR_0.19:
+      concentration: 0.19
+      use_in_fit: true
+     Lib1-250518-sera-281C_SR_0.38:
+      concentration: 0.38
+      use_in_fit: true
+  Lib2-250518-sera-281C_post:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib2-250518-no-antibody-control
+    antibody_samples:
+     Lib2-250518-sera-281C_SR_0.05:
+      concentration: 0.05
+      use_in_fit: true
+     Lib2-250518-sera-281C_SR_0.19:
+      concentration: 0.19
+      use_in_fit: true
+     Lib2-250518-sera-281C_SR_0.38:
+      concentration: 0.38
+      use_in_fit: false
+
+# --------------------------------------------------------------------------------------
+  Lib1-250518-sera-503C_post:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib1-250518-no-antibody-control
+    antibody_samples:
+     Lib1-250518-sera-503C_SR_0.04:
+      concentration: 0.04
+      use_in_fit: true
+     Lib1-250518-sera-503C_SR_0.18:
+      concentration: 0.18
+      use_in_fit: true
+     Lib1-250518-sera-503C_SR_0.35:
+      concentration: 0.35
+      use_in_fit: false
+  Lib2-250518-sera-503C_post:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib2-250518-no-antibody-control
+    antibody_samples:
+     Lib2-250518-sera-503C_SR_0.04:
+      concentration: 0.04
+      use_in_fit: true
+     Lib2-250518-sera-503C_SR_0.18:
+      concentration: 0.18
+      use_in_fit: true
+     Lib2-250518-sera-503C_SR_0.35:
+      concentration: 0.35
+      use_in_fit: false
+
+# --------------------------------------------------------------------------------------
+  Lib1-250518-sera-507C_post:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib1-250518-no-antibody-control
+    antibody_samples:
+     Lib1-250518-sera-507C_SR_0.003:
       concentration: 0.003
       use_in_fit: true
-     Lib1-250302-sera-404C_SR_0.01:
-      concentration: 0.01
+     Lib1-250518-sera-507C_SR_0.007:
+      concentration: 0.007
       use_in_fit: true
-     Lib1-250302-sera-404C_SR_0.031:
-      concentration: 0.031
+     Lib1-250518-sera-507C_SR_0.013:
+      concentration: 0.013
       use_in_fit: true
-  Lib2-250302-sera-404C_post:
+  Lib2-250518-sera-507C_post:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib2-250302-no-antibody_control
+    no_antibody_sample: Lib2-250518-no-antibody-control
     antibody_samples:
-     Lib2-250302-sera-404C_SR_0.003:
+     Lib2-250518-sera-507C_SR_0.003:
       concentration: 0.003
+      use_in_fit: false
+     Lib2-250518-sera-507C_SR_0.007:
+      concentration: 0.007
       use_in_fit: true
-     Lib2-250302-sera-404C_SR_0.01:
-      concentration: 0.01
-      use_in_fit: true
-     Lib2-250302-sera-404C_SR_0.031:
-      concentration: 0.031
-      use_in_fit: true
+     Lib2-250518-sera-507C_SR_0.013:
+      concentration: 0.013
+      use_in_fit: true      
 
 # --------------------------------------------------------------------------------------
-  Lib1-250302-sera-404C_pre:
+  Lib1-250518-sera-527C_post:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib1-250302-no-antibody_control
+    no_antibody_sample: Lib1-250518-no-antibody-control
     antibody_samples:
-     Lib1-250302-sera-404C_CS_0.104:
-      concentration: 0.104
+     Lib1-250518-sera-527C_SR_0.1:
+      concentration: 0.1
       use_in_fit: false
-     Lib1-250302-sera-404C_CS_0.238:
-      concentration: 0.238
+     Lib1-250518-sera-527C_SR_0.4:
+      concentration: 0.4
       use_in_fit: true
-  Lib2-250302-sera-404C_pre:
+     Lib1-250518-sera-527C_SR_0.62:
+      concentration: 0.62
+      use_in_fit: true
+  Lib2-250518-sera-527C_post:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib2-250302-no-antibody_control
+    no_antibody_sample: Lib2-250518-no-antibody-control
     antibody_samples:
-     Lib2-250302-sera-404C_CS_0.104:
-      concentration: 0.104
+     Lib2-250518-sera-527C_SR_0.1:
+      concentration: 0.1
+      use_in_fit: false
+     Lib2-250518-sera-527C_SR_0.4:
+      concentration: 0.4
       use_in_fit: true
-     Lib2-250302-sera-404C_CS_0.238:
-      concentration: 0.238
+     Lib2-250518-sera-527C_SR_0.62:
+      concentration: 0.62
       use_in_fit: true
-
 # --------------------------------------------------------------------------------------
 
 # Note that for soluble receptor affinity selections, you define selection experiments
@@ -377,11 +568,6 @@ ACE2_binding_selections:
         concentration: 115
         use_in_fit: true
 
-
-
-
-
-
 # --------------------------------------------------------------------------------------
 # Configuration for averaging/plotting selections for same antibody or soluble receptor
 # --------------------------------------------------------------------------------------
@@ -425,29 +611,56 @@ avg_antibody_escape:
     <<: *avg_antibody_escape_default
     title: Sera 087C post vaccine
     selections:
-      - Lib1-250302-sera-087C_post
-      - Lib2-250302-sera-087C_post
-
+      - Lib1-250517-sera-087C_post
+      - Lib2-250517-sera-087C_post
   sera_087C_pre:
     <<: *avg_antibody_escape_default
     title: Sera 087C pre vaccine
     selections:
-      - Lib1-250302-sera-087C_pre
-      - Lib2-250302-sera-087C_pre
-
+      - Lib1-250517-sera-087C_pre
+      - Lib2-250517-sera-087C_pre
   sera_404C_post:
     <<: *avg_antibody_escape_default
     title: Sera 404C post vaccine
     selections:
-      - Lib1-250302-sera-404C_post
-      - Lib2-250302-sera-404C_post
-
+      - Lib1-250517-sera-404C_post
+      - Lib2-250517-sera-404C_post
   sera_404C_pre:
     <<: *avg_antibody_escape_default
     title: Sera 404C pre vaccine
     selections:
-      - Lib1-250302-sera-404C_pre
-      - Lib2-250302-sera-404C_pre
+      - Lib1-250517-sera-404C_pre
+      - Lib2-250517-sera-404C_pre
+  sera_183C_post:
+    <<: *avg_antibody_escape_default
+    title: Sera 183C pre vaccine
+    selections:
+      - Lib1-250518-sera-183C_post
+      - Lib2-250518-sera-183C_post
+  sera_281C_post:
+    <<: *avg_antibody_escape_default
+    title: Sera 281C pre vaccine
+    selections:
+      - Lib1-250518-sera-281C_post
+      - Lib2-250518-sera-281C_post
+  sera_503C_post:
+    <<: *avg_antibody_escape_default
+    title: Sera 503C pre vaccine
+    selections:
+      - Lib1-250518-sera-503C_post
+      - Lib2-250518-sera-503C_post
+  sera_507C_post:
+    <<: *avg_antibody_escape_default
+    title: Sera 507C pre vaccine
+    selections:
+      - Lib1-250518-sera-507C_post
+      - Lib2-250518-sera-507C_post
+  sera_527C_post:
+    <<: *avg_antibody_escape_default
+    title: Sera 527C pre vaccine
+    selections:
+      - Lib1-250518-sera-527C_post
+      - Lib2-250518-sera-527C_post
 
 # Define the receptor affinity experiments to average
 avg_ACE2_binding_default: &avg_ACE2_binding_default
