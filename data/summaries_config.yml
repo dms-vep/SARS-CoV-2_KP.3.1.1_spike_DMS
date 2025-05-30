@@ -37,10 +37,10 @@ summary_default: &summary_default
       le_filters:
         ACE2 binding_std: 1.8
 
-WuhanHu1_imprinted_pre_JN1_vaccination_adult_sera:
+adult_sera_escape:
   <<: *summary_default
   antibody_escape:  # show effects on antibody escape, empty dict if no antibodies being shown
-    imprinted adults pre vaccination:  # name each set of antibodies
+    imprinted adults pre and post vaccination or infection:  # name each set of antibodies
       stat: escape_median  # statistic to use for escape
       positive_color: "#56B4E9"  # light blue, positive heatmap color
       negative_color: "#E69F00"  # orange, negative heatmap color
@@ -49,47 +49,15 @@ WuhanHu1_imprinted_pre_JN1_vaccination_adult_sera:
       le_filters:
         escape_std: 1.5
       antibody_list:  # antibodies to include and their CSVs
-        adult-1_pre: results/antibody_escape/averages/sera_087C_pre_mut_effect.csv
-        adult-4_pre: results/antibody_escape/averages/sera_404C_pre_mut_effect.csv
-
-WuhanHu1_imprinted_post_JN1_vaccination_adult_sera:
-  <<: *summary_default
-  antibody_escape:  # show effects on antibody escape, empty dict if no antibodies being shown
-    imprinted adults post vaccination:  # name each set of antibodies
-      stat: escape_median  # statistic to use for escape
-      positive_color: "#56B4E9"  # light blue, positive heatmap color
-      negative_color: "#E69F00"  # orange, negative heatmap color
-      max_at_least: 1  # make heatmap max at least
-      min_at_least: -1  # make heatmap min at least this
-      le_filters:
-        escape_std: 1.5
-      antibody_list:  # antibodies to include and their CSVs
-        adult-1_post: results/antibody_escape/averages/sera_087C_post_mut_effect.csv
-        adult-2_post: results/antibody_escape/averages/sera_183C_post_mut_effect.csv
-        adult-3_post: results/antibody_escape/averages/sera_281C_post_mut_effect.csv
-        adult-4_post: results/antibody_escape/averages/sera_404C_post_mut_effect.csv
-        adult-5_post: results/antibody_escape/averages/sera_503C_post_mut_effect.csv
-        # adult-6_post: results/antibody_escape/averages/sera_507C_post_mut_effect.csv
-        adult-7_post: results/antibody_escape/averages/sera_527C_post_mut_effect.csv
-        
-
-# sera_group_avgs:
-#   <<: *summary_default
-#   antibody_escape:
-#     imprinted adults pre vaccination:
-#       stat: pre JN1 vaccinated adults escape
-#       positive_color: "#56B4E9"  # light blue, positive heatmap color
-#       negative_color: "#E69F00"  # orange, negative heatmap color
-#       max_at_least: 1  # make heatmap max at least
-#       min_at_least: -1  # make heatmap min at least this
-#       antibody_list:
-#         avg: results/summaries/merged_sera_group_escape.csv
-#     imprinted adults post vaccination:
-#       stat: imprinted children escape
-#       positive_color: "#56B4E9"  # light blue, positive heatmap color
-#       negative_color: "#E69F00"  # orange, negative heatmap color
-#       max_at_least: 1  # make heatmap max at least
-#       min_at_least: -1  # make heatmap min at least this
-#       antibody_list:
-#         avg: results/summaries/merged_sera_group_escape.csv
+        adult-1_pre_vaccination: results/antibody_escape/averages/sera_087C_pre_vaccination_mut_effect.csv
+        adult-1_post_vaccination: results/antibody_escape/averages/sera_087C_post_KP2_vaccination_mut_effect.csv
+        adult-2_pre_vaccination: results/antibody_escape/averages/sera_183C_pre_vaccination_mut_effect.csv
+        adult-2_post_vaccination: results/antibody_escape/averages/sera_183C_post_KP2_vaccination_mut_effect.csv
+        adult-3_pre_infection: results/antibody_escape/averages/sera_281C_pre_infection_mut_effect.csv
+        adult-3_post_infection: results/antibody_escape/averages/sera_281C_post_infection_mut_effect.csv
+        adult-4_pre_vaccination: results/antibody_escape/averages/sera_404C_pre_vaccination_mut_effect.csv
+        adult-4_post_vaccination: results/antibody_escape/averages/sera_404C_post_KP2_vaccination_mut_effect.csv
+        adult-5_post_infection: results/antibody_escape/averages/sera_503C_post_infection_mut_effect.csv
+        adult-6_post_vaccination: results/antibody_escape/averages/sera_507C_post_KP2_vaccination_mut_effect.csv
+        adult-7_post_infection: results/antibody_escape/averages/sera_527C_post_infection_mut_effect.csv        
 
