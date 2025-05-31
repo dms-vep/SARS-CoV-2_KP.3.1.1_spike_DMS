@@ -83,9 +83,10 @@ avg_func_effects_default: &avg_func_effects_default
   per_selection_tooltips: true
   plot_kwargs:
     addtl_slider_stats:
-      times_seen: 3
+      times_seen: 2
     heatmap_max_at_least: 1
     heatmap_min_at_least: -1
+    heatmap_min_fixed: -5
     init_floor_at_zero: false
     init_site_statistic: mean
     site_zoom_bar_color_col: region  # supplied in the `site_numbering_map`
@@ -100,7 +101,7 @@ avg_func_effects_default: &avg_func_effects_default
 
 # Define the functional effect conditions to average
 avg_func_effects:
-  293T_high_ACE2_entry_ultracentrifuated:
+  293T_high_ACE2_entry_ultracentrifugated:
     <<: *avg_func_effects_default
     selections:
       - Lib1-250213_high_ACE2
