@@ -111,7 +111,7 @@ plot_hide_stats_default: &plot_hide_stats_default
   functional effect:
     csv: results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv
     csv_col: effect
-    init: -2
+    init: -3
     min_filters:
       times_seen: 2
   ACE2 binding:
