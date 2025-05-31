@@ -59,6 +59,56 @@ adult_sera_escape:
         adult-4_pre_vaccination: results/antibody_escape/averages/sera_404C_pre_vaccination_mut_effect.csv
         adult-4_post_vaccination: results/antibody_escape/averages/sera_404C_post_KP2_vaccination_mut_effect.csv
         adult-5_post_infection: results/antibody_escape/averages/sera_503C_post_infection_mut_effect.csv
+        adult-6_pre_vaccination: results/antibody_escape/averages/sera_507C_pre_KP2_vaccination_mut_effect.csv
         adult-6_post_vaccination: results/antibody_escape/averages/sera_507C_post_KP2_vaccination_mut_effect.csv
+        adult-7_pre_infection: results/antibody_escape/averages/sera_527C_pre_infection_mut_effect.csv  
         adult-7_post_infection: results/antibody_escape/averages/sera_527C_post_infection_mut_effect.csv        
 
+antibody_escape:
+  min_times_seen: 2  # only include mutations with times_seen >= this
+  min_frac_models: 1  # only include mutations in >= this fraction of models
+  alphabet: [A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y]  # amino acids to include
+  init_floor_escape_at_zero: true  # initially floor site escape to be >= 0?
+  init_site_escape_stat: sum  # initially show site escape as this statistic
+  no_mean_lineplot: True
+  scale_lineplot_height: 1.1
+  selectable_per_antibody_heatmap: True
+  lineplot_antibody_label_loc: top
+  antibody_escape:  # show effects on antibody escape, empty dict if no antibodies being shown
+    antibodies:  # name each set of antibodies
+      stat: escape_median  # statistic to use for escape
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 1  # make heatmap max at least
+      min_at_least: -1  # make heatmap min at least this
+      le_filters:
+        escape_std: 1.5
+      antibody_list:  # antibodies to include and their CSVs
+        BD55-1205: results/antibody_escape/averages/mAb_BD55-1205_mut_effect.csv
+        SA55: results/antibody_escape/averages/mAb_SA55_mut_effect.csv
+        VYD222: results/antibody_escape/averages/mAb_VYD222_mut_effect.csv
+  other_phenotypes:
+    spike mediated entry:
+      csv: results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv
+      stat: effect  # column to plot
+      positive_color: "#009E73"  # green
+      negative_color: "#F0E442"  # yellow
+      max_at_least: 1
+      min_at_least: -1
+      fixed_min: -5
+      init_min_value: -3.0  # initial min value in slider
+      le_filters:
+        effect_std: 1.5
+    ACE2 binding:  # name of particular assay condition
+      csv: results/ACE2_binding/averages/monomeric_ACE2_mut_effect.csv
+      stat: ACE2 binding_median  # statisti used for mutation effects
+      positive_color: "#0072B2"  # dark blue
+      negative_color: "#D55E00"  # red
+      max_at_least: 1
+      min_at_least: 0
+      fixed_max: 2
+      fixed_min: -3
+      init_min_value: -3  # initial min value in slider
+      le_filters:
+        ACE2 binding_std: 1.8
+      
