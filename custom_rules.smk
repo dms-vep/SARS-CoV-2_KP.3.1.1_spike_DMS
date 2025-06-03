@@ -37,8 +37,8 @@ rule compare_pre_post_escape:
     params:
         yaml=lambda wc, input: yaml_str(
             {
-                "init_min_func_effect": -2,
-                "max_effect_std": 1.6,
+                "init_min_func_effect": -3,
+                "max_effect_std": 1.5,
                 "init_min_times_seen": 2,
                 "init_floor_at_zero": False,
                 "init_site_escape_stat": "sum",
