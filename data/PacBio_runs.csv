@@ -1,3 +1,3 @@
 ﻿library,run,fastq
-Lib1,Lib1-250126,/fh/fast/bloom_j/computational_notebooks/bdadonai/2025/KP311_pacbio_files/KP311_lib1_sorted.fastq.gz
-Lib2,Lib2-250126,/fh/fast/bloom_j/computational_notebooks/bdadonai/2025/KP311_pacbio_files/KP311_lib2_sorted.fastq.gz
+Lib1,Lib1-250606,/fh/fast/bloom_j/SR/ngs/pacbio/250602_Bernadeta/r64272e_20250602_22050/1_A01/bc2174--bc2174/m64272e_250602_222423.hifi_reads.bc2174--bc2174.fastq.gz
+Lib2,Lib2-250606,/fh/fast/bloom_j/SR/ngs/pacbio/250602_Bernadeta/r64272e_20250602_22050/2_B01/bc2175--bc2175/m64272e_250604_092011.hifi_reads.bc2175--bc2175.fastq.gz
