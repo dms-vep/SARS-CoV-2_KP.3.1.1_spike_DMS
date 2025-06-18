@@ -671,7 +671,7 @@ antibody_selections:
     antibody_samples:
      Lib1-250518-sera-527C_SR_0.1:
       concentration: 0.1
-      use_in_fit: false
+      use_in_fit: true
      Lib1-250518-sera-527C_SR_0.4:
       concentration: 0.4
       use_in_fit: true
@@ -688,7 +688,7 @@ antibody_selections:
     antibody_samples:
      Lib2-250518-sera-527C_SR_0.1:
       concentration: 0.1
-      use_in_fit: false
+      use_in_fit: true
      Lib2-250518-sera-527C_SR_0.4:
       concentration: 0.4
       use_in_fit: true
@@ -706,13 +706,13 @@ antibody_selections:
     antibody_samples:
      Lib1-250531-527C_CS_0.03:
       concentration: 0.03
-      use_in_fit: true
+      use_in_fit: false
      Lib1-250531-527C_CS_0.05:
       concentration: 0.05
       use_in_fit: true
      Lib1-250531-527C_CS_0.11:
       concentration: 0.11
-      use_in_fit: false
+      use_in_fit: true
   Lib2-250531-sera-527C_pre:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
@@ -723,7 +723,7 @@ antibody_selections:
     antibody_samples:
      Lib2-250531-527C_CS_0.03:
       concentration: 0.03
-      use_in_fit: true
+      use_in_fit: false
      Lib2-250531-527C_CS_0.05:
       concentration: 0.05
       use_in_fit: true
@@ -758,7 +758,7 @@ antibody_selections:
     antibody_samples:
      Lib2-250531-BD55_0.73:
       concentration: 0.73
-      use_in_fit: false
+      use_in_fit: true
      Lib2-250531-BD55_2.18:
       concentration: 2.18
       use_in_fit: true
