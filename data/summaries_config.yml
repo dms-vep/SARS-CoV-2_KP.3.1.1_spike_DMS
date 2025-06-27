@@ -7,8 +7,8 @@
 
 # define defaults shared across summaries
 summary_default: &summary_default
-  min_times_seen: 3  # only include mutations with times_seen >= this
-  min_frac_models: 1  # only include mutations in >= this fraction of models
+  min_times_seen: 2  # only include mutations with times_seen >= this
+  min_frac_models: 0.5  # only include mutations in >= this fraction of models
   alphabet: [A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y, -]  # amino acids to include
   init_floor_escape_at_zero: true  # initially floor site escape to be >= 0?
   init_site_escape_stat: sum  # initially show site escape as this statistic
@@ -58,6 +58,7 @@ adult_sera_escape:
         adult-3_post_infection: results/antibody_escape/averages/sera_281C_post_infection_mut_effect.csv
         adult-4_pre_vaccination: results/antibody_escape/averages/sera_404C_pre_vaccination_mut_effect.csv
         adult-4_post_vaccination: results/antibody_escape/averages/sera_404C_post_KP2_vaccination_mut_effect.csv
+        adult-5_pre_infection: results/antibody_escape/averages/sera_503C_pre_infection_mut_effect.csv
         adult-5_post_infection: results/antibody_escape/averages/sera_503C_post_infection_mut_effect.csv
         adult-6_pre_vaccination: results/antibody_escape/averages/sera_507C_pre_KP2_vaccination_mut_effect.csv
         adult-6_post_vaccination: results/antibody_escape/averages/sera_507C_post_KP2_vaccination_mut_effect.csv
@@ -66,7 +67,7 @@ adult_sera_escape:
 
 antibody_escape:
   min_times_seen: 2  # only include mutations with times_seen >= this
-  min_frac_models: 1  # only include mutations in >= this fraction of models
+  min_frac_models: 0.5  # only include mutations in >= this fraction of models
   alphabet: [A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y]  # amino acids to include
   init_floor_escape_at_zero: true  # initially floor site escape to be >= 0?
   init_site_escape_stat: sum  # initially show site escape as this statistic

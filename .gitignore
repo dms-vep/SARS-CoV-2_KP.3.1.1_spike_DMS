@@ -66,27 +66,7 @@ results/ACE2_binding/averages/*
 
 !results/summaries
 results/summaries/*
-!results/summaries/summary.csv
-!results/summaries/per_antibody_escape.csv
+!results/summaries/*.csv
 
-!results/binding_comparison
-results/binding_comparison/*
-!results/binding_comparison/merged_binding.csv
-
-!results/compare_natural
-results/compare_natural/*
-!results/compare_natural/*clade_pair_growth.csv
-!results/compare_natural/*clade_growth.csv
-!results/compare_natural/*.svg
-
-!results/key_sites
-results/key_sites/*
-!results/key_sites/logoplots
-results/key_sites/logoplots/*
-!results/key_sites/logoplots/*.svg
-
-!results/binding_vs_escape
-!results/binding_vs_escape/*
-!results/binding_vs_escape/logoplots
-results/binding_vs_escape/logoplots/*
-!results/binding_vs_escape/logoplots/*.svg
+KP311_validation_notebooks/.*
+!KP311_validation_notebooks
