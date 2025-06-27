@@ -555,6 +555,43 @@ antibody_selections:
       use_in_fit: false
 
 # --------------------------------------------------------------------------------------
+  Lib1-250625-sera-503C_pre:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib1-250625-no-mAb
+    antibody_samples:
+     Lib1-250625-503C_CS_0.08:
+      concentration: 0.08
+      use_in_fit: false
+     Lib1-250625-503C_CS_0.15:
+      concentration: 0.15
+      use_in_fit: true
+     Lib1-250625-503C_CS_0.23:
+      concentration: 0.23
+      use_in_fit: true
+  Lib2-250625-sera-503C_pre:
+    neut_standard_name: neut_standard
+    prob_escape_filters: *prob_escape_filters_default
+    polyclonal_params: *polyclonal_params_default
+    escape_plot_kwargs: *escape_plot_kwargs_default
+    plot_hide_stats: *plot_hide_stats_default
+    no_antibody_sample: Lib2-250625-no-mAb
+    antibody_samples:
+     Lib2-250625-503C_CS_0.08:
+      concentration: 0.08
+      use_in_fit: false
+     Lib2-250625-503C_CS_0.15:
+      concentration: 0.15
+      use_in_fit: true
+     Lib2-250625-503C_CS_0.23:
+      concentration: 0.23
+      use_in_fit: true
+
+
+# --------------------------------------------------------------------------------------
   Lib1-250518-sera-507C_post:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
@@ -626,40 +663,41 @@ antibody_selections:
       concentration: 0.053
       use_in_fit: true
 # --------------------------------------------------------------------------------------
-  Lib1-250531-sera-507C_pre:
+  Lib1-250625-sera-507C_pre:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib1-250531-no_mAb
+    no_antibody_sample: Lib1-250625-no-mAb
     antibody_samples:
-     Lib1-250531-507C_CS_0.2:
-      concentration: 0.2
+     Lib1-250625-507C_CS_0.03:
+      concentration: 0.03
+      use_in_fit: false
+     Lib1-250625-507C_CS_0.07:
+      concentration: 0.07
       use_in_fit: true
-     Lib1-250531-507C_CS_0.33:
-      concentration: 0.33
+     Lib1-250625-507C_CS_0.13:
+      concentration: 0.13
       use_in_fit: true
-     Lib1-250531-507C_CS_0.53:
-      concentration: 0.53
-      use_in_fit: true
-  Lib2-250531-sera-507C_pre:
+  Lib2-250625-sera-507C_pre:
     neut_standard_name: neut_standard
     prob_escape_filters: *prob_escape_filters_default
     polyclonal_params: *polyclonal_params_default
     escape_plot_kwargs: *escape_plot_kwargs_default
     plot_hide_stats: *plot_hide_stats_default
-    no_antibody_sample: Lib2-250531-no_mAb
+    no_antibody_sample: Lib2-250625-no-mAb
     antibody_samples:
-     Lib2-250531-507C_CS_0.2:
-      concentration: 0.2
+     Lib2-250625-507C_CS_0.03:
+      concentration: 0.03
+      use_in_fit: false
+     Lib2-250625-507C_CS_0.07:
+      concentration: 0.07
       use_in_fit: true
-     Lib2-250531-507C_CS_0.33:
-      concentration: 0.33
+     Lib2-250625-507C_CS_0.13:
+      concentration: 0.13
       use_in_fit: true
-     Lib2-250531-507C_CS_0.53:
-      concentration: 0.53
-      use_in_fit: true
+
 # --------------------------------------------------------------------------------------
   Lib1-250518-sera-527C_post:
     neut_standard_name: neut_standard
@@ -1052,24 +1090,28 @@ avg_antibody_escape:
       - Lib2-250529-sera-281C_pre
   sera_503C_post_infection:
     <<: *avg_antibody_escape_default
-    title: Sera 503C post vaccine
+    title: Sera 503C post infection
     selections:
       - Lib1-250518-sera-503C_post
       - Lib2-250518-sera-503C_post
+  sera_503C_pre_infection:
+    <<: *avg_antibody_escape_default
+    title: Sera 503C pre infection
+    selections:
+      - Lib1-250625-sera-503C_pre
+      - Lib2-250625-sera-503C_pre   
   sera_507C_post_KP2_vaccination:
     <<: *avg_antibody_escape_default
     title: Sera 507C post KP2 vaccine
     selections:
-      # - Lib1-250518-sera-507C_post
-      # - Lib2-250518-sera-507C_post
       - Lib1-250529-sera-507C_post
       - Lib2-250529-sera-507C_post
   sera_507C_pre_KP2_vaccination:
     <<: *avg_antibody_escape_default
     title: Sera 507C pre KP2 vaccine
     selections:
-      - Lib1-250531-sera-507C_pre
-      - Lib2-250531-sera-507C_pre  
+      - Lib1-250625-sera-507C_pre
+      - Lib2-250625-sera-507C_pre
   sera_527C_post_infection:
     <<: *avg_antibody_escape_default
     title: Sera 527C post infection
