@@ -10,7 +10,7 @@ summary_default: &summary_default
   min_times_seen: 2  # only include mutations with times_seen >= this
   min_frac_models: 0.5  # only include mutations in >= this fraction of models
   alphabet: [A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y, -]  # amino acids to include
-  init_floor_escape_at_zero: true  # initially floor site escape to be >= 0?
+  init_floor_escape_at_zero: True  # initially floor site escape to be >= 0?
   init_site_escape_stat: sum  # initially show site escape as this statistic
   antibody_escape: {}
   other_phenotypes:
@@ -24,7 +24,7 @@ summary_default: &summary_default
       fixed_min: -5
       init_min_value: -3.0  # initial min value in slider
       le_filters:
-        effect_std: 1.5
+        effect_std: 2.5
     ACE2 binding:  # name of particular assay condition
       csv: results/ACE2_binding/averages/monomeric_ACE2_mut_effect.csv
       stat: ACE2 binding_median  # statisti used for mutation effects
@@ -38,8 +38,10 @@ summary_default: &summary_default
       le_filters:
         ACE2 binding_std: 1.8
 
-adult_sera_escape:
+all_adult_sera_escape:
   <<: *summary_default
+  init_floor_escape_at_zero: False
+  lineplot_antibody_label_loc: top
   antibody_escape:  # show effects on antibody escape, empty dict if no antibodies being shown
     imprinted adults pre and post vaccination or infection:  # name each set of antibodies
       stat: escape_median  # statistic to use for escape
@@ -48,22 +50,132 @@ adult_sera_escape:
       max_at_least: 1  # make heatmap max at least
       min_at_least: -1  # make heatmap min at least this
       le_filters:
-        escape_std: 1.5
+        escape_std: 1
       antibody_list:  # antibodies to include and their CSVs
-        adult-1_pre_vaccination: results/antibody_escape/averages/sera_087C_pre_vaccination_mut_effect.csv
-        adult-1_post_vaccination: results/antibody_escape/averages/sera_087C_post_KP2_vaccination_mut_effect.csv
-        adult-2_pre_vaccination: results/antibody_escape/averages/sera_183C_pre_vaccination_mut_effect.csv
-        adult-2_post_vaccination: results/antibody_escape/averages/sera_183C_post_KP2_vaccination_mut_effect.csv
-        adult-3_pre_infection: results/antibody_escape/averages/sera_281C_pre_infection_mut_effect.csv
-        adult-3_post_infection: results/antibody_escape/averages/sera_281C_post_infection_mut_effect.csv
-        adult-4_pre_vaccination: results/antibody_escape/averages/sera_404C_pre_vaccination_mut_effect.csv
-        adult-4_post_vaccination: results/antibody_escape/averages/sera_404C_post_KP2_vaccination_mut_effect.csv
-        adult-5_pre_infection: results/antibody_escape/averages/sera_503C_pre_infection_mut_effect.csv
-        adult-5_post_infection: results/antibody_escape/averages/sera_503C_post_infection_mut_effect.csv
-        adult-6_pre_vaccination: results/antibody_escape/averages/sera_507C_pre_KP2_vaccination_mut_effect.csv
-        adult-6_post_vaccination: results/antibody_escape/averages/sera_507C_post_KP2_vaccination_mut_effect.csv
-        adult-7_pre_infection: results/antibody_escape/averages/sera_527C_pre_infection_mut_effect.csv  
-        adult-7_post_infection: results/antibody_escape/averages/sera_527C_post_infection_mut_effect.csv        
+        adult-1_pre_vaccination: results/antibody_escape/averages/adult-1_pre_vaccination_mut_effect.csv
+        adult-1_post_vaccination: results/antibody_escape/averages/adult-1_post_vaccination_mut_effect.csv
+        adult-2_pre_vaccination: results/antibody_escape/averages/adult-2_pre_vaccination_mut_effect.csv
+        adult-2_post_vaccination: results/antibody_escape/averages/adult-2_post_vaccination_mut_effect.csv
+        adult-3_pre_infection: results/antibody_escape/averages/adult-3_pre_infection_mut_effect.csv
+        adult-3_post_infection: results/antibody_escape/averages/adult-3_post_infection_mut_effect.csv
+        adult-4_pre_vaccination: results/antibody_escape/averages/adult-4_pre_vaccination_mut_effect.csv
+        adult-4_post_vaccination: results/antibody_escape/averages/adult-4_post_vaccination_mut_effect.csv
+        adult-5_pre_infection: results/antibody_escape/averages/adult-5_pre_infection_mut_effect.csv
+        adult-5_post_infection: results/antibody_escape/averages/adult-5_post_infection_mut_effect.csv
+        adult-6_pre_vaccination: results/antibody_escape/averages/adult-6_pre_vaccination_mut_effect.csv
+        adult-6_post_vaccination: results/antibody_escape/averages/adult-6_post_vaccination_mut_effect.csv
+        adult-7_pre_infection: results/antibody_escape/averages/adult-7_pre_infection_mut_effect.csv  
+        adult-7_post_infection: results/antibody_escape/averages/adult-7_post_infection_mut_effect.csv        
+
+pre_infection:
+  <<: *summary_default
+  init_floor_escape_at_zero: False  # initially floor site escape to be >= 0?
+  antibody_escape:  # show effects on antibody escape, empty dict if no antibodies being shown
+    Pre infection:  # name each set of antibodies
+      stat: escape_median  # statistic to use for escape
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 1  # make heatmap max at least
+      min_at_least: -1  # make heatmap min at least this
+      le_filters:
+        escape_std: 1
+      antibody_list:  # antibodies to include and their CSVs
+        adult-3_pre_infection: results/antibody_escape/averages/adult-3_pre_infection_mut_effect.csv
+        adult-5_pre_infection: results/antibody_escape/averages/adult-5_pre_infection_mut_effect.csv
+        adult-7_pre_infection: results/antibody_escape/averages/adult-7_pre_infection_mut_effect.csv  
+
+pre_vaccination:
+  <<: *summary_default
+  init_floor_escape_at_zero: False  # initially floor site escape to be >= 0?
+  antibody_escape:  # show effects on antibody escape, empty dict if no antibodies being shown
+    Pre vaccination:  # name each set of antibodies
+      stat: escape_median  # statistic to use for escape
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 1  # make heatmap max at least
+      min_at_least: -1  # make heatmap min at least this
+      le_filters:
+        escape_std: 1
+      antibody_list:  # antibodies to include and their CSVs
+        adult-1_pre_vaccination: results/antibody_escape/averages/adult-1_pre_vaccination_mut_effect.csv
+        adult-2_pre_vaccination: results/antibody_escape/averages/adult-2_pre_vaccination_mut_effect.csv
+        adult-4_pre_vaccination: results/antibody_escape/averages/adult-4_pre_vaccination_mut_effect.csv
+        adult-6_pre_vaccination: results/antibody_escape/averages/adult-6_pre_vaccination_mut_effect.csv
+
+post_infection:
+  <<: *summary_default
+  init_floor_escape_at_zero: False  # initially floor site escape to be >= 0?
+  antibody_escape:  # show effects on antibody escape, empty dict if no antibodies being shown
+    Post infection:  # name each set of antibodies
+      stat: escape_median  # statistic to use for escape
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 1  # make heatmap max at least
+      min_at_least: -1  # make heatmap min at least this
+      le_filters:
+        escape_std: 1
+      antibody_list:  # antibodies to include and their CSVs
+        adult-3_post_infection: results/antibody_escape/averages/adult-3_post_infection_mut_effect.csv
+        adult-5_post_infection: results/antibody_escape/averages/adult-5_post_infection_mut_effect.csv
+        adult-7_post_infection: results/antibody_escape/averages/adult-7_post_infection_mut_effect.csv  
+
+post_vaccination:
+  <<: *summary_default
+  init_floor_escape_at_zero: False  # initially floor site escape to be >= 0?
+  antibody_escape:  # show effects on antibody escape, empty dict if no antibodies being shown
+    Post vaccination:  # name each set of antibodies
+      stat: escape_median  # statistic to use for escape
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 1  # make heatmap max at least
+      min_at_least: -1  # make heatmap min at least this
+      le_filters:
+        escape_std: 1
+      antibody_list:  # antibodies to include and their CSVs
+        adult-1_post_vaccination: results/antibody_escape/averages/adult-1_post_vaccination_mut_effect.csv
+        adult-2_post_vaccination: results/antibody_escape/averages/adult-2_post_vaccination_mut_effect.csv
+        adult-4_post_vaccination: results/antibody_escape/averages/adult-4_post_vaccination_mut_effect.csv
+        adult-6_post_vaccination: results/antibody_escape/averages/adult-6_post_vaccination_mut_effect.csv
+
+
+sera_group_averages:
+  <<: *summary_default
+  lineplot_antibody_label_loc: top  # location of labels on lineplots
+  selectable_per_antibody_heatmap: False  # does heatmap allow per-antibody selection?
+  init_floor_escape_at_zero: False  # initially floor site escape to be >= 0?
+  antibody_escape:
+    Pre infection:
+      stat: Pre infection escape
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 1  # make heatmap max at least
+      min_at_least: -1  # make heatmap min at least this
+      antibody_list:
+        Pre infection: results/summaries/merged_sera_group_escape.csv
+    Post infection:
+      stat: Post infection escape
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 1  # make heatmap max at least
+      min_at_least: -1  # make heatmap min at least this
+      antibody_list:
+        Post infection: results/summaries/merged_sera_group_escape.csv
+    Pre vaccination:
+      stat: Pre vaccination escape
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 1  # make heatmap max at least
+      min_at_least: -1  # make heatmap min at least this
+      antibody_list:
+        Pre vaccination: results/summaries/merged_sera_group_escape.csv
+    Post vaccination:
+      stat: Post vaccination escape
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 1  # make heatmap max at least
+      min_at_least: -1  # make heatmap min at least this
+      antibody_list:
+        Post vaccination: results/summaries/merged_sera_group_escape.csv
 
 antibody_escape:
   min_times_seen: 2  # only include mutations with times_seen >= this
@@ -83,7 +195,7 @@ antibody_escape:
       max_at_least: 1  # make heatmap max at least
       min_at_least: -1  # make heatmap min at least this
       le_filters:
-        escape_std: 1.5
+        escape_std: 1
       antibody_list:  # antibodies to include and their CSVs
         BD55-1205: results/antibody_escape/averages/mAb_BD55-1205_mut_effect.csv
         SA55: results/antibody_escape/averages/mAb_SA55_mut_effect.csv
@@ -99,7 +211,7 @@ antibody_escape:
       fixed_min: -5
       init_min_value: -3.0  # initial min value in slider
       le_filters:
-        effect_std: 1.5
+        effect_std: 2.5
     ACE2 binding:  # name of particular assay condition
       csv: results/ACE2_binding/averages/monomeric_ACE2_mut_effect.csv
       stat: ACE2 binding_median  # statisti used for mutation effects
