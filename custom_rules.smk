@@ -38,7 +38,7 @@ rule compare_pre_post_escape:
         yaml=lambda wc, input: yaml_str(
             {
                 "init_min_func_effect": -3,
-                "max_effect_std": 1.5,
+                "max_effect_std": 1,
                 "init_min_times_seen": 2,
                 "init_floor_at_zero": False,
                 "init_site_escape_stat": "sum",
@@ -58,6 +58,33 @@ rule compare_pre_post_escape:
             -p chart_html {output.chart} \
             &> {log}
         """
+
+rule merge_sera_group_escape:
+    """Merge filtered escape values for all sera sets from individual group summaries."""
+    input:
+        csvs=[
+            f"results/summaries/{group}.csv"
+            for group in [
+                "pre_infection",
+                "post_infection",
+                "pre_vaccination",
+                "post_vaccination",
+            ]
+        ],
+    output:
+        csv="results/summaries/merged_sera_group_escape.csv",        
+    params:
+        times_seen=2,  # set to value used to filter when creating the input summaries
+        frac_models=0.5,  # set to value used to filter when creating the input summaries
+    log:
+        "results/logs/merge_sera_group_escape.txt",
+    conda:
+        os.path.join(config["pipeline_path"], "environment.yml")
+    script:
+        "scripts/merge_sera_group_escape.py"
+
+
+
 # Files (Jupyter notebooks, HTML plots, or CSVs) that you want included in
 # the HTML docs should be added to the nested dict `docs`:
 docs["Additional files and charts"] = {
