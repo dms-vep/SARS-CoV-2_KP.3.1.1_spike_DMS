@@ -1019,7 +1019,7 @@ avg_antibody_escape_default: &avg_antibody_escape_default
     avg_type: median
     addtl_slider_stats:
       times_seen: 2
-      escape_std: 1.5
+      escape_std: 1
     addtl_slider_stats_as_max: [escape_std]
     per_model_tooltip: true
   plot_hide_stats: *plot_hide_stats_default
@@ -1034,93 +1034,87 @@ avg_antibody_escape_default: &avg_antibody_escape_default
 
 # Define the antibodies/sera to average
 avg_antibody_escape:
-  sera_087C_post_KP2_vaccination:
+  adult-1_post_vaccination:
     <<: *avg_antibody_escape_default
-    title: Sera 087C post KP2 vaccine
+    title: adult-1 post KP2 vaccine
     selections:
-      # - Lib1-250517-sera-087C_post
-      # - Lib2-250517-sera-087C_post
-      # - Lib1-250302-sera-087C_post
-      # - Lib2-250302-sera-087C_post
       - Lib1-250529-sera-087C_post
       - Lib2-250529-sera-087C_post
-  sera_087C_pre_vaccination:
+  adult-1_pre_vaccination:
     <<: *avg_antibody_escape_default
-    title: Sera 087C pre vaccine
+    title: adult-1 pre vaccine
     selections:
       - Lib1-250517-sera-087C_pre
       - Lib2-250517-sera-087C_pre
-  sera_404C_post_KP2_vaccination:
+  adult-4_post_vaccination:
     <<: *avg_antibody_escape_default
-    title: Sera 404C post KP2 vaccine
+    title: adult-4 post KP2 vaccine
     selections:
       - Lib1-250517-sera-404C_post
       - Lib2-250517-sera-404C_post
-  sera_404C_pre_vaccination:
+  adult-4_pre_vaccination:
     <<: *avg_antibody_escape_default
-    title: Sera 404C pre vaccine
+    title: adult-4 pre vaccine
     selections:
       - Lib1-250517-sera-404C_pre
       - Lib2-250517-sera-404C_pre
-  sera_183C_post_KP2_vaccination:
+  adult-2_post_vaccination:
     <<: *avg_antibody_escape_default
-    title: Sera 183C post KP2 vaccine
+    title: adult-2 post KP2 vaccine
     selections:
-      # - Lib1-250518-sera-183C_post
       - Lib2-250518-sera-183C_post
       - Lib1-250529-sera-183C_post
-  sera_183C_pre_vaccination:
+  adult-2_pre_vaccination:
     <<: *avg_antibody_escape_default
-    title: Sera 183C pre vaccine
+    title: adult-2 pre vaccine
     selections:
       - Lib1-250529-sera-183C_pre
       - Lib2-250529-sera-183C_pre
-  sera_281C_post_infection:
+  adult-3_post_infection:
     <<: *avg_antibody_escape_default
-    title: Sera 281C post vaccine
+    title: adult-3 post vaccine
     selections:
-      # - Lib1-250518-sera-281C_post
       - Lib1-250529-sera-281C_post
       - Lib2-250518-sera-281C_post
-  sera_281C_pre_infection:
+  adult-3_pre_infection:
     <<: *avg_antibody_escape_default
-    title: Sera 281C pre vaccine
+    title: adult-3 pre vaccine
     selections:
       - Lib1-250529-sera-281C_pre
       - Lib2-250529-sera-281C_pre
-  sera_503C_post_infection:
+  adult-5_post_infection:
     <<: *avg_antibody_escape_default
-    title: Sera 503C post infection
+    title: adult-5 post infection
     selections:
       - Lib1-250518-sera-503C_post
       - Lib2-250518-sera-503C_post
-  sera_503C_pre_infection:
+  adult-5_pre_infection:
     <<: *avg_antibody_escape_default
-    title: Sera 503C pre infection
+    title: adult-5 pre infection
     selections:
       - Lib1-250625-sera-503C_pre
       - Lib2-250625-sera-503C_pre   
-  sera_507C_post_KP2_vaccination:
+  adult-6_post_vaccination:
     <<: *avg_antibody_escape_default
-    title: Sera 507C post KP2 vaccine
+    title: adult-6 post KP2 vaccine
     selections:
       - Lib1-250529-sera-507C_post
       - Lib2-250529-sera-507C_post
-  sera_507C_pre_KP2_vaccination:
+  adult-6_pre_vaccination:
     <<: *avg_antibody_escape_default
-    title: Sera 507C pre KP2 vaccine
+    title: adult-6 pre KP2 vaccine
     selections:
       - Lib1-250625-sera-507C_pre
       - Lib2-250625-sera-507C_pre
-  sera_527C_post_infection:
+  adult-7_post_infection:
     <<: *avg_antibody_escape_default
-    title: Sera 527C post infection
+    title: adult-7 post infection
     selections:
       - Lib1-250518-sera-527C_post
       - Lib2-250518-sera-527C_post
-  sera_527C_pre_infection:
+  adult-7_pre_infection:
     <<: *avg_antibody_escape_default
-    title: Sera 527C pre infection
+    title: adult-7 pre infection
     selections:
       - Lib1-250531-sera-527C_pre
       - Lib2-250531-sera-527C_pre
