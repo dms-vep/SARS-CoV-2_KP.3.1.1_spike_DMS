@@ -84,6 +84,51 @@ rule merge_sera_group_escape:
         "scripts/merge_sera_group_escape.py"
 
 
+rule compare_binding:
+    """Compare ACE2 binding across datasets."""
+    input:
+        KP311_spike_csv="results/summaries/all_adult_sera_escape.csv",
+        nb="notebooks/compare_binding.ipynb",
+    params:
+        yaml=lambda wc, input: yaml_str(
+            {
+                # ----------------------------------------
+                # parameters for plots
+                # ----------------------------------------
+                "init_min_func_effect": -1.5,
+                "clip_binding_upper": 4,
+                "clip_binding_lower": -6,
+                # ----------------------------------------
+                # Other deep mutational scanning datasets
+                # ----------------------------------------
+                # XBB.1.5 in spike DMS in lentiviral system
+                "XBB_spike_csv":
+                    "https://raw.githubusercontent.com/dms-vep/SARS-CoV-2_XBB.1.5_spike_DMS/refs/heads/main/results/summaries/summary.csv",
+            }
+            | {key: val for (key, val) in dict(input).items() if key != "nb"}
+        ),
+    output:
+        merged_binding_csv="results/binding_comparison/merged_binding.csv",
+        nb="results/notebooks/compare_binding.ipynb",
+        binding_corr="results/binding_comparison/binding_corr.html",
+        binding_dist="results/binding_comparison/binding_dist.html",
+        binding_entry_corr="results/binding_comparison/binding_entry_corr.html",
+        binding_escape_corr="results/binding_comparison/binding_ecape_corr.html",
+    log:
+        log="results/logs/compare_binding.txt",
+    conda:
+        os.path.join(config["pipeline_path"], "environment.yml")
+    shell:
+        """
+        papermill {input.nb} {output.nb} \
+            -y '{params.yaml}' \
+            -p merged_binding_csv {output.merged_binding_csv} \
+            -p binding_corr_html {output.binding_corr} \
+            -p binding_dist_html {output.binding_dist} \
+            -p binding_entry_corr_html {output.binding_entry_corr} \
+            -p binding_escape_corr_html {output.binding_escape_corr} \
+            &> {log}
+        """
 
 # Files (Jupyter notebooks, HTML plots, or CSVs) that you want included in
 # the HTML docs should be added to the nested dict `docs`:
@@ -91,5 +136,19 @@ docs["Additional files and charts"] = {
     "Comparison of escape pre and post vaccination": {
         "Interactive chart comparing escape":
             rules.compare_pre_post_escape.output.chart,
+    },
+    "Analysis of ACE2 binding data and comparison to other experiments": {
+        "Interactive charts": {
+            "Correlations among experiments":
+                rules.compare_binding.output.binding_corr,
+            "Distribution of RBD and non-RBD ACE2 binding":
+                rules.compare_binding.output.binding_dist,
+            "Correlation of ACE2 binding to viral entry":
+                rules.compare_binding.output.binding_entry_corr,
+            "Correlation of ACE2 binding to viral escape":
+                rules.compare_binding.output.binding_escape_corr,
+        },
+        "CSV of ACE2 binding from different experiments":
+            rules.compare_binding.output.merged_binding_csv,
     },
 }
