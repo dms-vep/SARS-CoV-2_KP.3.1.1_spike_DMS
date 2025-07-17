@@ -98,6 +98,7 @@ rule compare_binding:
                 "init_min_func_effect": -1.5,
                 "clip_binding_upper": 4,
                 "clip_binding_lower": -6,
+                "binding_mut_scatter_sites": [435, 493],
                 # ----------------------------------------
                 # Other deep mutational scanning datasets
                 # ----------------------------------------
@@ -114,6 +115,7 @@ rule compare_binding:
         binding_dist="results/binding_comparison/binding_dist.html",
         binding_entry_corr="results/binding_comparison/binding_entry_corr.html",
         binding_escape_corr="results/binding_comparison/binding_ecape_corr.html",
+        binding_mut_scatter="results/binding_comparison/binding_mut_scatter.html",
     log:
         log="results/logs/compare_binding.txt",
     conda:
@@ -127,6 +129,7 @@ rule compare_binding:
             -p binding_dist_html {output.binding_dist} \
             -p binding_entry_corr_html {output.binding_entry_corr} \
             -p binding_escape_corr_html {output.binding_escape_corr} \
+            -p binding_mut_scatter_html {output.binding_mut_scatter} \
             &> {log}
         """
 
@@ -141,6 +144,8 @@ docs["Additional files and charts"] = {
         "Interactive charts": {
             "Correlations among experiments":
                 rules.compare_binding.output.binding_corr,
+            "Correlations among experiments for key sites":
+                rules.compare_binding.output.binding_mut_scatter,
             "Distribution of RBD and non-RBD ACE2 binding":
                 rules.compare_binding.output.binding_dist,
             "Correlation of ACE2 binding to viral entry":
