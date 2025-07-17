@@ -95,7 +95,7 @@ rule compare_binding:
                 # ----------------------------------------
                 # parameters for plots
                 # ----------------------------------------
-                "init_min_func_effect": -1.5,
+                "init_min_func_effect": -2,
                 "clip_binding_upper": 4,
                 "clip_binding_lower": -6,
                 # ----------------------------------------
@@ -130,6 +130,68 @@ rule compare_binding:
             &> {log}
         """
 
+rule func_effects_dist:
+    """Distribution of functional effects and correlation with natural sequences."""
+    input:
+        KP311_func_effects_csv="results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv",
+        site_numbering_map_csv=config["site_numbering_map"],
+        nb="notebooks/func_effects_dist.ipynb",
+    output:
+        strain_corr="results/func_effects_analyses/strain_corr.html",
+        effects_boxplot="results/func_effects_analyses/effects_boxplot.html",
+        key_muts_plot="results/func_effects_analyses/key_mutations.html",
+        nb="results/notebooks/func_effects_dist.ipynb",
+    params:
+        yaml=lambda _, input, output: yaml_str(
+            {
+                "KP311_func_effects_csv": input.KP311_func_effects_csv,
+                "XBB_func_effects_csv":
+                    "https://raw.githubusercontent.com/dms-vep/SARS-CoV-2_XBB.1.5_spike_DMS/refs/heads/main/results/func_effects/averages/293T_medium_ACE2_entry_func_effects.csv",
+                "site_numbering_map_csv": input.site_numbering_map_csv,
+                "init_min_times_seen": 2,
+                "init_min_n_libraries": 2,
+                "max_effect_std": 1.6,
+                "key_mutations": ["T22N", "K182R","G184S", "F186L","R190S", "A435S", "N487D"],
+                "strain_corr_html": output.strain_corr,
+                "effects_boxplot_html": output.effects_boxplot,
+                "key_muts_html": output.key_muts_plot,
+            }
+        ),
+    log:
+        "results/logs/func_effects_dist.txt",
+    shell:
+        "papermill {input.nb} {output.nb} -y '{params.yaml}' &>> {log}"
+
+
+rule mutation_binding_effects:
+    """compare mutation effects on ACE2 bidning between libraries"""
+    input:
+        binding_effects_csv = 'results/ACE2_binding/averages/monomeric_ACE2_mut_effect.csv',
+        site_numbering_map_csv=config["site_numbering_map"],
+        entry_effects_csv = 'results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv',
+        nb="notebooks/mutation_binding_effects.ipynb",
+    output:
+        library_binding_corr = "results/func_effects_analyses/library_binding_corr_html.html",
+        distance_library_binding_corr = "results/func_effects_analyses/distance_library_binding_corr_html.html",
+        nb="results/notebooks/mutation_binding_effects.ipynb",
+    params:
+        yaml=lambda _, input, output: yaml_str(
+            {
+                "binding_effects_csv": input.binding_effects_csv,
+                "entry_effects_csv": input.entry_effects_csv,
+                "site_numbering_map_csv": input.site_numbering_map_csv,
+                "init_min_times_seen": 2,
+                "init_min_n_libraries": 2,
+                "init_binding_std" : 1.8,
+                "library_binding_corr": output.library_binding_corr,
+                "distance_library_binding_corr": output.distance_library_binding_corr,
+            }
+        ),
+    log:
+        "results/logs/mutation_binding_effects.txt",
+    shell:
+        "papermill {input.nb} {output.nb} -y '{params.yaml}' &>> {log}"
+
 # Files (Jupyter notebooks, HTML plots, or CSVs) that you want included in
 # the HTML docs should be added to the nested dict `docs`:
 docs["Additional files and charts"] = {
@@ -138,7 +200,11 @@ docs["Additional files and charts"] = {
             rules.compare_pre_post_escape.output.chart,
     },
     "Analysis of ACE2 binding data and comparison to other experiments": {
-        "Interactive charts": {
+        "Interactive binding data charts": {
+            "Correlations among library ACE2 binding measurements":
+                rules.mutation_binding_effects.output.library_binding_corr,
+            "Correlations among library binding measurements by distance from ACE2":
+                rules.mutation_binding_effects.output.distance_library_binding_corr,
             "Correlations among experiments":
                 rules.compare_binding.output.binding_corr,
             "Distribution of RBD and non-RBD ACE2 binding":
@@ -151,4 +217,14 @@ docs["Additional files and charts"] = {
         "CSV of ACE2 binding from different experiments":
             rules.compare_binding.output.merged_binding_csv,
     },
+    "Analysis of mutational effects on cell entry": {
+        "Interactive entry data charts": {
+            "Correlation of cell entry effects among strains":
+                rules.func_effects_dist.output.strain_corr,
+            "Distribution of cell entry effects":
+                rules.func_effects_dist.output.effects_boxplot,
+            "Effects of key mutations on cell entry":
+                rules.func_effects_dist.output.key_muts_plot,
+        },
+    },    
 }
