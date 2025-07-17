@@ -5,7 +5,7 @@ serum_neuts_all: data/serum_neuts/serum_neuts_all.csv
 virus_titers: data/virus_titers/virus_titers.csv
 
 #DMS data
-adult_sera_escape: ../results/summaries/adult_sera_escape_per_antibody_escape.csv
+adult_sera_escape: ../results/summaries/all_adult_sera_escape_per_antibody_escape.csv
 
 # Results
 resultsdir: results/
