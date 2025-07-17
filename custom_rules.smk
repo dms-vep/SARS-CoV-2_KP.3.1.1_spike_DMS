@@ -163,6 +163,35 @@ rule func_effects_dist:
         "papermill {input.nb} {output.nb} -y '{params.yaml}' &>> {log}"
 
 
+rule mutation_binding_effects:
+    """compare mutation effects on ACE2 bidning between libraries"""
+    input:
+        binding_effects_csv = 'results/ACE2_binding/averages/monomeric_ACE2_mut_effect.csv',
+        site_numbering_map_csv=config["site_numbering_map"],
+        entry_effects_csv = 'results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv',
+        nb="notebooks/mutation_binding_effects.ipynb",
+    output:
+        library_binding_corr = "results/func_effects_analyses/library_binding_corr_html.html",
+        distance_library_binding_corr = "results/func_effects_analyses/distance_library_binding_corr_html.html",
+        nb="results/notebooks/mutation_binding_effects.ipynb",
+    params:
+        yaml=lambda _, input, output: yaml_str(
+            {
+                "binding_effects_csv": input.binding_effects_csv,
+                "entry_effects_csv": input.entry_effects_csv,
+                "site_numbering_map_csv": input.site_numbering_map_csv,
+                "init_min_times_seen": 2,
+                "init_min_n_libraries": 2,
+                "init_binding_std" : 1.8,
+                "library_binding_corr": output.library_binding_corr,
+                "distance_library_binding_corr": output.distance_library_binding_corr,
+            }
+        ),
+    log:
+        "results/logs/mutation_binding_effects.txt",
+    shell:
+        "papermill {input.nb} {output.nb} -y '{params.yaml}' &>> {log}"
+
 # Files (Jupyter notebooks, HTML plots, or CSVs) that you want included in
 # the HTML docs should be added to the nested dict `docs`:
 docs["Additional files and charts"] = {
@@ -172,6 +201,10 @@ docs["Additional files and charts"] = {
     },
     "Analysis of ACE2 binding data and comparison to other experiments": {
         "Interactive binding data charts": {
+            "Correlations among library ACE2 binding measurements":
+                rules.mutation_binding_effects.output.library_binding_corr,
+            "Correlations among library binding measurements by distance from ACE2":
+                rules.mutation_binding_effects.output.distance_library_binding_corr,
             "Correlations among experiments":
                 rules.compare_binding.output.binding_corr,
             "Distribution of RBD and non-RBD ACE2 binding":
