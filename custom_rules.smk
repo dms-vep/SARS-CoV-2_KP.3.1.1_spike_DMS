@@ -98,12 +98,15 @@ rule compare_binding:
                 "init_min_func_effect": -2,
                 "clip_binding_upper": 4,
                 "clip_binding_lower": -6,
+                "binding_mut_scatter_sites": [435, 493],
                 # ----------------------------------------
                 # Other deep mutational scanning datasets
                 # ----------------------------------------
-                # XBB.1.5 in spike DMS in lentiviral system
+                # XBB.1.5 in full spike and RBD-only DMS in lentiviral system
                 "XBB_spike_csv":
                     "https://raw.githubusercontent.com/dms-vep/SARS-CoV-2_XBB.1.5_spike_DMS/refs/heads/main/results/summaries/summary.csv",
+                "XBB_RBD_csv":
+                    "https://raw.githubusercontent.com/dms-vep/SARS-CoV-2_XBB.1.5_RBD_DMS/refs/heads/main/results/summaries/summary.csv",   
             }
             | {key: val for (key, val) in dict(input).items() if key != "nb"}
         ),
@@ -114,6 +117,7 @@ rule compare_binding:
         binding_dist="results/binding_comparison/binding_dist.html",
         binding_entry_corr="results/binding_comparison/binding_entry_corr.html",
         binding_escape_corr="results/binding_comparison/binding_ecape_corr.html",
+        binding_mut_scatter="results/binding_comparison/binding_mut_scatter.html",
     log:
         log="results/logs/compare_binding.txt",
     conda:
@@ -127,6 +131,7 @@ rule compare_binding:
             -p binding_dist_html {output.binding_dist} \
             -p binding_entry_corr_html {output.binding_entry_corr} \
             -p binding_escape_corr_html {output.binding_escape_corr} \
+            -p binding_mut_scatter_html {output.binding_mut_scatter} \
             &> {log}
         """
 
@@ -205,6 +210,8 @@ docs["Additional files and charts"] = {
                 rules.mutation_binding_effects.output.library_binding_corr,
             "Correlations among library binding measurements by distance from ACE2":
                 rules.mutation_binding_effects.output.distance_library_binding_corr,
+           "Correlations among experiments for key sites":
+                rules.compare_binding.output.binding_mut_scatter,
             "Correlations among experiments":
                 rules.compare_binding.output.binding_corr,
             "Distribution of RBD and non-RBD ACE2 binding":
