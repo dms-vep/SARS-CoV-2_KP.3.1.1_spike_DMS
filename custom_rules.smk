@@ -197,6 +197,33 @@ rule mutation_binding_effects:
     shell:
         "papermill {input.nb} {output.nb} -y '{params.yaml}' &>> {log}"
 
+
+rule binding_vs_escape:
+    """Compare binding and escape at key sites."""
+    input:
+        dms_csv="results/summaries/all_adult_sera_escape.csv",
+        nb="notebooks/binding_vs_escape.ipynb",
+    output:
+        nb="results/notebooks/binding_vs_escape.ipynb",
+        logoplot_subdir=directory("results/binding_vs_escape/logoplots"),
+    params:
+        yaml=lambda _, input, output: yaml_str(
+            {
+                "dms_csv": input.dms_csv,
+                "logoplot_subdir": output.logoplot_subdir,
+                "min_cell_entry": -2,
+                "min_mutations_at_site": 7,
+            }
+        ),
+    log:
+        log="results/logs/binding_vs_escape.txt",
+    conda:
+        os.path.join(config["pipeline_path"], "environment.yml")
+    shell:
+        "papermill {input.nb} {output.nb} -y '{params.yaml}' &> {log}"
+
+
+
 # Files (Jupyter notebooks, HTML plots, or CSVs) that you want included in
 # the HTML docs should be added to the nested dict `docs`:
 docs["Additional files and charts"] = {
@@ -224,6 +251,7 @@ docs["Additional files and charts"] = {
         "CSV of ACE2 binding from different experiments":
             rules.compare_binding.output.merged_binding_csv,
     },
+    "Notebook comparing binding vs escape at key sites": rules.binding_vs_escape.output.nb,
     "Analysis of mutational effects on cell entry": {
         "Interactive entry data charts": {
             "Correlation of cell entry effects among strains":
