@@ -205,6 +205,7 @@ rule binding_vs_escape:
         nb="notebooks/binding_vs_escape.ipynb",
     output:
         nb="results/notebooks/binding_vs_escape.ipynb",
+        RBD_up_down_chart_html = "results/binding_vs_escape/RBD_up_down_chart_html.html",
         logoplot_subdir=directory("results/binding_vs_escape/logoplots"),
     params:
         yaml=lambda _, input, output: yaml_str(
@@ -212,7 +213,8 @@ rule binding_vs_escape:
                 "dms_csv": input.dms_csv,
                 "logoplot_subdir": output.logoplot_subdir,
                 "min_cell_entry": -2,
-                "min_mutations_at_site": 7,
+                "min_mutations_at_site": 5,
+                "RBD_up_down_chart_html": output.RBD_up_down_chart_html,
             }
         ),
     log:
@@ -252,6 +254,7 @@ docs["Additional files and charts"] = {
             rules.compare_binding.output.merged_binding_csv,
     },
     "Notebook comparing binding vs escape at key sites": rules.binding_vs_escape.output.nb,
+    "Sites that affect RBD up/down conformation": rules.binding_vs_escape.output.RBD_up_down_chart_html,
     "Analysis of mutational effects on cell entry": {
         "Interactive entry data charts": {
             "Correlation of cell entry effects among strains":
