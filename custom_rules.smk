@@ -226,6 +226,21 @@ rule binding_vs_escape:
 
 
 
+rule escape_logos:
+    """Make logo plots for each antibody"""
+    input:
+        per_antibody_escape = "results/summaries/antibody_escape.csv",
+    output:
+        BD55_1205_svg = "results/escape_logos/BD55-1205_line_logo_plot.svg",
+        SA55_svg = "results/escape_logos/SA55_line_logo_plot.svg",
+        VYD222_svg = "results/escape_logos/VYD222_line_logo_plot.svg",
+    log:
+        notebook = "results/logs/escape_logoplots_for_key_sites.ipynb",
+    conda:
+        os.path.join(config["pipeline_path"], "environment.yml"),
+    notebook:
+        "notebooks/escape_logoplots_for_key_sites.py.ipynb"
+
 # Files (Jupyter notebooks, HTML plots, or CSVs) that you want included in
 # the HTML docs should be added to the nested dict `docs`:
 docs["Additional files and charts"] = {
@@ -266,3 +281,6 @@ docs["Additional files and charts"] = {
         },
     },    
 }
+
+other_target_files.append([rules.escape_logos.output.BD55_1205_svg,
+    rules.escape_logos.output.SA55_svg, rules.escape_logos.output.VYD222_svg])
