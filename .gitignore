@@ -79,3 +79,6 @@ results/escape_logos/*
 
 KP311_validation_notebooks/.*
 !KP311_validation_notebooks
+
+
+notebooks/data_scripts_plots.tar.gz
