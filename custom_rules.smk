@@ -231,11 +231,14 @@ rule escape_logos:
     input:
         per_antibody_escape = "results/summaries/antibody_escape.csv",
     output:
-        BD55_1205_svg = "results/escape_logos/BD55-1205_line_logo_plot.svg",
-        SA55_svg = "results/escape_logos/SA55_line_logo_plot.svg",
-        VYD222_svg = "results/escape_logos/VYD222_line_logo_plot.svg",
+        BD55_1205_svg = "results/escape_logos/BD55-1205_spike_DMS_line_logo_plot.svg",
+        SA55_svg = "results/escape_logos/SA55_spike_DMS_line_logo_plot.svg",
+        VYD222_svg = "results/escape_logos/VYD222_spike_DMS_line_logo_plot.svg",
+        BD55_1205_JN1_Cao = "results/escape_logos/BD55-1205_JN.1_RBD_line_logo_plot.svg",
+        SA55_JN1_Cao = "results/escape_logos/SA55_JN.1_RBD_line_logo_plot.svg",
+        VYD222_JN1_Cao = "results/escape_logos/VYD222_JN.1_RBD_line_logo_plot.svg",
     log:
-        notebook = "results/logs/escape_logoplots_for_key_sites.ipynb",
+        notebook = "results/logs/escape_logoplots_for_key_sites.txt",
     conda:
         os.path.join(config["pipeline_path"], "environment.yml"),
     notebook:
@@ -282,5 +285,9 @@ docs["Additional files and charts"] = {
     },    
 }
 
-other_target_files.append([rules.escape_logos.output.BD55_1205_svg,
-    rules.escape_logos.output.SA55_svg, rules.escape_logos.output.VYD222_svg])
+other_target_files.append([
+    rules.escape_logos.output.BD55_1205_svg,
+    rules.escape_logos.output.SA55_svg,
+    rules.escape_logos.output.VYD222_svg,
+    rules.escape_logos.output.VYD222_JN1_Cao
+     ] )
