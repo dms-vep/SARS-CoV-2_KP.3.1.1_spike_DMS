@@ -1,0 +1,743 @@
+<h1 id="deep-mutational-scanning-of-sars-cov-2-kp311-spike-using-a-barcoded-lentiviral-platform">Deep mutational scanning of SARS-CoV-2 KP.3.1.1 spike using a barcoded lentiviral platform</h1>
+<p>Analysis by Bernadeta Dadonaite and Jesse Bloom (2024)</p>
+<p>See <a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS">https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS</a> for full code.</p>
+<div class="toc"><span class="toctitle">Contents</span><ul>
+<li><a href="#barcode-to-codon-variant-lookup-table">Barcode to codon-variant lookup table</a></li>
+<li><a href="#count-barcodes-for-variants">Count barcodes for variants</a></li>
+<li><a href="#functional-effects-of-mutations">Functional effects of mutations</a></li>
+<li><a href="#antibodyserum-escape">Antibody/serum escape</a></li>
+<li><a href="#ace2-binding">ACE2 binding</a></li>
+<li><a href="#integrated-summary-plots">Integrated summary plots</a></li>
+<li><a href="#additional-files-and-charts">Additional files and charts</a></li>
+</ul>
+</div>
+<h2 id="barcode-to-codon-variant-lookup-table">Barcode to codon-variant lookup table</h2>
+<h4 id="analysis-notebooks">Analysis notebooks</h4>
+<ul>
+<li><a href="notebooks/analyze_pacbio_ccs.html">Analysis of PacBio CCSs</a></li>
+<li><a href="notebooks/build_pacbio_consensus.html">Building barcoded variant consensus sequences</a></li>
+<li><a href="notebooks/build_codon_variants.html">Building of codon-variant table</a></li>
+</ul>
+<h4 id="data-files">Data files</h4>
+<ul>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/gene_sequence/codon.fasta">parental codon sequence</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/gene_sequence/protein.fasta">parental protein sequence</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/variants/codon_variants.csv">barcode to codon-variant lookup table</a></li>
+</ul>
+<h2 id="count-barcodes-for-variants">Count barcodes for variants</h2>
+<h4 id="analysis-notebooks_1">Analysis notebooks</h4>
+<ul>
+<li><a href="notebooks/analyze_variant_counts.html">Analysis of variant counts</a></li>
+</ul>
+<h4 id="data-files_1">Data files</h4>
+<ul>
+<li><details><summary>Barcode count CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250213-VSVG_control_293T_counts.csv">Lib1-250213-VSVG_control_293T</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250213-VSVG_control_293T_counts.csv">Lib2-250213-VSVG_control_293T</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250213-no-antibody_control_293TACE2_counts.csv">Lib1-250213-no-antibody_control_293TACE2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250213-no-antibody_control_293TACE2_counts.csv">Lib2-250213-no-antibody_control_293TACE2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250301-monomeric_ACE2_27.93_counts.csv">Lib1-250301-monomeric_ACE2_27.93</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250301-monomeric_ACE2_55.85_counts.csv">Lib1-250301-monomeric_ACE2_55.85</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250301-monomeric_ACE2_111.7_counts.csv">Lib1-250301-monomeric_ACE2_111.7</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250301-monomeric_ACE2_223.4_counts.csv">Lib1-250301-monomeric_ACE2_223.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250301-monomeric_ACE2_446.81_counts.csv">Lib1-250301-monomeric_ACE2_446.81</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250301-no-antibody_control_counts.csv">Lib1-250301-no-antibody_control</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250301-monomeric_ACE2_27.93_counts.csv">Lib2-250301-monomeric_ACE2_27.93</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250301-monomeric_ACE2_55.85_counts.csv">Lib2-250301-monomeric_ACE2_55.85</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250301-monomeric_ACE2_111.7_counts.csv">Lib2-250301-monomeric_ACE2_111.7</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250301-monomeric_ACE2_223.4_counts.csv">Lib2-250301-monomeric_ACE2_223.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250301-monomeric_ACE2_446.81_counts.csv">Lib2-250301-monomeric_ACE2_446.81</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250301-no-antibody_control_counts.csv">Lib2-250301-no-antibody_control</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-087C_CS_0.077_counts.csv">Lib1-250302-sera-087C_CS_0.077</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-087C_CS_0.188_counts.csv">Lib1-250302-sera-087C_CS_0.188</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-087C_SR_0.004_counts.csv">Lib1-250302-sera-087C_SR_0.004</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-087C_SR_0.012_counts.csv">Lib1-250302-sera-087C_SR_0.012</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-087C_SR_0.036_counts.csv">Lib1-250302-sera-087C_SR_0.036</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-404C_CS_0.104_counts.csv">Lib1-250302-sera-404C_CS_0.104</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-404C_CS_0.238_counts.csv">Lib1-250302-sera-404C_CS_0.238</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-404C_SR_0.003_counts.csv">Lib1-250302-sera-404C_SR_0.003</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-404C_SR_0.01_counts.csv">Lib1-250302-sera-404C_SR_0.01</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-sera-404C_SR_0.031_counts.csv">Lib1-250302-sera-404C_SR_0.031</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250302-no-antibody_control_counts.csv">Lib1-250302-no-antibody_control</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-087C_CS_0.077_counts.csv">Lib2-250302-sera-087C_CS_0.077</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-087C_CS_0.188_counts.csv">Lib2-250302-sera-087C_CS_0.188</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-087C_SR_0.004_counts.csv">Lib2-250302-sera-087C_SR_0.004</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-087C_SR_0.012_counts.csv">Lib2-250302-sera-087C_SR_0.012</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-087C_SR_0.036_counts.csv">Lib2-250302-sera-087C_SR_0.036</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-404C_CS_0.104_counts.csv">Lib2-250302-sera-404C_CS_0.104</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-404C_CS_0.238_counts.csv">Lib2-250302-sera-404C_CS_0.238</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-404C_SR_0.003_counts.csv">Lib2-250302-sera-404C_SR_0.003</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-404C_SR_0.01_counts.csv">Lib2-250302-sera-404C_SR_0.01</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-sera-404C_SR_0.031_counts.csv">Lib2-250302-sera-404C_SR_0.031</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250302-no-antibody_control_counts.csv">Lib2-250302-no-antibody_control</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250331-no-antibody_control_T3_counts.csv">Lib1-250331-no-antibody_control_T3</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250331-no-antibody_control_T3_dox_counts.csv">Lib1-250331-no-antibody_control_T3_dox</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250331-no-antibody_control_D10_counts.csv">Lib1-250331-no-antibody_control_D10</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250402-VSVG_control_IGM_counts.csv">Lib2-250402-VSVG_control_IGM</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250402-no-antibody_control_IGM_counts.csv">Lib2-250402-no-antibody_control_IGM</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250402-no-antibody_control_diluted_in_D10_counts.csv">Lib1-250402-no-antibody_control_diluted_in_D10</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250402-no-antibody_control_diluted_in_D10_counts.csv">Lib2-250402-no-antibody_control_diluted_in_D10</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250402-no-antibody_control_diluted_in_IGM_counts.csv">Lib1-250402-no-antibody_control_diluted_in_IGM</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250402-no-antibody_control_diluted_in_IGM_counts.csv">Lib2-250402-no-antibody_control_diluted_in_IGM</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250424-KP3_IGM_counts.csv">Lib2-250424-KP3_IGM</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250424-RBnoEDTA_counts.csv">Lib2-250424-RBnoEDTA</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250424-KP3_RB_counts.csv">Lib2-250424-KP3_RB</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250424-KP3_IGM_VSVG_counts.csv">Lib2-250424-KP3_IGM_VSVG</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-no-antibody-control_counts.csv">Lib1-250517-no-antibody-control</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-VSVG-control_counts.csv">Lib1-250517-VSVG-control</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-monomeric_ACE2_6_counts.csv">Lib1-250517-monomeric_ACE2_6</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-monomeric_ACE2_13_counts.csv">Lib1-250517-monomeric_ACE2_13</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-monomeric_ACE2_27_counts.csv">Lib1-250517-monomeric_ACE2_27</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-monomeric_ACE2_54_counts.csv">Lib1-250517-monomeric_ACE2_54</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-monomeric_ACE2_115_counts.csv">Lib1-250517-monomeric_ACE2_115</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-no-antibody-control_counts.csv">Lib2-250517-no-antibody-control</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-monomeric_ACE2_6_counts.csv">Lib2-250517-monomeric_ACE2_6</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-monomeric_ACE2_13_counts.csv">Lib2-250517-monomeric_ACE2_13</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-monomeric_ACE2_27_counts.csv">Lib2-250517-monomeric_ACE2_27</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-monomeric_ACE2_54_counts.csv">Lib2-250517-monomeric_ACE2_54</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-monomeric_ACE2_115_counts.csv">Lib2-250517-monomeric_ACE2_115</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-087C_SR_0.047_counts.csv">Lib1-250517-sera-087C_SR_0.047</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-087C_SR_0.093_counts.csv">Lib1-250517-sera-087C_SR_0.093</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-087C_SR_0.233_counts.csv">Lib1-250517-sera-087C_SR_0.233</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-087C_CS_0.1_counts.csv">Lib1-250517-sera-087C_CS_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-087C_CS_0.133_counts.csv">Lib1-250517-sera-087C_CS_0.133</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-087C_CS_0.2_counts.csv">Lib1-250517-sera-087C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-404C_SR_0.017_counts.csv">Lib1-250517-sera-404C_SR_0.017</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-404C_SR_0.033_counts.csv">Lib1-250517-sera-404C_SR_0.033</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-404C_SR_0.05_counts.csv">Lib1-250517-sera-404C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-404C_CS_0.133_counts.csv">Lib1-250517-sera-404C_CS_0.133</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-404C_CS_0.2_counts.csv">Lib1-250517-sera-404C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250517-sera-404C_CS_0.267_counts.csv">Lib1-250517-sera-404C_CS_0.267</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-087C_SR_0.047_counts.csv">Lib2-250517-sera-087C_SR_0.047</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-087C_SR_0.093_counts.csv">Lib2-250517-sera-087C_SR_0.093</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-087C_SR_0.233_counts.csv">Lib2-250517-sera-087C_SR_0.233</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-087C_CS_0.1_counts.csv">Lib2-250517-sera-087C_CS_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-087C_CS_0.133_counts.csv">Lib2-250517-sera-087C_CS_0.133</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-087C_CS_0.2_counts.csv">Lib2-250517-sera-087C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-404C_SR_0.017_counts.csv">Lib2-250517-sera-404C_SR_0.017</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-404C_SR_0.033_counts.csv">Lib2-250517-sera-404C_SR_0.033</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-404C_SR_0.05_counts.csv">Lib2-250517-sera-404C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-404C_CS_0.133_counts.csv">Lib2-250517-sera-404C_CS_0.133</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-404C_CS_0.2_counts.csv">Lib2-250517-sera-404C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250517-sera-404C_CS_0.267_counts.csv">Lib2-250517-sera-404C_CS_0.267</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-183C_SR_0.04_counts.csv">Lib1-250518-sera-183C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-183C_SR_0.18_counts.csv">Lib1-250518-sera-183C_SR_0.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-183C_SR_0.35_counts.csv">Lib1-250518-sera-183C_SR_0.35</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-281C_SR_0.05_counts.csv">Lib1-250518-sera-281C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-281C_SR_0.19_counts.csv">Lib1-250518-sera-281C_SR_0.19</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-281C_SR_0.38_counts.csv">Lib1-250518-sera-281C_SR_0.38</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-503C_SR_0.04_counts.csv">Lib1-250518-sera-503C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-503C_SR_0.18_counts.csv">Lib1-250518-sera-503C_SR_0.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-503C_SR_0.35_counts.csv">Lib1-250518-sera-503C_SR_0.35</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-507C_SR_0.003_counts.csv">Lib1-250518-sera-507C_SR_0.003</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-507C_SR_0.007_counts.csv">Lib1-250518-sera-507C_SR_0.007</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-507C_SR_0.013_counts.csv">Lib1-250518-sera-507C_SR_0.013</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-527C_SR_0.1_counts.csv">Lib1-250518-sera-527C_SR_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-527C_SR_0.4_counts.csv">Lib1-250518-sera-527C_SR_0.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-sera-527C_SR_0.62_counts.csv">Lib1-250518-sera-527C_SR_0.62</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250518-no-antibody-control_counts.csv">Lib1-250518-no-antibody-control</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-183C_SR_0.04_counts.csv">Lib2-250518-sera-183C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-183C_SR_0.18_counts.csv">Lib2-250518-sera-183C_SR_0.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-183C_SR_0.35_counts.csv">Lib2-250518-sera-183C_SR_0.35</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-281C_SR_0.05_counts.csv">Lib2-250518-sera-281C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-281C_SR_0.19_counts.csv">Lib2-250518-sera-281C_SR_0.19</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-281C_SR_0.38_counts.csv">Lib2-250518-sera-281C_SR_0.38</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-503C_SR_0.04_counts.csv">Lib2-250518-sera-503C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-503C_SR_0.18_counts.csv">Lib2-250518-sera-503C_SR_0.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-503C_SR_0.35_counts.csv">Lib2-250518-sera-503C_SR_0.35</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-507C_SR_0.003_counts.csv">Lib2-250518-sera-507C_SR_0.003</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-507C_SR_0.007_counts.csv">Lib2-250518-sera-507C_SR_0.007</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-507C_SR_0.013_counts.csv">Lib2-250518-sera-507C_SR_0.013</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-527C_SR_0.1_counts.csv">Lib2-250518-sera-527C_SR_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-527C_SR_0.4_counts.csv">Lib2-250518-sera-527C_SR_0.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-sera-527C_SR_0.62_counts.csv">Lib2-250518-sera-527C_SR_0.62</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250518-no-antibody-control_counts.csv">Lib2-250518-no-antibody-control</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-087C_SR_0.01_counts.csv">Lib1-250529-087C_SR_0.01</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-087C_SR_0.02_counts.csv">Lib1-250529-087C_SR_0.02</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-087C_SR_0.04_counts.csv">Lib1-250529-087C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-183C_CS_0.05_counts.csv">Lib1-250529-183C_CS_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-183C_CS_0.12_counts.csv">Lib1-250529-183C_CS_0.12</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-183C_CS_0.17_counts.csv">Lib1-250529-183C_CS_0.17</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-183C_SR_0.05_counts.csv">Lib1-250529-183C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-183C_SR_0.1_counts.csv">Lib1-250529-183C_SR_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-183C_SR_0.17_counts.csv">Lib1-250529-183C_SR_0.17</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-281C_CS_0.1_counts.csv">Lib1-250529-281C_CS_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-281C_CS_0.4_counts.csv">Lib1-250529-281C_CS_0.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-281C_CS_0.8_counts.csv">Lib1-250529-281C_CS_0.8</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-281C_SR_0.05_counts.csv">Lib1-250529-281C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-281C_SR_0.1_counts.csv">Lib1-250529-281C_SR_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-281C_SR_0.19_counts.csv">Lib1-250529-281C_SR_0.19</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-507C_SR_0.02_counts.csv">Lib1-250529-507C_SR_0.02</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-507C_SR_0.033_counts.csv">Lib1-250529-507C_SR_0.033</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-507C_SR_0.053_counts.csv">Lib1-250529-507C_SR_0.053</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250529-no_mAb_counts.csv">Lib1-250529-no_mAb</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-087C_SR_0.01_counts.csv">Lib2-250529-087C_SR_0.01</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-087C_SR_0.02_counts.csv">Lib2-250529-087C_SR_0.02</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-087C_SR_0.04_counts.csv">Lib2-250529-087C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-183C_CS_0.05_counts.csv">Lib2-250529-183C_CS_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-183C_CS_0.12_counts.csv">Lib2-250529-183C_CS_0.12</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-183C_CS_0.17_counts.csv">Lib2-250529-183C_CS_0.17</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-281C_CS_0.1_counts.csv">Lib2-250529-281C_CS_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-281C_CS_0.4_counts.csv">Lib2-250529-281C_CS_0.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-281C_CS_0.8_counts.csv">Lib2-250529-281C_CS_0.8</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-507C_SR_0.02_counts.csv">Lib2-250529-507C_SR_0.02</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-507C_SR_0.033_counts.csv">Lib2-250529-507C_SR_0.033</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-507C_SR_0.053_counts.csv">Lib2-250529-507C_SR_0.053</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250529-no_mAb_counts.csv">Lib2-250529-no_mAb</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-507C_CS_0.2_counts.csv">Lib1-250531-507C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-507C_CS_0.33_counts.csv">Lib1-250531-507C_CS_0.33</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-507C_CS_0.53_counts.csv">Lib1-250531-507C_CS_0.53</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-527C_CS_0.03_counts.csv">Lib1-250531-527C_CS_0.03</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-527C_CS_0.05_counts.csv">Lib1-250531-527C_CS_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-527C_CS_0.11_counts.csv">Lib1-250531-527C_CS_0.11</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-BD55_0.73_counts.csv">Lib1-250531-BD55_0.73</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-BD55_2.18_counts.csv">Lib1-250531-BD55_2.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-BD55_6.55_counts.csv">Lib1-250531-BD55_6.55</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-no_mAb_counts.csv">Lib1-250531-no_mAb</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-SA55_0.32_counts.csv">Lib1-250531-SA55_0.32</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-SA55_0.95_counts.csv">Lib1-250531-SA55_0.95</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-SA55_2.84_counts.csv">Lib1-250531-SA55_2.84</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-VYD222_100_counts.csv">Lib1-250531-VYD222_100</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-VYD222_300_counts.csv">Lib1-250531-VYD222_300</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250531-VYD222_900_counts.csv">Lib1-250531-VYD222_900</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-507C_CS_0.2_counts.csv">Lib2-250531-507C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-507C_CS_0.33_counts.csv">Lib2-250531-507C_CS_0.33</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-507C_CS_0.53_counts.csv">Lib2-250531-507C_CS_0.53</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-527C_CS_0.03_counts.csv">Lib2-250531-527C_CS_0.03</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-527C_CS_0.05_counts.csv">Lib2-250531-527C_CS_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-527C_CS_0.11_counts.csv">Lib2-250531-527C_CS_0.11</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-BD55_0.73_counts.csv">Lib2-250531-BD55_0.73</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-BD55_2.18_counts.csv">Lib2-250531-BD55_2.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-BD55_6.55_counts.csv">Lib2-250531-BD55_6.55</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-no_mAb_counts.csv">Lib2-250531-no_mAb</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-SA55_0.32_counts.csv">Lib2-250531-SA55_0.32</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-SA55_0.95_counts.csv">Lib2-250531-SA55_0.95</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-SA55_2.84_counts.csv">Lib2-250531-SA55_2.84</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-VYD222_100_counts.csv">Lib2-250531-VYD222_100</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-VYD222_300_counts.csv">Lib2-250531-VYD222_300</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250531-VYD222_900_counts.csv">Lib2-250531-VYD222_900</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250625-507C_CS_0.03_counts.csv">Lib1-250625-507C_CS_0.03</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250625-507C_CS_0.07_counts.csv">Lib1-250625-507C_CS_0.07</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250625-507C_CS_0.13_counts.csv">Lib1-250625-507C_CS_0.13</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250625-503C_CS_0.08_counts.csv">Lib1-250625-503C_CS_0.08</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250625-503C_CS_0.15_counts.csv">Lib1-250625-503C_CS_0.15</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250625-503C_CS_0.23_counts.csv">Lib1-250625-503C_CS_0.23</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250625-no-mAb_counts.csv">Lib1-250625-no-mAb</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250625-507C_CS_0.03_counts.csv">Lib2-250625-507C_CS_0.03</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250625-507C_CS_0.07_counts.csv">Lib2-250625-507C_CS_0.07</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250625-507C_CS_0.13_counts.csv">Lib2-250625-507C_CS_0.13</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250625-503C_CS_0.08_counts.csv">Lib2-250625-503C_CS_0.08</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250625-503C_CS_0.15_counts.csv">Lib2-250625-503C_CS_0.15</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250625-503C_CS_0.23_counts.csv">Lib2-250625-503C_CS_0.23</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib2-250625-no-mAb_counts.csv">Lib2-250625-no-mAb</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250625-no_sucrose_counts.csv">Lib1-250625-no_sucrose</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/barcode_counts/Lib1-250625-no_CaCl2_counts.csv">Lib1-250625-no_CaCl2</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h2 id="functional-effects-of-mutations">Functional effects of mutations</h2>
+<h4 id="final-summary-plots">Final summary plots</h4>
+<ul>
+<li><details><summary>Interactive plots of average mutation functional effects (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/293T_high_ACE2_entry_ultracentrifugated_func_effects.html">293T_high_ACE2_entry_ultracentrifugated</a></li>
+<li><a href="htmls/293T_high_ACE2_entry_func_effects.html">293T_high_ACE2_entry</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Interactive plots of average mutation functional effects from single-mutant variants only (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/293T_high_ACE2_entry_ultracentrifugated_func_effects_singlemut.html">293T_high_ACE2_entry_ultracentrifugated</a></li>
+<li><a href="htmls/293T_high_ACE2_entry_func_effects_singlemut.html">293T_high_ACE2_entry</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Interactive plots of average mutation latent-phenotype effects (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/293T_high_ACE2_entry_ultracentrifugated_latent_effects.html">293T_high_ACE2_entry_ultracentrifugated</a></li>
+<li><a href="htmls/293T_high_ACE2_entry_latent_effects.html">293T_high_ACE2_entry</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="analysis-notebooks_2">Analysis notebooks</h4>
+<ul>
+<li><a href="notebooks/analyze_func_scores.html">Analysis of functional scores</a></li>
+<li><details><summary>Notebooks with per-selection global epistasis fitting (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/func_effects_global_epistasis_Lib1-250213_high_ACE2.html">Lib1-250213_high_ACE2</a></li>
+<li><a href="notebooks/func_effects_global_epistasis_Lib2-250213_high_ACE2.html">Lib2-250213_high_ACE2</a></li>
+<li><a href="notebooks/func_effects_global_epistasis_Lib1-250213_IGM.html">Lib1-250213_IGM</a></li>
+<li><a href="notebooks/func_effects_global_epistasis_Lib2-250213_IGM.html">Lib2-250213_IGM</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Notebooks averaging mutation functional effects (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/avg_func_effects_293T_high_ACE2_entry_ultracentrifugated.html">293T_high_ACE2_entry_ultracentrifugated</a></li>
+<li><a href="notebooks/avg_func_effects_293T_high_ACE2_entry.html">293T_high_ACE2_entry</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="data-files_2">Data files</h4>
+<ul>
+<li><details><summary>Per-variant functional score CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_scores/Lib1-250213_high_ACE2_func_scores.csv">Lib1-250213_high_ACE2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_scores/Lib2-250213_high_ACE2_func_scores.csv">Lib2-250213_high_ACE2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_scores/Lib1-250213_IGM_func_scores.csv">Lib1-250213_IGM</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_scores/Lib2-250213_IGM_func_scores.csv">Lib2-250213_IGM</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Per-selection mutation functional effect CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/by_selection/Lib1-250213_high_ACE2_func_effects.csv">Lib1-250213_high_ACE2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/by_selection/Lib2-250213_high_ACE2_func_effects.csv">Lib2-250213_high_ACE2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/by_selection/Lib1-250213_IGM_func_effects.csv">Lib1-250213_IGM</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/by_selection/Lib2-250213_IGM_func_effects.csv">Lib2-250213_IGM</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average mutation functional effects (CSV files) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/averages/293T_high_ACE2_entry_ultracentrifugated_func_effects.csv">293T_high_ACE2_entry_ultracentrifugated</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv">293T_high_ACE2_entry</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average mutation functional effects from single-mutant variants only (CSV files) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/averages/293T_high_ACE2_entry_ultracentrifugated_func_effects_singlemut.csv">293T_high_ACE2_entry_ultracentrifugated</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/averages/293T_high_ACE2_entry_func_effects_singlemut.csv">293T_high_ACE2_entry</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average mutation latent-phenotype effects (CSV files) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/averages/293T_high_ACE2_entry_ultracentrifugated_func_effects.csv">293T_high_ACE2_entry_ultracentrifugated</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv">293T_high_ACE2_entry</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h2 id="antibodyserum-escape">Antibody/serum escape</h2>
+<h4 id="final-summary-plots_1">Final summary plots</h4>
+<ul>
+<li><details><summary>antibody escape mutation effect plots (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/adult-1_post_vaccination_mut_effect.html">adult-1_post_vaccination</a></li>
+<li><a href="htmls/adult-1_pre_vaccination_mut_effect.html">adult-1_pre_vaccination</a></li>
+<li><a href="htmls/adult-4_post_vaccination_mut_effect.html">adult-4_post_vaccination</a></li>
+<li><a href="htmls/adult-4_pre_vaccination_mut_effect.html">adult-4_pre_vaccination</a></li>
+<li><a href="htmls/adult-2_post_vaccination_mut_effect.html">adult-2_post_vaccination</a></li>
+<li><a href="htmls/adult-2_pre_vaccination_mut_effect.html">adult-2_pre_vaccination</a></li>
+<li><a href="htmls/adult-3_post_infection_mut_effect.html">adult-3_post_infection</a></li>
+<li><a href="htmls/adult-3_pre_infection_mut_effect.html">adult-3_pre_infection</a></li>
+<li><a href="htmls/adult-5_post_infection_mut_effect.html">adult-5_post_infection</a></li>
+<li><a href="htmls/adult-5_pre_infection_mut_effect.html">adult-5_pre_infection</a></li>
+<li><a href="htmls/adult-6_post_vaccination_mut_effect.html">adult-6_post_vaccination</a></li>
+<li><a href="htmls/adult-6_pre_vaccination_mut_effect.html">adult-6_pre_vaccination</a></li>
+<li><a href="htmls/adult-7_post_infection_mut_effect.html">adult-7_post_infection</a></li>
+<li><a href="htmls/adult-7_pre_infection_mut_effect.html">adult-7_pre_infection</a></li>
+<li><a href="htmls/mAb_BD55-1205_mut_effect.html">mAb_BD55-1205</a></li>
+<li><a href="htmls/mAb_SA55_mut_effect.html">mAb_SA55</a></li>
+<li><a href="htmls/mAb_VYD222_mut_effect.html">mAb_VYD222</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="analysis-notebooks_3">Analysis notebooks</h4>
+<ul>
+<li><details><summary>Fits of polyclonal models to individual antibody escape selections (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250517-sera-087C_post.html">Lib1-250517-sera-087C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250517-sera-087C_post.html">Lib2-250517-sera-087C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250302-sera-087C_post.html">Lib1-250302-sera-087C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250302-sera-087C_post.html">Lib2-250302-sera-087C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250529-sera-087C_post.html">Lib1-250529-sera-087C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250529-sera-087C_post.html">Lib2-250529-sera-087C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250517-sera-087C_pre.html">Lib1-250517-sera-087C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250517-sera-087C_pre.html">Lib2-250517-sera-087C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250517-sera-404C_post.html">Lib1-250517-sera-404C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250517-sera-404C_post.html">Lib2-250517-sera-404C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250517-sera-404C_pre.html">Lib1-250517-sera-404C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250517-sera-404C_pre.html">Lib2-250517-sera-404C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250518-sera-183C_post.html">Lib1-250518-sera-183C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250518-sera-183C_post.html">Lib2-250518-sera-183C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250529-sera-183C_post.html">Lib1-250529-sera-183C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250529-sera-183C_pre.html">Lib1-250529-sera-183C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250529-sera-183C_pre.html">Lib2-250529-sera-183C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250518-sera-281C_post.html">Lib1-250518-sera-281C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250518-sera-281C_post.html">Lib2-250518-sera-281C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250529-sera-281C_post.html">Lib1-250529-sera-281C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250529-sera-281C_pre.html">Lib1-250529-sera-281C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250529-sera-281C_pre.html">Lib2-250529-sera-281C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250518-sera-503C_post.html">Lib1-250518-sera-503C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250518-sera-503C_post.html">Lib2-250518-sera-503C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250625-sera-503C_pre.html">Lib1-250625-sera-503C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250625-sera-503C_pre.html">Lib2-250625-sera-503C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250518-sera-507C_post.html">Lib1-250518-sera-507C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250518-sera-507C_post.html">Lib2-250518-sera-507C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250529-sera-507C_post.html">Lib1-250529-sera-507C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250529-sera-507C_post.html">Lib2-250529-sera-507C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250625-sera-507C_pre.html">Lib1-250625-sera-507C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250625-sera-507C_pre.html">Lib2-250625-sera-507C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250518-sera-527C_post.html">Lib1-250518-sera-527C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250518-sera-527C_post.html">Lib2-250518-sera-527C_post</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250531-sera-527C_pre.html">Lib1-250531-sera-527C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250531-sera-527C_pre.html">Lib2-250531-sera-527C_pre</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250531-BD55_mAb.html">Lib1-250531-BD55_mAb</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250531-BD55_mAb.html">Lib2-250531-BD55_mAb</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250531-SA55_mAb.html">Lib1-250531-SA55_mAb</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250531-SA55_mAb.html">Lib2-250531-SA55_mAb</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250531-VYD222_mAb.html">Lib1-250531-VYD222_mAb</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250531-VYD222_mAb.html">Lib2-250531-VYD222_mAb</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average selections for antibody escape (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/avg_escape_antibody_escape_adult-1_post_vaccination.html">adult-1_post_vaccination</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-1_pre_vaccination.html">adult-1_pre_vaccination</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-4_post_vaccination.html">adult-4_post_vaccination</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-4_pre_vaccination.html">adult-4_pre_vaccination</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-2_post_vaccination.html">adult-2_post_vaccination</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-2_pre_vaccination.html">adult-2_pre_vaccination</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-3_post_infection.html">adult-3_post_infection</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-3_pre_infection.html">adult-3_pre_infection</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-5_post_infection.html">adult-5_post_infection</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-5_pre_infection.html">adult-5_pre_infection</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-6_post_vaccination.html">adult-6_post_vaccination</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-6_pre_vaccination.html">adult-6_pre_vaccination</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-7_post_infection.html">adult-7_post_infection</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_adult-7_pre_infection.html">adult-7_pre_infection</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_mAb_BD55-1205.html">mAb_BD55-1205</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_mAb_SA55.html">mAb_SA55</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_mAb_VYD222.html">mAb_VYD222</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="data-files_3">Data files</h4>
+<ul>
+<li><details><summary>Probability (fraction) escape for each variant in each antibody escape selection (CSVs) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-087C_post/Lib1-250517-sera-087C_SR_0.047_prob_escape.csv">Lib1-250517-sera-087C_post Lib1-250517-sera-087C_SR_0.047</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-087C_post/Lib1-250517-sera-087C_SR_0.093_prob_escape.csv">Lib1-250517-sera-087C_post Lib1-250517-sera-087C_SR_0.093</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-087C_post/Lib1-250517-sera-087C_SR_0.233_prob_escape.csv">Lib1-250517-sera-087C_post Lib1-250517-sera-087C_SR_0.233</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-087C_post/Lib2-250517-sera-087C_SR_0.047_prob_escape.csv">Lib2-250517-sera-087C_post Lib2-250517-sera-087C_SR_0.047</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-087C_post/Lib2-250517-sera-087C_SR_0.093_prob_escape.csv">Lib2-250517-sera-087C_post Lib2-250517-sera-087C_SR_0.093</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-087C_post/Lib2-250517-sera-087C_SR_0.233_prob_escape.csv">Lib2-250517-sera-087C_post Lib2-250517-sera-087C_SR_0.233</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250302-sera-087C_post/Lib1-250302-sera-087C_SR_0.004_prob_escape.csv">Lib1-250302-sera-087C_post Lib1-250302-sera-087C_SR_0.004</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250302-sera-087C_post/Lib1-250302-sera-087C_SR_0.012_prob_escape.csv">Lib1-250302-sera-087C_post Lib1-250302-sera-087C_SR_0.012</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250302-sera-087C_post/Lib1-250302-sera-087C_SR_0.036_prob_escape.csv">Lib1-250302-sera-087C_post Lib1-250302-sera-087C_SR_0.036</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250302-sera-087C_post/Lib2-250302-sera-087C_SR_0.004_prob_escape.csv">Lib2-250302-sera-087C_post Lib2-250302-sera-087C_SR_0.004</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250302-sera-087C_post/Lib2-250302-sera-087C_SR_0.012_prob_escape.csv">Lib2-250302-sera-087C_post Lib2-250302-sera-087C_SR_0.012</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250302-sera-087C_post/Lib2-250302-sera-087C_SR_0.036_prob_escape.csv">Lib2-250302-sera-087C_post Lib2-250302-sera-087C_SR_0.036</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-087C_post/Lib1-250529-087C_SR_0.01_prob_escape.csv">Lib1-250529-sera-087C_post Lib1-250529-087C_SR_0.01</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-087C_post/Lib1-250529-087C_SR_0.02_prob_escape.csv">Lib1-250529-sera-087C_post Lib1-250529-087C_SR_0.02</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-087C_post/Lib1-250529-087C_SR_0.04_prob_escape.csv">Lib1-250529-sera-087C_post Lib1-250529-087C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-087C_post/Lib2-250529-087C_SR_0.01_prob_escape.csv">Lib2-250529-sera-087C_post Lib2-250529-087C_SR_0.01</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-087C_post/Lib2-250529-087C_SR_0.02_prob_escape.csv">Lib2-250529-sera-087C_post Lib2-250529-087C_SR_0.02</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-087C_post/Lib2-250529-087C_SR_0.04_prob_escape.csv">Lib2-250529-sera-087C_post Lib2-250529-087C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-087C_pre/Lib1-250517-sera-087C_CS_0.1_prob_escape.csv">Lib1-250517-sera-087C_pre Lib1-250517-sera-087C_CS_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-087C_pre/Lib1-250517-sera-087C_CS_0.133_prob_escape.csv">Lib1-250517-sera-087C_pre Lib1-250517-sera-087C_CS_0.133</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-087C_pre/Lib1-250517-sera-087C_CS_0.2_prob_escape.csv">Lib1-250517-sera-087C_pre Lib1-250517-sera-087C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-087C_pre/Lib2-250517-sera-087C_CS_0.1_prob_escape.csv">Lib2-250517-sera-087C_pre Lib2-250517-sera-087C_CS_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-087C_pre/Lib2-250517-sera-087C_CS_0.133_prob_escape.csv">Lib2-250517-sera-087C_pre Lib2-250517-sera-087C_CS_0.133</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-087C_pre/Lib2-250517-sera-087C_CS_0.2_prob_escape.csv">Lib2-250517-sera-087C_pre Lib2-250517-sera-087C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-404C_post/Lib1-250517-sera-404C_SR_0.017_prob_escape.csv">Lib1-250517-sera-404C_post Lib1-250517-sera-404C_SR_0.017</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-404C_post/Lib1-250517-sera-404C_SR_0.033_prob_escape.csv">Lib1-250517-sera-404C_post Lib1-250517-sera-404C_SR_0.033</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-404C_post/Lib1-250517-sera-404C_SR_0.05_prob_escape.csv">Lib1-250517-sera-404C_post Lib1-250517-sera-404C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-404C_post/Lib2-250517-sera-404C_SR_0.017_prob_escape.csv">Lib2-250517-sera-404C_post Lib2-250517-sera-404C_SR_0.017</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-404C_post/Lib2-250517-sera-404C_SR_0.033_prob_escape.csv">Lib2-250517-sera-404C_post Lib2-250517-sera-404C_SR_0.033</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-404C_post/Lib2-250517-sera-404C_SR_0.05_prob_escape.csv">Lib2-250517-sera-404C_post Lib2-250517-sera-404C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-404C_pre/Lib1-250517-sera-404C_CS_0.133_prob_escape.csv">Lib1-250517-sera-404C_pre Lib1-250517-sera-404C_CS_0.133</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-404C_pre/Lib1-250517-sera-404C_CS_0.2_prob_escape.csv">Lib1-250517-sera-404C_pre Lib1-250517-sera-404C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250517-sera-404C_pre/Lib1-250517-sera-404C_CS_0.267_prob_escape.csv">Lib1-250517-sera-404C_pre Lib1-250517-sera-404C_CS_0.267</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-404C_pre/Lib2-250517-sera-404C_CS_0.133_prob_escape.csv">Lib2-250517-sera-404C_pre Lib2-250517-sera-404C_CS_0.133</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-404C_pre/Lib2-250517-sera-404C_CS_0.2_prob_escape.csv">Lib2-250517-sera-404C_pre Lib2-250517-sera-404C_CS_0.2</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250517-sera-404C_pre/Lib2-250517-sera-404C_CS_0.267_prob_escape.csv">Lib2-250517-sera-404C_pre Lib2-250517-sera-404C_CS_0.267</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-183C_post/Lib1-250518-sera-183C_SR_0.04_prob_escape.csv">Lib1-250518-sera-183C_post Lib1-250518-sera-183C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-183C_post/Lib1-250518-sera-183C_SR_0.18_prob_escape.csv">Lib1-250518-sera-183C_post Lib1-250518-sera-183C_SR_0.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-183C_post/Lib1-250518-sera-183C_SR_0.35_prob_escape.csv">Lib1-250518-sera-183C_post Lib1-250518-sera-183C_SR_0.35</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-183C_post/Lib2-250518-sera-183C_SR_0.04_prob_escape.csv">Lib2-250518-sera-183C_post Lib2-250518-sera-183C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-183C_post/Lib2-250518-sera-183C_SR_0.18_prob_escape.csv">Lib2-250518-sera-183C_post Lib2-250518-sera-183C_SR_0.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-183C_post/Lib2-250518-sera-183C_SR_0.35_prob_escape.csv">Lib2-250518-sera-183C_post Lib2-250518-sera-183C_SR_0.35</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-183C_post/Lib1-250529-183C_SR_0.05_prob_escape.csv">Lib1-250529-sera-183C_post Lib1-250529-183C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-183C_post/Lib1-250529-183C_SR_0.1_prob_escape.csv">Lib1-250529-sera-183C_post Lib1-250529-183C_SR_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-183C_post/Lib1-250529-183C_SR_0.17_prob_escape.csv">Lib1-250529-sera-183C_post Lib1-250529-183C_SR_0.17</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-183C_pre/Lib1-250529-183C_CS_0.05_prob_escape.csv">Lib1-250529-sera-183C_pre Lib1-250529-183C_CS_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-183C_pre/Lib1-250529-183C_CS_0.12_prob_escape.csv">Lib1-250529-sera-183C_pre Lib1-250529-183C_CS_0.12</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-183C_pre/Lib1-250529-183C_CS_0.17_prob_escape.csv">Lib1-250529-sera-183C_pre Lib1-250529-183C_CS_0.17</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-183C_pre/Lib2-250529-183C_CS_0.05_prob_escape.csv">Lib2-250529-sera-183C_pre Lib2-250529-183C_CS_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-183C_pre/Lib2-250529-183C_CS_0.12_prob_escape.csv">Lib2-250529-sera-183C_pre Lib2-250529-183C_CS_0.12</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-183C_pre/Lib2-250529-183C_CS_0.17_prob_escape.csv">Lib2-250529-sera-183C_pre Lib2-250529-183C_CS_0.17</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-281C_post/Lib1-250518-sera-281C_SR_0.05_prob_escape.csv">Lib1-250518-sera-281C_post Lib1-250518-sera-281C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-281C_post/Lib1-250518-sera-281C_SR_0.19_prob_escape.csv">Lib1-250518-sera-281C_post Lib1-250518-sera-281C_SR_0.19</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-281C_post/Lib1-250518-sera-281C_SR_0.38_prob_escape.csv">Lib1-250518-sera-281C_post Lib1-250518-sera-281C_SR_0.38</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-281C_post/Lib2-250518-sera-281C_SR_0.05_prob_escape.csv">Lib2-250518-sera-281C_post Lib2-250518-sera-281C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-281C_post/Lib2-250518-sera-281C_SR_0.19_prob_escape.csv">Lib2-250518-sera-281C_post Lib2-250518-sera-281C_SR_0.19</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-281C_post/Lib2-250518-sera-281C_SR_0.38_prob_escape.csv">Lib2-250518-sera-281C_post Lib2-250518-sera-281C_SR_0.38</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-281C_post/Lib1-250529-281C_SR_0.05_prob_escape.csv">Lib1-250529-sera-281C_post Lib1-250529-281C_SR_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-281C_post/Lib1-250529-281C_SR_0.1_prob_escape.csv">Lib1-250529-sera-281C_post Lib1-250529-281C_SR_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-281C_post/Lib1-250529-281C_SR_0.19_prob_escape.csv">Lib1-250529-sera-281C_post Lib1-250529-281C_SR_0.19</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-281C_pre/Lib1-250529-281C_CS_0.1_prob_escape.csv">Lib1-250529-sera-281C_pre Lib1-250529-281C_CS_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-281C_pre/Lib1-250529-281C_CS_0.4_prob_escape.csv">Lib1-250529-sera-281C_pre Lib1-250529-281C_CS_0.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-281C_pre/Lib1-250529-281C_CS_0.8_prob_escape.csv">Lib1-250529-sera-281C_pre Lib1-250529-281C_CS_0.8</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-281C_pre/Lib2-250529-281C_CS_0.1_prob_escape.csv">Lib2-250529-sera-281C_pre Lib2-250529-281C_CS_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-281C_pre/Lib2-250529-281C_CS_0.4_prob_escape.csv">Lib2-250529-sera-281C_pre Lib2-250529-281C_CS_0.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-281C_pre/Lib2-250529-281C_CS_0.8_prob_escape.csv">Lib2-250529-sera-281C_pre Lib2-250529-281C_CS_0.8</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-503C_post/Lib1-250518-sera-503C_SR_0.04_prob_escape.csv">Lib1-250518-sera-503C_post Lib1-250518-sera-503C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-503C_post/Lib1-250518-sera-503C_SR_0.18_prob_escape.csv">Lib1-250518-sera-503C_post Lib1-250518-sera-503C_SR_0.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-503C_post/Lib1-250518-sera-503C_SR_0.35_prob_escape.csv">Lib1-250518-sera-503C_post Lib1-250518-sera-503C_SR_0.35</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-503C_post/Lib2-250518-sera-503C_SR_0.04_prob_escape.csv">Lib2-250518-sera-503C_post Lib2-250518-sera-503C_SR_0.04</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-503C_post/Lib2-250518-sera-503C_SR_0.18_prob_escape.csv">Lib2-250518-sera-503C_post Lib2-250518-sera-503C_SR_0.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-503C_post/Lib2-250518-sera-503C_SR_0.35_prob_escape.csv">Lib2-250518-sera-503C_post Lib2-250518-sera-503C_SR_0.35</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250625-sera-503C_pre/Lib1-250625-503C_CS_0.08_prob_escape.csv">Lib1-250625-sera-503C_pre Lib1-250625-503C_CS_0.08</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250625-sera-503C_pre/Lib1-250625-503C_CS_0.15_prob_escape.csv">Lib1-250625-sera-503C_pre Lib1-250625-503C_CS_0.15</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250625-sera-503C_pre/Lib1-250625-503C_CS_0.23_prob_escape.csv">Lib1-250625-sera-503C_pre Lib1-250625-503C_CS_0.23</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250625-sera-503C_pre/Lib2-250625-503C_CS_0.08_prob_escape.csv">Lib2-250625-sera-503C_pre Lib2-250625-503C_CS_0.08</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250625-sera-503C_pre/Lib2-250625-503C_CS_0.15_prob_escape.csv">Lib2-250625-sera-503C_pre Lib2-250625-503C_CS_0.15</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250625-sera-503C_pre/Lib2-250625-503C_CS_0.23_prob_escape.csv">Lib2-250625-sera-503C_pre Lib2-250625-503C_CS_0.23</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-507C_post/Lib1-250518-sera-507C_SR_0.003_prob_escape.csv">Lib1-250518-sera-507C_post Lib1-250518-sera-507C_SR_0.003</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-507C_post/Lib1-250518-sera-507C_SR_0.007_prob_escape.csv">Lib1-250518-sera-507C_post Lib1-250518-sera-507C_SR_0.007</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-507C_post/Lib1-250518-sera-507C_SR_0.013_prob_escape.csv">Lib1-250518-sera-507C_post Lib1-250518-sera-507C_SR_0.013</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-507C_post/Lib2-250518-sera-507C_SR_0.003_prob_escape.csv">Lib2-250518-sera-507C_post Lib2-250518-sera-507C_SR_0.003</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-507C_post/Lib2-250518-sera-507C_SR_0.007_prob_escape.csv">Lib2-250518-sera-507C_post Lib2-250518-sera-507C_SR_0.007</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-507C_post/Lib2-250518-sera-507C_SR_0.013_prob_escape.csv">Lib2-250518-sera-507C_post Lib2-250518-sera-507C_SR_0.013</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-507C_post/Lib1-250529-507C_SR_0.02_prob_escape.csv">Lib1-250529-sera-507C_post Lib1-250529-507C_SR_0.02</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-507C_post/Lib1-250529-507C_SR_0.033_prob_escape.csv">Lib1-250529-sera-507C_post Lib1-250529-507C_SR_0.033</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250529-sera-507C_post/Lib1-250529-507C_SR_0.053_prob_escape.csv">Lib1-250529-sera-507C_post Lib1-250529-507C_SR_0.053</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-507C_post/Lib2-250529-507C_SR_0.02_prob_escape.csv">Lib2-250529-sera-507C_post Lib2-250529-507C_SR_0.02</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-507C_post/Lib2-250529-507C_SR_0.033_prob_escape.csv">Lib2-250529-sera-507C_post Lib2-250529-507C_SR_0.033</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250529-sera-507C_post/Lib2-250529-507C_SR_0.053_prob_escape.csv">Lib2-250529-sera-507C_post Lib2-250529-507C_SR_0.053</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250625-sera-507C_pre/Lib1-250625-507C_CS_0.03_prob_escape.csv">Lib1-250625-sera-507C_pre Lib1-250625-507C_CS_0.03</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250625-sera-507C_pre/Lib1-250625-507C_CS_0.07_prob_escape.csv">Lib1-250625-sera-507C_pre Lib1-250625-507C_CS_0.07</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250625-sera-507C_pre/Lib1-250625-507C_CS_0.13_prob_escape.csv">Lib1-250625-sera-507C_pre Lib1-250625-507C_CS_0.13</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250625-sera-507C_pre/Lib2-250625-507C_CS_0.03_prob_escape.csv">Lib2-250625-sera-507C_pre Lib2-250625-507C_CS_0.03</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250625-sera-507C_pre/Lib2-250625-507C_CS_0.07_prob_escape.csv">Lib2-250625-sera-507C_pre Lib2-250625-507C_CS_0.07</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250625-sera-507C_pre/Lib2-250625-507C_CS_0.13_prob_escape.csv">Lib2-250625-sera-507C_pre Lib2-250625-507C_CS_0.13</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-527C_post/Lib1-250518-sera-527C_SR_0.1_prob_escape.csv">Lib1-250518-sera-527C_post Lib1-250518-sera-527C_SR_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-527C_post/Lib1-250518-sera-527C_SR_0.4_prob_escape.csv">Lib1-250518-sera-527C_post Lib1-250518-sera-527C_SR_0.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250518-sera-527C_post/Lib1-250518-sera-527C_SR_0.62_prob_escape.csv">Lib1-250518-sera-527C_post Lib1-250518-sera-527C_SR_0.62</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-527C_post/Lib2-250518-sera-527C_SR_0.1_prob_escape.csv">Lib2-250518-sera-527C_post Lib2-250518-sera-527C_SR_0.1</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-527C_post/Lib2-250518-sera-527C_SR_0.4_prob_escape.csv">Lib2-250518-sera-527C_post Lib2-250518-sera-527C_SR_0.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250518-sera-527C_post/Lib2-250518-sera-527C_SR_0.62_prob_escape.csv">Lib2-250518-sera-527C_post Lib2-250518-sera-527C_SR_0.62</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-sera-527C_pre/Lib1-250531-527C_CS_0.03_prob_escape.csv">Lib1-250531-sera-527C_pre Lib1-250531-527C_CS_0.03</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-sera-527C_pre/Lib1-250531-527C_CS_0.05_prob_escape.csv">Lib1-250531-sera-527C_pre Lib1-250531-527C_CS_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-sera-527C_pre/Lib1-250531-527C_CS_0.11_prob_escape.csv">Lib1-250531-sera-527C_pre Lib1-250531-527C_CS_0.11</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-sera-527C_pre/Lib2-250531-527C_CS_0.03_prob_escape.csv">Lib2-250531-sera-527C_pre Lib2-250531-527C_CS_0.03</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-sera-527C_pre/Lib2-250531-527C_CS_0.05_prob_escape.csv">Lib2-250531-sera-527C_pre Lib2-250531-527C_CS_0.05</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-sera-527C_pre/Lib2-250531-527C_CS_0.11_prob_escape.csv">Lib2-250531-sera-527C_pre Lib2-250531-527C_CS_0.11</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-BD55_mAb/Lib1-250531-BD55_0.73_prob_escape.csv">Lib1-250531-BD55_mAb Lib1-250531-BD55_0.73</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-BD55_mAb/Lib1-250531-BD55_2.18_prob_escape.csv">Lib1-250531-BD55_mAb Lib1-250531-BD55_2.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-BD55_mAb/Lib1-250531-BD55_6.55_prob_escape.csv">Lib1-250531-BD55_mAb Lib1-250531-BD55_6.55</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-BD55_mAb/Lib2-250531-BD55_0.73_prob_escape.csv">Lib2-250531-BD55_mAb Lib2-250531-BD55_0.73</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-BD55_mAb/Lib2-250531-BD55_2.18_prob_escape.csv">Lib2-250531-BD55_mAb Lib2-250531-BD55_2.18</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-BD55_mAb/Lib2-250531-BD55_6.55_prob_escape.csv">Lib2-250531-BD55_mAb Lib2-250531-BD55_6.55</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-SA55_mAb/Lib1-250531-SA55_0.32_prob_escape.csv">Lib1-250531-SA55_mAb Lib1-250531-SA55_0.32</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-SA55_mAb/Lib1-250531-SA55_0.95_prob_escape.csv">Lib1-250531-SA55_mAb Lib1-250531-SA55_0.95</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-SA55_mAb/Lib1-250531-SA55_2.84_prob_escape.csv">Lib1-250531-SA55_mAb Lib1-250531-SA55_2.84</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-SA55_mAb/Lib2-250531-SA55_0.32_prob_escape.csv">Lib2-250531-SA55_mAb Lib2-250531-SA55_0.32</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-SA55_mAb/Lib2-250531-SA55_0.95_prob_escape.csv">Lib2-250531-SA55_mAb Lib2-250531-SA55_0.95</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-SA55_mAb/Lib2-250531-SA55_2.84_prob_escape.csv">Lib2-250531-SA55_mAb Lib2-250531-SA55_2.84</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-VYD222_mAb/Lib1-250531-VYD222_100_prob_escape.csv">Lib1-250531-VYD222_mAb Lib1-250531-VYD222_100</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-VYD222_mAb/Lib1-250531-VYD222_300_prob_escape.csv">Lib1-250531-VYD222_mAb Lib1-250531-VYD222_300</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib1-250531-VYD222_mAb/Lib1-250531-VYD222_900_prob_escape.csv">Lib1-250531-VYD222_mAb Lib1-250531-VYD222_900</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-VYD222_mAb/Lib2-250531-VYD222_100_prob_escape.csv">Lib2-250531-VYD222_mAb Lib2-250531-VYD222_100</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-VYD222_mAb/Lib2-250531-VYD222_300_prob_escape.csv">Lib2-250531-VYD222_mAb Lib2-250531-VYD222_300</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/by_selection/Lib2-250531-VYD222_mAb/Lib2-250531-VYD222_900_prob_escape.csv">Lib2-250531-VYD222_mAb Lib2-250531-VYD222_900</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>antibody escape CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-1_post_vaccination_mut_effect.csv">adult-1_post_vaccination</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-1_pre_vaccination_mut_effect.csv">adult-1_pre_vaccination</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-4_post_vaccination_mut_effect.csv">adult-4_post_vaccination</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-4_pre_vaccination_mut_effect.csv">adult-4_pre_vaccination</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-2_post_vaccination_mut_effect.csv">adult-2_post_vaccination</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-2_pre_vaccination_mut_effect.csv">adult-2_pre_vaccination</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-3_post_infection_mut_effect.csv">adult-3_post_infection</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-3_pre_infection_mut_effect.csv">adult-3_pre_infection</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-5_post_infection_mut_effect.csv">adult-5_post_infection</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-5_pre_infection_mut_effect.csv">adult-5_pre_infection</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-6_post_vaccination_mut_effect.csv">adult-6_post_vaccination</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-6_pre_vaccination_mut_effect.csv">adult-6_pre_vaccination</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-7_post_infection_mut_effect.csv">adult-7_post_infection</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/adult-7_pre_infection_mut_effect.csv">adult-7_pre_infection</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/mAb_BD55-1205_mut_effect.csv">mAb_BD55-1205</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/mAb_SA55_mut_effect.csv">mAb_SA55</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/antibody_escape/averages/mAb_VYD222_mut_effect.csv">mAb_VYD222</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h2 id="ace2-binding">ACE2 binding</h2>
+<h4 id="final-summary-plots_2">Final summary plots</h4>
+<ul>
+<li><details><summary>ACE2 binding mutation effect plots (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/monomeric_ACE2_ultracentrifugated_mut_effect.html">monomeric_ACE2_ultracentrifugated</a></li>
+<li><a href="htmls/monomeric_ACE2_mut_effect.html">monomeric_ACE2</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="analysis-notebooks_4">Analysis notebooks</h4>
+<ul>
+<li><details><summary>Fits of polyclonal models to individual ACE2 binding selections (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/fit_escape_ACE2_binding_Lib1-250301-monomeric_ACE2.html">Lib1-250301-monomeric_ACE2</a></li>
+<li><a href="notebooks/fit_escape_ACE2_binding_Lib2-250301-monomeric_ACE2.html">Lib2-250301-monomeric_ACE2</a></li>
+<li><a href="notebooks/fit_escape_ACE2_binding_Lib1-250517-monomeric_ACE2.html">Lib1-250517-monomeric_ACE2</a></li>
+<li><a href="notebooks/fit_escape_ACE2_binding_Lib2-250517-monomeric_ACE2.html">Lib2-250517-monomeric_ACE2</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average selections for ACE2 binding (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/avg_escape_ACE2_binding_monomeric_ACE2_ultracentrifugated.html">monomeric_ACE2_ultracentrifugated</a></li>
+<li><a href="notebooks/avg_escape_ACE2_binding_monomeric_ACE2.html">monomeric_ACE2</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="data-files_4">Data files</h4>
+<ul>
+<li><details><summary>Probability (fraction) escape for each variant in each ACE2 binding selection (CSVs) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250301-monomeric_ACE2/Lib1-250301-monomeric_ACE2_27.93_prob_escape.csv">Lib1-250301-monomeric_ACE2 Lib1-250301-monomeric_ACE2_27.93</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250301-monomeric_ACE2/Lib1-250301-monomeric_ACE2_55.85_prob_escape.csv">Lib1-250301-monomeric_ACE2 Lib1-250301-monomeric_ACE2_55.85</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250301-monomeric_ACE2/Lib1-250301-monomeric_ACE2_111.7_prob_escape.csv">Lib1-250301-monomeric_ACE2 Lib1-250301-monomeric_ACE2_111.7</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250301-monomeric_ACE2/Lib1-250301-monomeric_ACE2_223.4_prob_escape.csv">Lib1-250301-monomeric_ACE2 Lib1-250301-monomeric_ACE2_223.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250301-monomeric_ACE2/Lib1-250301-monomeric_ACE2_446.81_prob_escape.csv">Lib1-250301-monomeric_ACE2 Lib1-250301-monomeric_ACE2_446.81</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250301-monomeric_ACE2/Lib2-250301-monomeric_ACE2_27.93_prob_escape.csv">Lib2-250301-monomeric_ACE2 Lib2-250301-monomeric_ACE2_27.93</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250301-monomeric_ACE2/Lib2-250301-monomeric_ACE2_55.85_prob_escape.csv">Lib2-250301-monomeric_ACE2 Lib2-250301-monomeric_ACE2_55.85</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250301-monomeric_ACE2/Lib2-250301-monomeric_ACE2_111.7_prob_escape.csv">Lib2-250301-monomeric_ACE2 Lib2-250301-monomeric_ACE2_111.7</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250301-monomeric_ACE2/Lib2-250301-monomeric_ACE2_223.4_prob_escape.csv">Lib2-250301-monomeric_ACE2 Lib2-250301-monomeric_ACE2_223.4</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250301-monomeric_ACE2/Lib2-250301-monomeric_ACE2_446.81_prob_escape.csv">Lib2-250301-monomeric_ACE2 Lib2-250301-monomeric_ACE2_446.81</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250517-monomeric_ACE2/Lib1-250517-monomeric_ACE2_6_prob_escape.csv">Lib1-250517-monomeric_ACE2 Lib1-250517-monomeric_ACE2_6</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250517-monomeric_ACE2/Lib1-250517-monomeric_ACE2_13_prob_escape.csv">Lib1-250517-monomeric_ACE2 Lib1-250517-monomeric_ACE2_13</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250517-monomeric_ACE2/Lib1-250517-monomeric_ACE2_27_prob_escape.csv">Lib1-250517-monomeric_ACE2 Lib1-250517-monomeric_ACE2_27</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250517-monomeric_ACE2/Lib1-250517-monomeric_ACE2_54_prob_escape.csv">Lib1-250517-monomeric_ACE2 Lib1-250517-monomeric_ACE2_54</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib1-250517-monomeric_ACE2/Lib1-250517-monomeric_ACE2_115_prob_escape.csv">Lib1-250517-monomeric_ACE2 Lib1-250517-monomeric_ACE2_115</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250517-monomeric_ACE2/Lib2-250517-monomeric_ACE2_6_prob_escape.csv">Lib2-250517-monomeric_ACE2 Lib2-250517-monomeric_ACE2_6</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250517-monomeric_ACE2/Lib2-250517-monomeric_ACE2_13_prob_escape.csv">Lib2-250517-monomeric_ACE2 Lib2-250517-monomeric_ACE2_13</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250517-monomeric_ACE2/Lib2-250517-monomeric_ACE2_27_prob_escape.csv">Lib2-250517-monomeric_ACE2 Lib2-250517-monomeric_ACE2_27</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250517-monomeric_ACE2/Lib2-250517-monomeric_ACE2_54_prob_escape.csv">Lib2-250517-monomeric_ACE2 Lib2-250517-monomeric_ACE2_54</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/by_selection/Lib2-250517-monomeric_ACE2/Lib2-250517-monomeric_ACE2_115_prob_escape.csv">Lib2-250517-monomeric_ACE2 Lib2-250517-monomeric_ACE2_115</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>ACE2 binding CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/averages/monomeric_ACE2_ultracentrifugated_mut_effect.csv">monomeric_ACE2_ultracentrifugated</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/ACE2_binding/averages/monomeric_ACE2_mut_effect.csv">monomeric_ACE2</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h2 id="integrated-summary-plots">Integrated summary plots</h2>
+<h4 id="all-adult-sera-escape">all adult sera escape</h4>
+<ul>
+<li><a href="htmls/all_adult_sera_escape_overlaid.html">Summary plot (escape overlaid)</a></li>
+<li><a href="htmls/all_adult_sera_escape_faceted.html">Summary plot (escape faceted)</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/all_adult_sera_escape.csv">CSV summarizing results</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/all_adult_sera_escape_per_antibody_escape.csv">CSV summarizing per-antibody results</a></li>
+</ul>
+<h4 id="pre-vaccination-infection">pre vaccination infection</h4>
+<ul>
+<li><a href="htmls/pre_vaccination_infection_overlaid.html">Summary plot (escape overlaid)</a></li>
+<li><a href="htmls/pre_vaccination_infection_faceted.html">Summary plot (escape faceted)</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/pre_vaccination_infection.csv">CSV summarizing results</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/pre_vaccination_infection_per_antibody_escape.csv">CSV summarizing per-antibody results</a></li>
+</ul>
+<h4 id="post-vaccination-infection">post vaccination infection</h4>
+<ul>
+<li><a href="htmls/post_vaccination_infection_overlaid.html">Summary plot (escape overlaid)</a></li>
+<li><a href="htmls/post_vaccination_infection_faceted.html">Summary plot (escape faceted)</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/post_vaccination_infection.csv">CSV summarizing results</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/post_vaccination_infection_per_antibody_escape.csv">CSV summarizing per-antibody results</a></li>
+</ul>
+<h4 id="pre-infection">pre infection</h4>
+<ul>
+<li><a href="htmls/pre_infection_overlaid.html">Summary plot (escape overlaid)</a></li>
+<li><a href="htmls/pre_infection_faceted.html">Summary plot (escape faceted)</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/pre_infection.csv">CSV summarizing results</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/pre_infection_per_antibody_escape.csv">CSV summarizing per-antibody results</a></li>
+</ul>
+<h4 id="pre-vaccination">pre vaccination</h4>
+<ul>
+<li><a href="htmls/pre_vaccination_overlaid.html">Summary plot (escape overlaid)</a></li>
+<li><a href="htmls/pre_vaccination_faceted.html">Summary plot (escape faceted)</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/pre_vaccination.csv">CSV summarizing results</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/pre_vaccination_per_antibody_escape.csv">CSV summarizing per-antibody results</a></li>
+</ul>
+<h4 id="post-infection">post infection</h4>
+<ul>
+<li><a href="htmls/post_infection_overlaid.html">Summary plot (escape overlaid)</a></li>
+<li><a href="htmls/post_infection_faceted.html">Summary plot (escape faceted)</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/post_infection.csv">CSV summarizing results</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/post_infection_per_antibody_escape.csv">CSV summarizing per-antibody results</a></li>
+</ul>
+<h4 id="post-vaccination">post vaccination</h4>
+<ul>
+<li><a href="htmls/post_vaccination_overlaid.html">Summary plot (escape overlaid)</a></li>
+<li><a href="htmls/post_vaccination_faceted.html">Summary plot (escape faceted)</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/post_vaccination.csv">CSV summarizing results</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/post_vaccination_per_antibody_escape.csv">CSV summarizing per-antibody results</a></li>
+</ul>
+<h4 id="sera-group-averages">sera group averages</h4>
+<ul>
+<li><a href="htmls/sera_group_averages_overlaid.html">Summary plot (escape overlaid)</a></li>
+<li><a href="htmls/sera_group_averages_faceted.html">Summary plot (escape faceted)</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/sera_group_averages.csv">CSV summarizing results</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/sera_group_averages_per_antibody_escape.csv">CSV summarizing per-antibody results</a></li>
+</ul>
+<h4 id="antibody-escape">antibody escape</h4>
+<ul>
+<li><a href="htmls/antibody_escape_overlaid.html">Summary plot (escape overlaid)</a></li>
+<li><a href="htmls/antibody_escape_faceted.html">Summary plot (escape faceted)</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/antibody_escape.csv">CSV summarizing results</a></li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/antibody_escape_per_antibody_escape.csv">CSV summarizing per-antibody results</a></li>
+</ul>
+<h2 id="additional-files-and-charts">Additional files and charts</h2>
+<h4 id="comparison-of-escape-pre-and-post-vaccination">Comparison of escape pre and post vaccination</h4>
+<ul>
+<li><a href="htmls/compare_pre_post_escape.html">Interactive chart comparing escape</a></li>
+</ul>
+<h4 id="analysis-of-ace2-binding-data-and-comparison-to-other-experiments">Analysis of ACE2 binding data and comparison to other experiments</h4>
+<ul>
+<li><details><summary>Interactive binding data charts (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/library_binding_corr_html.html">Correlations among library ACE2 binding measurements</a></li>
+<li><a href="htmls/distance_library_binding_corr_html.html">Correlations among library binding measurements by distance from ACE2</a></li>
+<li><a href="htmls/binding_mut_scatter.html">Correlations among experiments for key sites</a></li>
+<li><a href="htmls/binding_corr.html">Correlations among experiments</a></li>
+<li><a href="htmls/binding_dist.html">Distribution of RBD and non-RBD ACE2 binding</a></li>
+<li><a href="htmls/binding_entry_corr.html">Correlation of ACE2 binding to viral entry</a></li>
+<li><a href="htmls/binding_ecape_corr.html">Correlation of ACE2 binding to viral escape</a></li>
+</ul></details>
+
+</li>
+<li><a href="https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/binding_comparison/merged_binding.csv">CSV of ACE2 binding from different experiments</a></li>
+</ul>
+<h4 id="notebook-comparing-binding-vs-escape-at-key-sites"><a href="notebooks/binding_vs_escape.html">Notebook comparing binding vs escape at key sites</a></h4>
+<h4 id="sites-that-affect-rbd-updown-conformation"><a href="htmls/RBD_up_down_chart_html.html">Sites that affect RBD up/down conformation</a></h4>
+<h4 id="analysis-of-mutational-effects-on-cell-entry">Analysis of mutational effects on cell entry</h4>
+<ul>
+<li><details><summary>Interactive entry data charts (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/strain_corr.html">Correlation of cell entry effects among strains</a></li>
+<li><a href="htmls/effects_boxplot.html">Distribution of cell entry effects</a></li>
+<li><a href="htmls/key_mutations.html">Effects of key mutations on cell entry</a></li>
+</ul></details>
+
+</li>
+</ul>

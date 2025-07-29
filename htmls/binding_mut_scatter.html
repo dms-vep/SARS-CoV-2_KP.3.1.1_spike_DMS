@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"hconcat": [{"layer": [{"data": {"name": "empty"}, "mark": {"type": "rule", "color": "gray", "opacity": 0.4, "strokeDash": [6, 6], "strokeWidth": 3}, "encoding": {"x": {"datum": -0.37620000000000003}, "x2": {"datum": 0.675}, "y": {"datum": -0.37620000000000003}, "y2": {"datum": 0.675}}}, {"data": {"name": "data-af7852aecd48608757781814cf85ac31"}, "mark": {"type": "text", "fontWeight": 700, "opacity": 0.75, "size": 20, "stroke": "black", "strokeOpacity": 1, "strokeWidth": 0.4}, "encoding": {"color": {"field": "color", "scale": null, "type": "nominal"}, "text": {"field": "mutant", "type": "nominal"}, "tooltip": [{"field": "mutant", "type": "nominal"}, {"field": "KP_3_1_1 full spike lentivirus", "format": ".2f", "type": "quantitative"}, {"field": "XBB_1_5 RBD", "format": ".2f", "type": "quantitative"}], "x": {"axis": {"titleFontSize": 15, "titleFontWeight": "normal"}, "field": "KP_3_1_1 full spike lentivirus", "scale": {"domain": [-0.37620000000000003, 0.675], "nice": false}, "title": "KP.3.1.1", "type": "quantitative"}, "y": {"axis": {"titleFontSize": 15, "titleFontWeight": "normal"}, "field": "XBB_1_5 RBD", "scale": {"domain": [-0.37620000000000003, 0.675], "nice": false}, "title": "XBB.1.5", "type": "quantitative"}}, "title": {"text": "site 435", "fontSize": 15}}], "height": 200, "width": 200}, {"layer": [{"data": {"name": "empty"}, "mark": {"type": "rule", "color": "gray", "opacity": 0.4, "strokeDash": [6, 6], "strokeWidth": 3}, "encoding": {"x": {"datum": -2.6807}, "x2": {"datum": 1.8037}, "y": {"datum": -2.6807}, "y2": {"datum": 1.8037}}}, {"data": {"name": "data-325cc50e7f274052591448832f7fad7b"}, "mark": {"type": "text", "fontWeight": 700, "opacity": 0.75, "size": 20, "stroke": "black", "strokeOpacity": 1, "strokeWidth": 0.4}, "encoding": {"color": {"field": "color", "scale": null, "type": "nominal"}, "text": {"field": "mutant", "type": "nominal"}, "tooltip": [{"field": "mutant", "type": "nominal"}, {"field": "KP_3_1_1 full spike lentivirus", "format": ".2f", "type": "quantitative"}, {"field": "XBB_1_5 RBD", "format": ".2f", "type": "quantitative"}], "x": {"axis": {"titleFontSize": 15, "titleFontWeight": "normal"}, "field": "KP_3_1_1 full spike lentivirus", "scale": {"domain": [-2.6807, 1.8037], "nice": false}, "title": "KP.3.1.1", "type": "quantitative"}, "y": {"axis": {"titleFontSize": 15, "titleFontWeight": "normal"}, "field": "XBB_1_5 RBD", "scale": {"domain": [-2.6807, 1.8037], "nice": false}, "title": "XBB.1.5", "type": "quantitative"}}, "title": {"text": "site 493", "fontSize": 15}}], "height": 200, "width": 200}]}], "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"empty": [{}], "data-af7852aecd48608757781814cf85ac31": [{"mutant": "A", "KP_3_1_1 full spike lentivirus": 0.0, "XBB_1_5 RBD": 0.0, "color": "#f76ab4"}, {"mutant": "S", "KP_3_1_1 full spike lentivirus": 0.5874, "XBB_1_5 RBD": -0.2057, "color": "#ff7f00"}, {"mutant": "T", "KP_3_1_1 full spike lentivirus": 0.2585, "XBB_1_5 RBD": -0.2886, "color": "#ff7f00"}, {"mutant": "V", "KP_3_1_1 full spike lentivirus": 0.07534, "XBB_1_5 RBD": 0.3477, "color": "#12ab0d"}], "data-325cc50e7f274052591448832f7fad7b": [{"mutant": "D", "KP_3_1_1 full spike lentivirus": 1.254, "XBB_1_5 RBD": -2.307, "color": "#e41a1c"}, {"mutant": "E", "KP_3_1_1 full spike lentivirus": 0.0, "XBB_1_5 RBD": -1.204, "color": "#e41a1c"}, {"mutant": "H", "KP_3_1_1 full spike lentivirus": 0.02349, "XBB_1_5 RBD": 0.3874, "color": "#3c58e5"}, {"mutant": "I", "KP_3_1_1 full spike lentivirus": -1.198, "XBB_1_5 RBD": 0.4112, "color": "#12ab0d"}, {"mutant": "K", "KP_3_1_1 full spike lentivirus": -2.133, "XBB_1_5 RBD": -0.552, "color": "#3c58e5"}, {"mutant": "M", "KP_3_1_1 full spike lentivirus": -0.08529, "XBB_1_5 RBD": 0.3395, "color": "#12ab0d"}, {"mutant": "N", "KP_3_1_1 full spike lentivirus": 1.422, "XBB_1_5 RBD": -0.464, "color": "#972aa8"}, {"mutant": "Q", "KP_3_1_1 full spike lentivirus": -0.1041, "XBB_1_5 RBD": 0.0, "color": "#972aa8"}, {"mutant": "R", "KP_3_1_1 full spike lentivirus": 0.3138, "XBB_1_5 RBD": -1.19, "color": "#3c58e5"}, {"mutant": "S", "KP_3_1_1 full spike lentivirus": 0.05299, "XBB_1_5 RBD": -0.2093, "color": "#ff7f00"}, {"mutant": "T", "KP_3_1_1 full spike lentivirus": -0.5088, "XBB_1_5 RBD": 0.08923, "color": "#ff7f00"}, {"mutant": "V", "KP_3_1_1 full spike lentivirus": -0.515, "XBB_1_5 RBD": 1.43, "color": "#12ab0d"}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
