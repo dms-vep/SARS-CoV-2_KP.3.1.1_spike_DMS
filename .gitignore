@@ -3,8 +3,10 @@ _*
 *.out
 
 !.gitignore
-!.gitignore
 !.gitmodules
+!.github/
+!.github/workflows/
+!.github/workflows/deploy.yaml
 
 results/*
 
