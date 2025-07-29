@@ -82,3 +82,13 @@ KP311_validation_notebooks/.*
 
 
 notebooks/data_scripts_plots.tar.gz
+
+node_modules/
+!homepage/.vitepress/
+homepage/.vitepress/cache/
+homepage/.vitepress/dist/
+
+
+!results/dms-viz
+results/dms-viz/*
+!results/dms-viz/*.json
