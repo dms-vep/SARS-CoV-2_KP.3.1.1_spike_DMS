@@ -1,6 +1,6 @@
 # Deep mutational scanning of SARS-CoV-2 KP.3.1.1 spike 
 
-For documentation of the analysis, see [https://dms-vep.github.io/SARS-CoV-2_KP.3.1.1_spike_DMS/](https://dms-vep.github.io/SARS-CoV-2_KP.3.1.1_spike_DMS/)
+For documentation of the analysis, see [https://dms-vep.org/SARS-CoV-2_KP.3.1.1_spike_DMS/](https://dms-vep.org/SARS-CoV-2_KP.3.1.1_spike_DMS/)
 
 ## Organization of this repo
 
