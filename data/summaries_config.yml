@@ -15,7 +15,7 @@ summary_default: &summary_default
   antibody_escape: {}
   other_phenotypes:
     spike mediated entry:
-      csv: results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv
+      csv: results/func_effects/averages/293T_medium_ACE2_entry_func_effects.csv
       stat: effect  # column to plot
       positive_color: "#009E73"  # green
       negative_color: "#F0E442"  # yellow
@@ -245,7 +245,7 @@ antibody_escape:
         VYD222: results/antibody_escape/averages/mAb_VYD222_mut_effect.csv
   other_phenotypes:
     spike mediated entry:
-      csv: results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv
+      csv: results/func_effects/averages/293T_medium_ACE2_entry_func_effects.csv
       stat: effect  # column to plot
       positive_color: "#009E73"  # green
       negative_color: "#F0E442"  # yellow
