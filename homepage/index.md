@@ -16,10 +16,10 @@ features:
     details: Mutation effects on neutralization by the BD55-1205, SA55 and VYD222 monoclonal antibodies
     link: /antibody_escape
   - title: Receptor binding
-    details: Mutation effects on ACE2 binding
+    details: Mutation effects on full-spike ACE2 binding
     link: /receptor_binding
-  - title: RBD up/down motion
-    details: Sites that regulate RBD up/down motion
+  - title: RBD up/down conformation
+    details: Sites that regulate RBD up/down conformation
     link: /RBD_movement
 ---
 
