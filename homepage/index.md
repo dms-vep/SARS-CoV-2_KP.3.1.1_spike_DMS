@@ -31,4 +31,4 @@ The measurements were all made using non-replicative lentiviral pseudotyped part
 The links in the gray boxes above take you to pages with details about the experimental measurements of the effects of mutations on different spike phenotypes, as well as interactive visualizations and links to the numerical measurements for each mutation.
 
 For the full computer code and numerical results, see the GitHub repo at [https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS](https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS).
-For full documentation of the analysis pipeline, see the Appendix at [http://localhost:5173/SARS-CoV-2_KP.3.1.1_spike_DMS/appendix.html](http://localhost:5173/SARS-CoV-2_KP.3.1.1_spike_DMS/appendix.html).
+For full documentation of the analysis pipeline, see the [Appendix](appendix.html){target="_self"}.
