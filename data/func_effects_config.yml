@@ -109,7 +109,7 @@ avg_func_effects:
     selections:
       - Lib1-250213_high_ACE2
       - Lib2-250213_high_ACE2
-  293T_high_ACE2_entry:
+  293T_medium_ACE2_entry:
     <<: *avg_func_effects_default
     selections:
       - Lib2-250213_IGM

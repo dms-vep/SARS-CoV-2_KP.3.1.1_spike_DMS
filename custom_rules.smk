@@ -29,7 +29,7 @@ rule compare_pre_post_escape:
             antibody=avg_assay_config["antibody_escape"],
         ),
         site_numbering_map=config["site_numbering_map"],
-        func_effects="results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv",
+        func_effects="results/func_effects/averages/293T_medium_ACE2_entry_func_effects.csv",
         nb="notebooks/compare_pre_post_escape.ipynb",
     output:
         chart="results/escape_comparisons/compare_pre_post_escape.html",
@@ -138,7 +138,7 @@ rule compare_binding:
 rule func_effects_dist:
     """Distribution of functional effects and correlation with natural sequences."""
     input:
-        KP311_func_effects_csv="results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv",
+        KP311_func_effects_csv="results/func_effects/averages/293T_medium_ACE2_entry_func_effects.csv",
         site_numbering_map_csv=config["site_numbering_map"],
         nb="notebooks/func_effects_dist.ipynb",
     output:
@@ -173,7 +173,7 @@ rule mutation_binding_effects:
     input:
         binding_effects_csv = 'results/ACE2_binding/averages/monomeric_ACE2_mut_effect.csv',
         site_numbering_map_csv=config["site_numbering_map"],
-        entry_effects_csv = 'results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv',
+        entry_effects_csv = 'results/func_effects/averages/293T_medium_ACE2_entry_func_effects.csv',
         nb="notebooks/mutation_binding_effects.ipynb",
     output:
         library_binding_corr = "results/func_effects_analyses/library_binding_corr_html.html",

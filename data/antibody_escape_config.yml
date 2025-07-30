@@ -109,7 +109,7 @@ escape_plot_kwargs_default: &escape_plot_kwargs_default
 #   - `init`: initial value of slider
 plot_hide_stats_default: &plot_hide_stats_default
   functional effect:
-    csv: results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv
+    csv: results/func_effects/averages/293T_medium_ACE2_entry_func_effects.csv
     csv_col: effect
     init: -3
     min_filters:
@@ -894,7 +894,7 @@ ACE2_binding_polyclonal_params_default: &ACE2_binding_polyclonal_params_default
 # default stats to hide cells on plot of receptor affinity
 ACE2_binding_plot_hide_stats_default: &ACE2_binding_plot_hide_stats_default
   functional effect:
-    csv: results/func_effects/averages/293T_high_ACE2_entry_func_effects.csv
+    csv: results/func_effects/averages/293T_medium_ACE2_entry_func_effects.csv
     csv_col: effect
     init: -2
     min_filters:
