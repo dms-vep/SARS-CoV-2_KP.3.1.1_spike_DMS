@@ -7595,22 +7595,22 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_injected-parameters" id="cell-id=ccac3b59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_injected-parameters" id="cell-id=fbd0104d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Parameters</span>
-<span class="n">gene_sequence_codon</span> <span class="o">=</span> <span class="s2">"../results/gene_sequence/codon.fasta"</span>
-<span class="n">gene_sequence_protein</span> <span class="o">=</span> <span class="s2">"../results/gene_sequence/protein.fasta"</span>
-<span class="n">site_numbering_map_csv</span> <span class="o">=</span> <span class="s2">"../../data/site_numbering_map.csv"</span>
-<span class="n">neut_standard_barcodes</span> <span class="o">=</span> <span class="s2">"../../data/neutralization_standard_barcodes.csv"</span>
-<span class="n">mutation_design_classification_csv</span> <span class="o">=</span> <span class="s2">"../../data/mutation_design_classification.csv"</span>
+<span class="n">gene_sequence_codon</span> <span class="o">=</span> <span class="s2">"results/gene_sequence/codon.fasta"</span>
+<span class="n">gene_sequence_protein</span> <span class="o">=</span> <span class="s2">"results/gene_sequence/protein.fasta"</span>
+<span class="n">site_numbering_map_csv</span> <span class="o">=</span> <span class="s2">"data/site_numbering_map.csv"</span>
+<span class="n">neut_standard_barcodes</span> <span class="o">=</span> <span class="s2">"data/neutralization_standard_barcodes.csv"</span>
+<span class="n">mutation_design_classification_csv</span> <span class="o">=</span> <span class="s2">"data/mutation_design_classification.csv"</span>
 <span class="n">mutation_design_classification_site_col</span> <span class="o">=</span> <span class="s2">"sequential_site"</span>
-<span class="n">codon_variants</span> <span class="o">=</span> <span class="s2">"../results/variants/codon_variants.csv"</span>
+<span class="n">codon_variants</span> <span class="o">=</span> <span class="s2">"results/variants/codon_variants.csv"</span>
 </pre></div>
 </div>
 </div>
@@ -7632,7 +7632,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Reading neutralization standard barcodes from </span><span class="si">{</span><span class="n">neut_standard_barcodes</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
@@ -7655,7 +7655,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Reading neutralization standard barcodes from neut_standard_barcodes='../../data/neutralization_standard_barcodes.csv'
+<pre>Reading neutralization standard barcodes from neut_standard_barcodes='data/neutralization_standard_barcodes.csv'
 Neutralization standard barcodes:
 </pre>
 </div>
@@ -7716,7 +7716,7 @@ Neutralization standard barcodes:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nt_variants</span> <span class="o">=</span> <span class="s2">"results/variants/nt_variants.csv"</span>
@@ -7743,78 +7743,8 @@ Neutralization standard barcodes:
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Reading gene variants from results/variants/nt_variants.csv
+The gene variants and neutralization standards have distinct barcodes.
 </pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[13], line 3</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> nt_variants <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">results/variants/nt_variants.csv</span><span style="color: rgb(175,0,0)">"</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">Reading gene variants from </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>nt_variants<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span style="color: rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg">----&gt; 3</span> gene_variants <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">pd</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">read_csv</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">nt_variants</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">na_filter</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">False</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> shared <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">set</span>(neut_standard[<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">barcode</span><span style="color: rgb(175,0,0)">"</span>])<span style="color: rgb(98,98,98)">.</span>intersection(gene_variants[<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">barcode</span><span style="color: rgb(175,0,0)">"</span>])
-<span class="ansi-green-intense-fg ansi-bold">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> shared:
-
-File <span class="ansi-green-fg">~/miniconda3/envs/dms-vep-pipeline-3/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1026</span>, in <span class="ansi-cyan-fg">read_csv</span><span class="ansi-blue-fg">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1013</span> kwds_defaults <span style="color: rgb(98,98,98)">=</span> _refine_defaults_read(
-<span class="ansi-green-intense-fg ansi-bold">   1014</span>     dialect,
-<span class="ansi-green-intense-fg ansi-bold">   1015</span>     delimiter,
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1022</span>     dtype_backend<span style="color: rgb(98,98,98)">=</span>dtype_backend,
-<span class="ansi-green-intense-fg ansi-bold">   1023</span> )
-<span class="ansi-green-intense-fg ansi-bold">   1024</span> kwds<span style="color: rgb(98,98,98)">.</span>update(kwds_defaults)
-<span class="ansi-green-fg">-&gt; 1026</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">_read</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">filepath_or_buffer</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kwds</span><span class="ansi-yellow-bg">)</span>
-
-File <span class="ansi-green-fg">~/miniconda3/envs/dms-vep-pipeline-3/lib/python3.12/site-packages/pandas/io/parsers/readers.py:620</span>, in <span class="ansi-cyan-fg">_read</span><span class="ansi-blue-fg">(filepath_or_buffer, kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">    617</span> _validate_names(kwds<span style="color: rgb(98,98,98)">.</span>get(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">names</span><span style="color: rgb(175,0,0)">"</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>))
-<span class="ansi-green-intense-fg ansi-bold">    619</span> <span style="color: rgb(95,135,135)"># Create the parser.</span>
-<span class="ansi-green-fg">--&gt; 620</span> parser <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">TextFileReader</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">filepath_or_buffer</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">kwds</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    622</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> chunksize <span class="ansi-bold" style="color: rgb(175,0,255)">or</span> iterator:
-<span class="ansi-green-intense-fg ansi-bold">    623</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> parser
-
-File <span class="ansi-green-fg">~/miniconda3/envs/dms-vep-pipeline-3/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1620</span>, in <span class="ansi-cyan-fg">TextFileReader.__init__</span><span class="ansi-blue-fg">(self, f, engine, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1617</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>options[<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">has_index_names</span><span style="color: rgb(175,0,0)">"</span>] <span style="color: rgb(98,98,98)">=</span> kwds[<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">has_index_names</span><span style="color: rgb(175,0,0)">"</span>]
-<span class="ansi-green-intense-fg ansi-bold">   1619</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>handles: IOHandles <span style="color: rgb(98,98,98)">|</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span> <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
-<span class="ansi-green-fg">-&gt; 1620</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_engine <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">_make_engine</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">f</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">engine</span><span class="ansi-yellow-bg">)</span>
-
-File <span class="ansi-green-fg">~/miniconda3/envs/dms-vep-pipeline-3/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1880</span>, in <span class="ansi-cyan-fg">TextFileReader._make_engine</span><span class="ansi-blue-fg">(self, f, engine)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1878</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">b</span><span style="color: rgb(175,0,0)">"</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> mode:
-<span class="ansi-green-intense-fg ansi-bold">   1879</span>         mode <span style="color: rgb(98,98,98)">+</span><span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">b</span><span style="color: rgb(175,0,0)">"</span>
-<span class="ansi-green-fg">-&gt; 1880</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>handles <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">get_handle</span><span class="ansi-yellow-bg">(</span>
-<span class="ansi-green-intense-fg ansi-bold">   1881</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">f</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1882</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">mode</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1883</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">encoding</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">options</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">get</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">encoding</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">None</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1884</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">compression</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">options</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">get</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">compression</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">None</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1885</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">memory_map</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">options</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">get</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">memory_map</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">False</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1886</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">is_text</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">is_text</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1887</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">errors</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">options</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">get</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">encoding_errors</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">strict</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1888</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">storage_options</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">options</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">get</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">storage_options</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">None</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   1889</span> <span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1890</span> <span class="ansi-bold" style="color: rgb(0,135,0)">assert</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>handles <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
-<span class="ansi-green-intense-fg ansi-bold">   1891</span> f <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>handles<span style="color: rgb(98,98,98)">.</span>handle
-
-File <span class="ansi-green-fg">~/miniconda3/envs/dms-vep-pipeline-3/lib/python3.12/site-packages/pandas/io/common.py:873</span>, in <span class="ansi-cyan-fg">get_handle</span><span class="ansi-blue-fg">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    868</span> <span class="ansi-bold" style="color: rgb(0,135,0)">elif</span> <span style="color: rgb(0,135,0)">isinstance</span>(handle, <span style="color: rgb(0,135,0)">str</span>):
-<span class="ansi-green-intense-fg ansi-bold">    869</span>     <span style="color: rgb(95,135,135)"># Check whether the filename is to be opened in binary mode.</span>
-<span class="ansi-green-intense-fg ansi-bold">    870</span>     <span style="color: rgb(95,135,135)"># Binary mode does not support 'encoding' and 'newline'.</span>
-<span class="ansi-green-intense-fg ansi-bold">    871</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> ioargs<span style="color: rgb(98,98,98)">.</span>encoding <span class="ansi-bold" style="color: rgb(175,0,255)">and</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">b</span><span style="color: rgb(175,0,0)">"</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> ioargs<span style="color: rgb(98,98,98)">.</span>mode:
-<span class="ansi-green-intense-fg ansi-bold">    872</span>         <span style="color: rgb(95,135,135)"># Encoding</span>
-<span class="ansi-green-fg">--&gt; 873</span>         handle <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">open</span><span class="ansi-yellow-bg">(</span>
-<span class="ansi-green-intense-fg ansi-bold">    874</span> <span class="ansi-yellow-bg">            </span><span class="ansi-yellow-bg">handle</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    875</span> <span class="ansi-yellow-bg">            </span><span class="ansi-yellow-bg">ioargs</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">mode</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    876</span> <span class="ansi-yellow-bg">            </span><span class="ansi-yellow-bg">encoding</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">ioargs</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">encoding</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    877</span> <span class="ansi-yellow-bg">            </span><span class="ansi-yellow-bg">errors</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">errors</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    878</span> <span class="ansi-yellow-bg">            </span><span class="ansi-yellow-bg">newline</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">"</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    879</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    880</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
-<span class="ansi-green-intense-fg ansi-bold">    881</span>         <span style="color: rgb(95,135,135)"># Binary mode</span>
-<span class="ansi-green-intense-fg ansi-bold">    882</span>         handle <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">open</span>(handle, ioargs<span style="color: rgb(98,98,98)">.</span>mode)
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: 'results/variants/nt_variants.csv'</pre>
 </div>
 </div>
 </div>
@@ -7832,12 +7762,12 @@ Note that we use the <code>allowgaps</code> option as gaps are being allowed:</p
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ce06cdb3-63e8-48d0-a906-0a8d9b2b619f">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ce06cdb3-63e8-48d0-a906-0a8d9b2b619f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># get wildtype gene sequence</span>
@@ -7879,6 +7809,19 @@ Note that we use the <code>allowgaps</code> option as gaps are being allowed:</p
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Read gene of length 3744 nucleotides as primary target
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=923935d0-0cf0-454b-9bf1-0e3042d00c84">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -7895,7 +7838,7 @@ Note that we use the <code>allowgaps</code> option as gaps are being allowed:</p
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># distribution of amino-acid mutations per variant</span>
@@ -7919,23 +7862,8 @@ Note that we use the <code>allowgaps</code> option as gaps are being allowed:</p
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[5], line 2</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(95,135,135)"># distribution of amino-acid mutations per variant</span>
-<span class="ansi-green-fg">----&gt; 2</span> p <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">variants</span><span style="color: rgb(98,98,98)">.</span>plotNumMutsHistogram(
-<span class="ansi-green-intense-fg ansi-bold">      3</span>     mut_type<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">aa</span><span style="color: rgb(175,0,0)">"</span>,
-<span class="ansi-green-intense-fg ansi-bold">      4</span>     max_muts<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">8</span>,
-<span class="ansi-green-intense-fg ansi-bold">      5</span>     widthscale<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">1.3</span>,
-<span class="ansi-green-intense-fg ansi-bold">      6</span>     heightscale<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">1</span>,
-<span class="ansi-green-intense-fg ansi-bold">      7</span>     libraries<span style="color: rgb(98,98,98)">=</span>variants<span style="color: rgb(98,98,98)">.</span>libraries,
-<span class="ansi-green-intense-fg ansi-bold">      8</span>     samples<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">None</span>,
-<span class="ansi-green-intense-fg ansi-bold">      9</span> )
-<span class="ansi-green-intense-fg ansi-bold">     10</span> fig <span style="color: rgb(98,98,98)">=</span> p<span style="color: rgb(98,98,98)">.</span>draw(show<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'variants' is not defined</pre>
+<div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
+<img alt="No description has been provided for this image" class="" src="data:image/png;base64,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"/>
 </div>
 </div>
 </div>
@@ -8035,23 +7963,23 @@ Cell <span class="ansi-green-fg">In[5], line 2</span>
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <style>
-  #altair-viz-44050053d4de4bbca18822887f5727d8.vega-embed {
+  #altair-viz-78664f7a4e3c4b33b29154384a5b77bc.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-44050053d4de4bbca18822887f5727d8.vega-embed details,
-  #altair-viz-44050053d4de4bbca18822887f5727d8.vega-embed details summary {
+  #altair-viz-78664f7a4e3c4b33b29154384a5b77bc.vega-embed details,
+  #altair-viz-78664f7a4e3c4b33b29154384a5b77bc.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-44050053d4de4bbca18822887f5727d8"></div>
+<div id="altair-viz-78664f7a4e3c4b33b29154384a5b77bc"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-44050053d4de4bbca18822887f5727d8") {
-      outputDiv = document.getElementById("altair-viz-44050053d4de4bbca18822887f5727d8");
+    if (outputDiv.id !== "altair-viz-78664f7a4e3c4b33b29154384a5b77bc") {
+      outputDiv = document.getElementById("altair-viz-78664f7a4e3c4b33b29154384a5b77bc");
     }
 
     const paths = {
@@ -8333,7 +8261,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/loc/scratch/25785316/ipykernel_22522/578285783.py:40: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+<pre>/loc/scratch/28065016/ipykernel_31580/578285783.py:40: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
 /fh/fast/bloom_j/computational_notebooks/bdadonai/2025/SARS-CoV-2_KP.3.1.1_spike_DMS/.snakemake/conda/92ba7412cf55ee5d47c61c431d1bed6f_/lib/python3.12/site-packages/upsetplot/plotting.py:795: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
 The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
 
@@ -8370,7 +8298,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/loc/scratch/25785316/ipykernel_22522/578285783.py:40: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+<pre>/loc/scratch/28065016/ipykernel_31580/578285783.py:40: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
 /fh/fast/bloom_j/computational_notebooks/bdadonai/2025/SARS-CoV-2_KP.3.1.1_spike_DMS/.snakemake/conda/92ba7412cf55ee5d47c61c431d1bed6f_/lib/python3.12/site-packages/upsetplot/plotting.py:795: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
 The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
 
@@ -8407,7 +8335,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/loc/scratch/25785316/ipykernel_22522/578285783.py:40: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+<pre>/loc/scratch/28065016/ipykernel_31580/578285783.py:40: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
 /fh/fast/bloom_j/computational_notebooks/bdadonai/2025/SARS-CoV-2_KP.3.1.1_spike_DMS/.snakemake/conda/92ba7412cf55ee5d47c61c431d1bed6f_/lib/python3.12/site-packages/upsetplot/plotting.py:795: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
 The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
 
@@ -8444,7 +8372,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/loc/scratch/25785316/ipykernel_22522/578285783.py:40: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+<pre>/loc/scratch/28065016/ipykernel_31580/578285783.py:40: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
 /fh/fast/bloom_j/computational_notebooks/bdadonai/2025/SARS-CoV-2_KP.3.1.1_spike_DMS/.snakemake/conda/92ba7412cf55ee5d47c61c431d1bed6f_/lib/python3.12/site-packages/upsetplot/plotting.py:795: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
 The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
 
@@ -8631,23 +8559,23 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <style>
-  #altair-viz-d9bf6845f8ad4248a7fd4e366490b5d4.vega-embed {
+  #altair-viz-57983c26a31f493586df4f7ead9da354.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-d9bf6845f8ad4248a7fd4e366490b5d4.vega-embed details,
-  #altair-viz-d9bf6845f8ad4248a7fd4e366490b5d4.vega-embed details summary {
+  #altair-viz-57983c26a31f493586df4f7ead9da354.vega-embed details,
+  #altair-viz-57983c26a31f493586df4f7ead9da354.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-d9bf6845f8ad4248a7fd4e366490b5d4"></div>
+<div id="altair-viz-57983c26a31f493586df4f7ead9da354"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-d9bf6845f8ad4248a7fd4e366490b5d4") {
-      outputDiv = document.getElementById("altair-viz-d9bf6845f8ad4248a7fd4e366490b5d4");
+    if (outputDiv.id !== "altair-viz-57983c26a31f493586df4f7ead9da354") {
+      outputDiv = document.getElementById("altair-viz-57983c26a31f493586df4f7ead9da354");
     }
 
     const paths = {
@@ -8873,23 +8801,23 @@ You can also use the scroll wheel on the mouse to zoom the x-axis:</p>
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <style>
-  #altair-viz-ac2e4382a01c4a2291794c6950ae117f.vega-embed {
+  #altair-viz-b453fb86813f4dbf9ae7c04cc75fba4a.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ac2e4382a01c4a2291794c6950ae117f.vega-embed details,
-  #altair-viz-ac2e4382a01c4a2291794c6950ae117f.vega-embed details summary {
+  #altair-viz-b453fb86813f4dbf9ae7c04cc75fba4a.vega-embed details,
+  #altair-viz-b453fb86813f4dbf9ae7c04cc75fba4a.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ac2e4382a01c4a2291794c6950ae117f"></div>
+<div id="altair-viz-b453fb86813f4dbf9ae7c04cc75fba4a"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ac2e4382a01c4a2291794c6950ae117f") {
-      outputDiv = document.getElementById("altair-viz-ac2e4382a01c4a2291794c6950ae117f");
+    if (outputDiv.id !== "altair-viz-b453fb86813f4dbf9ae7c04cc75fba4a") {
+      outputDiv = document.getElementById("altair-viz-b453fb86813f4dbf9ae7c04cc75fba4a");
     }
 
     const paths = {

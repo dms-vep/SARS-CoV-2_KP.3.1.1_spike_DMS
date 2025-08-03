@@ -45,16 +45,6 @@ global_epistasis_params: &global_epistasis_params
 #  - `func_score_params`: parameters for computing functional scores
 #  - `global_epistasis_params`: parameters for fitting global epistasis model
 func_scores:
-  Lib1-250213_high_ACE2:
-    pre_selection_sample: Lib1-250213-VSVG_control_293T
-    post_selection_sample: Lib1-250213-no-antibody_control_293TACE2
-    func_score_params: *func_scores_params_default
-    global_epistasis_params: *global_epistasis_params
-  Lib2-250213_high_ACE2:
-    pre_selection_sample: Lib2-250213-VSVG_control_293T
-    post_selection_sample: Lib2-250213-no-antibody_control_293TACE2
-    func_score_params: *func_scores_params_default
-    global_epistasis_params: *global_epistasis_params
   Lib1-250213_IGM:
     pre_selection_sample: Lib1-250517-VSVG-control
     post_selection_sample: Lib1-250517-no-antibody-control
@@ -104,11 +94,6 @@ avg_func_effects_default: &avg_func_effects_default
 
 # Define the functional effect conditions to average
 avg_func_effects:
-  293T_high_ACE2_entry_ultracentrifugated:
-    <<: *avg_func_effects_default
-    selections:
-      - Lib1-250213_high_ACE2
-      - Lib2-250213_high_ACE2
   293T_medium_ACE2_entry:
     <<: *avg_func_effects_default
     selections:
