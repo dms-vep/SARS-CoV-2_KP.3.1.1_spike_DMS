@@ -207,14 +207,18 @@ rule binding_vs_escape:
         nb="results/notebooks/binding_vs_escape.ipynb",
         RBD_up_down_chart_html = "results/binding_vs_escape/RBD_up_down_chart_html.html",
         logoplot_subdir=directory("results/binding_vs_escape/logoplots"),
+        RBD_up_down_subdir=directory("results/RBD_up_down"),
+        RBD_up_down_csv = "results/RBD_up_down/RBD_up_down_sites.csv",
     params:
         yaml=lambda _, input, output: yaml_str(
             {
                 "dms_csv": input.dms_csv,
                 "logoplot_subdir": output.logoplot_subdir,
+                "RBD_up_down_subdir": output.RBD_up_down_subdir,
                 "min_cell_entry": -2,
                 "min_mutations_at_site": 5,
                 "RBD_up_down_chart_html": output.RBD_up_down_chart_html,
+                "RBD_up_down_csv": output.RBD_up_down_csv,
             }
         ),
     log:

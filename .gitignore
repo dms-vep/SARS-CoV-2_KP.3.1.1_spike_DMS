@@ -70,6 +70,10 @@ results/ACE2_binding/averages/*
 results/binding_comparison/*
 !results/binding_comparison/merged_binding.csv
 
+!results/RBD_up_down
+results/RBD_up_down/*
+!results/RBD_up_down/RBD_up_down_sites.csv
+
 !results/summaries
 results/summaries/*
 !results/summaries/*.csv
