@@ -65,10 +65,8 @@ rule merge_sera_group_escape:
         csvs=[
             f"results/summaries/{group}.csv"
             for group in [
-                "pre_infection",
-                "post_infection",
-                "pre_vaccination",
-                "post_vaccination",
+                "pre_vaccination_infection",
+                "post_vaccination_infection",
             ]
         ],
     output:

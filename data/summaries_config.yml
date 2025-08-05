@@ -187,38 +187,22 @@ sera_group_averages:
   selectable_per_antibody_heatmap: False  # does heatmap allow per-antibody selection?
   init_floor_escape_at_zero: True  # initially floor site escape to be >= 0?
   antibody_escape:
-    Pre infection:
-      stat: Pre infection escape
+    Pre vaccination or infection:
+      stat: Pre vaccination or infection escape
       positive_color: "#56B4E9"  # light blue, positive heatmap color
       negative_color: "#E69F00"  # orange, negative heatmap color
       max_at_least: 1  # make heatmap max at least
       min_at_least: -1  # make heatmap min at least this
       antibody_list:
-        Pre infection: results/summaries/merged_sera_group_escape.csv
-    Post infection:
-      stat: Post infection escape
+        Pre vaccination or infection: results/summaries/merged_sera_group_escape.csv
+    Post vaccination or infection:
+      stat: Post vaccination or infection escape
       positive_color: "#56B4E9"  # light blue, positive heatmap color
       negative_color: "#E69F00"  # orange, negative heatmap color
       max_at_least: 1  # make heatmap max at least
       min_at_least: -1  # make heatmap min at least this
       antibody_list:
-        Post infection: results/summaries/merged_sera_group_escape.csv
-    Pre vaccination:
-      stat: Pre vaccination escape
-      positive_color: "#56B4E9"  # light blue, positive heatmap color
-      negative_color: "#E69F00"  # orange, negative heatmap color
-      max_at_least: 1  # make heatmap max at least
-      min_at_least: -1  # make heatmap min at least this
-      antibody_list:
-        Pre vaccination: results/summaries/merged_sera_group_escape.csv
-    Post vaccination:
-      stat: Post vaccination escape
-      positive_color: "#56B4E9"  # light blue, positive heatmap color
-      negative_color: "#E69F00"  # orange, negative heatmap color
-      max_at_least: 1  # make heatmap max at least
-      min_at_least: -1  # make heatmap min at least this
-      antibody_list:
-        Post vaccination: results/summaries/merged_sera_group_escape.csv
+        Post vaccination or infection: results/summaries/merged_sera_group_escape.csv
 
 antibody_escape:
   min_times_seen: 2  # only include mutations with times_seen >= this

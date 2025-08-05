@@ -68,3 +68,4 @@ Click [here](https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercont
 
 ## Numerical data
 Click [here](https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/antibody_escape.csv) for a CSV with the numerical escape values.
+Note that for the plots above we have filtered this CSV to only mutations with at least some minimal cell entry as indicated by the sliders below the plots.

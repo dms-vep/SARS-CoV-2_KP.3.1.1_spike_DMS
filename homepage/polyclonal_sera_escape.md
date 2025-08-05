@@ -14,15 +14,13 @@ Below are several ways to explore these data:
 The plot below is interactive, and allows you to zoom and mouseover sites and mutations.
 Click on the expansion box in the upper right of the plot to enlarge it for easier viewing, or click [here](htmls/sera_group_averages_overlaid.html){target="_self"} for a standalone version of the plot.
 The line plots summarize the effects of mutations at each measured site, while the heatmaps below show the effects of individual mutations.
-Each panel groups all pre- or post- infection or vaccination sera.
+Each panel groups all pre- or post- infection/vaccination sera.
 Note that the two different shades of gray in the heatmaps have differing meanings: light gray means a mutation was missing (not measured) in the library, whereas dark gray means a mutation was measured but was so deleterious for cell entry it is not possible to reliably estimate its effect on other phenotypes (the threshold for how deleterious a mutation must be for cell entry to be shown in dark gray is controlled by the cell entry slider at the bottom of the plot).
 By default the plot only shows positive escape (mutations that reduce neutralization), but if you set the *floor escape at zero* option at the bottom of the plot then you can also see mutations that increase serum neutralization (negative escape).
  
 <Figure caption="Effects of mutations to spike on pre and post infection/vaccination sera neutralization for each exposure group">
     <Altair :showShadow="true" :spec-url="'htmls/sera_group_averages_overlaid.html'"></Altair>
 </Figure>
-
-For similar plots that group all the pre-exposure or all the post-exposure sera, see [here (pre-exposure)](htmls/pre_vaccination_infection_overlaid.html){target="_self"} or [here (post-exposure)](htmls/post_vaccination_infection_overlaid.html){target="_self"}.
 
 
 ## Per-individual comparison of effects of mutations neutralization by pre- and post-infection/vaccination serum
@@ -48,7 +46,4 @@ For a standalone version of this visualization, use [this link](https://dms-viz.
 <iframe src="https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_sera.json" width="100%" height="500px"></iframe>
 
 ## Numerical values
-For numerical values, see the following CSVs. Note that these show all mutations, for the plots above we filter only to escape of mutations with at least some minimal cell entry score as indicated by the sliders below the plots:
-
- - [Pre-vaccination or infection escape](https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/pre_vaccination_infection.csv)
- - [Post-vaccination or infection escape](https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/post_vaccination_infection.csv)
+For numerical values, see [this CSV](https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main/results/summaries/sera_group_averages.csv). Note that these show all mutations, for the plots above we filter only to escape of mutations with at least some minimal cell entry score as indicated by the sliders below the plots.
