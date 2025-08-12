@@ -38,7 +38,7 @@ Click [here](htmls/compare_pre_post_escape.html){target="_self"} for a standalon
 ## Interactive structure visualizations
 
 Below are interactive visualizations showing the effects of the mutations on sera escape in the context of the spike protein structure.
-These visualizations were made using the [dms-viz](https://dms-viz.github.io/dms-viz-docs/) platform. 
+These visualizations were made using the [dms-viz](https://dms-viz.github.io/dms-viz-docs/) platform, which spike from PDB ID: 9ELJ. 
 To see sera escape at each site onr the spike structure select, the sera group you want to see under Chart Options on the left and then highlight some or all sites on the line plot above the structure.
 For a better visual under Protein Options on the left set ‘protein representation’ to cartoon and ‘selection representation’ to surface.
 For a standalone version of this visualization, use [this link](https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_sera.json).

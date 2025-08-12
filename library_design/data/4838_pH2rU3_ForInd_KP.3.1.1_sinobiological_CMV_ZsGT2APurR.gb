@@ -1,6 +1,6 @@
-LOCUS       pH2rU3_ForInd_KP       12375 bp DNA     circular SYN 12-AUG-2024
-DEFINITION  Forward inducible lentivirus backbone coding for Delta variant 
-            SARS-CoV-2 Spike from BA.2.86 (sinobiological optimization) with and
+LOCUS       pH2rU3_ForInd_KP311       12375 bp DNA     circular SYN 12-AUG-2024
+DEFINITION  Forward inducible lentivirus backbone coding for KP.3.1.1 variant 
+            SARS-CoV-2 Spike (sinobiological optimization) with a
             21aa CTD deletion, and zsGreen that is linked to puromycin 
             resistance gene by T2A linker.
 ACCESSION   .

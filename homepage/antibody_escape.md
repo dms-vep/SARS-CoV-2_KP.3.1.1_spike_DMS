@@ -52,17 +52,17 @@ Below is a similar heatmap just showing escape from VYD222; click [here](htmls/m
 Below are interactive visualizations showing deep mutational scanning data for antibody escape in the context of the RBD protein structure. These visualizations were made using the [dms-viz](https://dms-viz.github.io/dms-viz-docs/) platform. To see antibody escape data overlaid on the RBD, highlight some or all sites on the line plot above the structure. For a better visual under Protein Options on the left set ‘protein representation’ to cartoon and ‘selection representation’ to surface.
 
 ### BD55-1205
-Click [here](https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_BD55-1205.json) for a standalone version of the below plot.
+Click [here](https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_BD55-1205.json) for a standalone version of the below plot. Structure is from PDB ID: 8XE9.
 
 <iframe src="https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_BD55-1205.json" width="100%" height="500px"></iframe>
 
 ### SA55
-Click [here](https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_SA55.json) for a standalone version of the below plot.
+Click [here](https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_SA55.json) for a standalone version of the below plot. Structure is from PDB ID: 7Y0W.
 
 <iframe src="https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_SA55.json" width="100%" height="500px"></iframe>
 
 ### VYD222
-Click [here](https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_VYD222.json) for a standalone version of the below plot.
+Click [here](https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_VYD222.json) for a standalone version of the below plot. Structure is from PDB ID: 7U2D.
 
 <iframe src="https://dms-viz.github.io/v0/?data=https%3A%2F%2Fraw.githubusercontent.com%2Fdms-vep%2FSARS-CoV-2_KP.3.1.1_spike_DMS%2Frefs%2Fheads%2Fmain%2Fresults%2Fdms-viz%2Fdms-viz_VYD222.json" width="100%" height="500px"></iframe>
 
