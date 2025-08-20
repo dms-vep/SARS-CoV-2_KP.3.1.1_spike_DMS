@@ -24,7 +24,7 @@ features:
 ---
 
 This page provides access to interactive visualizations of the effects of mutations to the spike of the KP.3.1.1 strain of SARS-CoV-2 as measured using [pseudovirus deep mutational scanning](https://www.sciencedirect.com/science/article/pii/S0092867423001034).
-The study that generated these data is detailed in **Add link to preprint/paper**, which is also the citation for these data.
+The study that generated these data is detailed in [Dadonaite et al (2025)](https://www.biorxiv.org/content/10.1101/2025.08.18.671001v1), which is also the citation for these data.
 
 The measurements were all made using non-replicative lentiviral pseudotyped particles ("pseudoviruses") that are not infectious pathogens capable of causing disease, and so provide a safe way to study the impact of mutations to SARS-CoV-2 proteins.
 

@@ -25,8 +25,8 @@ github_repo_url: https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS
 github_blob_url: https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS/blob/main
 # Some descriptions and metadata about the analysis.
 description: Deep mutational scanning of SARS-CoV-2 KP.3.1.1 spike using a barcoded lentiviral platform
-year: 2024
-authors: Bernadeta Dadonaite and Jesse Bloom
+year: 2025
+authors: "[Dadonaite et al](https://www.biorxiv.org/content/10.1101/2025.08.18.671001v1)"
 
 # ----------------------------------------------------------------------------
 # Site numbering, mutation classification, and neut standards

@@ -1,5 +1,7 @@
 # Deep mutational scanning of SARS-CoV-2 KP.3.1.1 spike 
 
+This study is described in [Dadonaite et al (2025)](https://www.biorxiv.org/content/10.1101/2025.08.18.671001v1).
+
 For documentation of the analysis, see [https://dms-vep.org/SARS-CoV-2_KP.3.1.1_spike_DMS/](https://dms-vep.org/SARS-CoV-2_KP.3.1.1_spike_DMS/)
 
 ## Organization of this repo
