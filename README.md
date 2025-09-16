@@ -38,7 +38,7 @@ To run on the Hutch cluster via [slurm](https://slurm.schedmd.com/), you can run
 The results of running the pipeline are placed in [./results/](results).
 Only some of these results are tracked to save space (see [.gitignore](.gitignore)).
 
-The pipeline builds HTML documentation for the pipeline in [./docs/](docs), which is rendered via GitHub Pages at [https://dms-vep.github.io/SARS-CoV-2_XBB.1.5_spike_DMS/](https://dms-vep.github.io/SARS-CoV-2_XBB.1.5_spike_DMS/).
+The pipeline builds HTML documentation for the pipeline in [./docs/](docs), which is rendered via GitHub Pages at [https://dms-vep.org/SARS-CoV-2_KP.3.1.1_spike_DMS](https://dms-vep.org/SARS-CoV-2_KP.3.1.1_spike_DMS).
 
 ### Library design
 The design of the mutant library is contained in [./library_design/](library_design).
