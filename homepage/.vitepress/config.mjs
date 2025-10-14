@@ -16,7 +16,7 @@ export default defineConfig({
     ],
     socialLinks: [{ icon: "github", link: "https://github.com/dms-vep/SARS-CoV-2_KP.3.1.1_spike_DMS" }],
     footer: {
-      message: 'See <a href="https://www.biorxiv.org/content/10.1101/2025.08.18.671001v1">Dadonaite et al (2025)</a> for study details',
+      message: 'See <a href="https://journals.asm.org/doi/10.1128/jvi.01423-25">Dadonaite et al (2025)</a> for study details',
     },
   },
 });
